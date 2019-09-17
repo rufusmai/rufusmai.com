@@ -1,29 +1,18 @@
-# rufusmaiwald.de
+# rufusmaiwald.de - digital business card
 
-## Project setup
-```
-npm install
-```
+View: [rufusmaiwald.de](https://rufusmaiwald.de)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This site aims to be a digital business card and shows some information about me as developer.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Development
 
-### Run your tests
-```
-npm run test
-```
+It's developed with the javascript framework [Vue.js](https://vuejs.org) and made to a SPA using vue-router.   
+The style utilizises [Bootstrap 4](https://getbootstrap.com) in combination with [BootstrapVue](https://bootstrap-vue.js.org).
+It's made fully responsive for all possible screen sizes.   
+For outgoing requests I utilize [axios](https://github.com/axios/axios) as a promise based ajax library. 
+The data are then processed with the vue helper functions.
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Hosting
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The site is hosted using the free web service of [render](https://render.com/).   
+Github pages is not useful as it does not natively support SPAs.
