@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-    <BackButton />
+    <BackButton/>
     <b-form class="text-left mx-auto" @submit.stop.prevent="onSubmit">
       <b-form-group>
         <label class="sr-only" for="input-name">Name</label>
@@ -49,7 +49,13 @@
       </b-form-group>
 
       <div class="text-center">
-        <b-button class="text-center" type="submit" variant="outline-secondary">
+        <span class="captcha text-muted">
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+          <br>
+        </span>
+        <b-button class="text-center mt-3" type="submit" variant="outline-secondary">
           <b-spinner v-if="submit" :disabled="!!submit" small></b-spinner>
           Abschicken
         </b-button>
@@ -101,24 +107,34 @@
                 if (!this.$v.form.$anyError) {
                     this.submit = true
 
-                    this.axios.post('https://api.rufusmaiwald.de/message', {
-                        name: this.form.name,
-                        email: this.form.email,
-                        msg: this.form.msg
-                    }, {
-                        validateStatus: function (status) {
-                            return status === 200;
-                        }
-                    }).then(response => {
-                        this.$router.push({path: 'sent', query: {success: true, response: response}})
-                    }).catch(error => {
-                        /* eslint-disable no-console */
-                        console.error(error.response)
+                    this.$recaptcha('login').then((token) => {
+                        this.axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/message' : 'http://localhost:8000/message', {
+                            name: this.form.name,
+                            token: token,
+                            email: this.form.email,
+                            msg: this.form.msg
+                        }, {
+                            validateStatus: function (status) {
+                                return status === 200;
+                            }
+                        }).then(response => {
+                            this.$router.push({path: 'sent', query: {success: true, response: response}})
+                        }).catch(error => {
+                            /* eslint-disable no-console */
+                            console.error(error.response)
 
-                        this.$router.push({path: 'sent', query: {success: false, response: error}})
+                            this.$router.push({path: 'sent', query: {success: false, response: error}})
+                        })
                     })
                 }
             }
         }
     }
 </script>
+
+<style>
+  .captcha {
+    font-size: .75em;
+    line-height: 1.5;
+  }
+</style>

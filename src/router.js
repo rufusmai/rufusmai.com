@@ -28,6 +28,11 @@ const router = new Router({
       path: '/projects',
       name: 'Projekte',
       component: () => import('./views/Projects.vue')
+    },
+    {
+      path: '*',
+      name: 'Nicht gefunden',
+      component: () => import('./views/404.vue')
     }
   ]
 })

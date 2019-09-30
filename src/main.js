@@ -11,10 +11,12 @@ import {faInstagram, faFacebook, faGithub, faSpotify, faVuejs} from '@fortawesom
 import {faTimesCircle, faCheckCircle} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import './registerServiceWorker'
+import {VueReCaptcha} from "vue-recaptcha-v3";
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue, Vuelidate)
+Vue.use(VueReCaptcha, { siteKey: '6LfgJLsUAAAAAAADroHUowA4fo_u93q-Au6I47fI', loaderOptions: { autoHideBadge: true } })
 
 Vue.axios = axios;
 Object.defineProperties(Vue.prototype, {
