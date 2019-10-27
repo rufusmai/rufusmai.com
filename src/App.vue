@@ -173,10 +173,12 @@
   .circle {
     position: absolute;
 
-    background-color: rgba(225, 225, 225, 0.5);
+    background-color: rgba(225, 225, 225, 0.3);
+    backdrop-filter: blur(5px);
     z-index: -1;
 
     border-radius: 50%;
+
 
     height: 200px;
     width: 200px;
@@ -211,7 +213,8 @@
   }
 
   .text-box {
-    background-color: rgba(225, 225, 225, 0.5);
+    background-color: rgba(225, 225, 225, 0.3);
+    backdrop-filter: blur(7.5px);
     padding: 20px;
     width: 100%;
     max-width: 400px;

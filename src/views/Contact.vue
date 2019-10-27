@@ -51,12 +51,12 @@
       <div class="text-center">
         <span class="captcha text-muted">
           This site is protected by reCAPTCHA and the Google
-          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+          <a tabindex="-1" href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a tabindex="-1" href="https://policies.google.com/terms">Terms of Service</a> apply.
           <br>
         </span>
         <b-button class="text-center mt-3" type="submit" variant="outline-secondary">
-          <b-spinner v-if="submit" :disabled="!!submit" small></b-spinner>
+          <b-spinner v-if="submit" :disabled="submit" small></b-spinner>
           Abschicken
         </b-button>
       </div>

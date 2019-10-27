@@ -2,11 +2,11 @@
   <div class="projects">
     <BackButton hide-name />
 
-    <div v-if="repos.length > 1" class="wrapper">
+    <div v-if="repos.length > 2" class="wrapper">
       <b-card v-for="repo in repos" v-bind:key="repo.id" class="mt-2">
         <a :href="repo.html_url" target="_blank" rel="noopener">
           <b-badge v-if="'url' in repo" variant="secondary"><fai :icon="['fab', 'github']" class="badge-icon"/> Github</b-badge>
-          <b-badge v-else variant="primary"><fai :icon="['fas', 'link']" class="badge-icon"/> Privates Projekt</b-badge>
+          <b-badge v-else variant="primary"><fai :icon="['fas', 'link']" class="badge-icon"/> Live Projekt</b-badge>
           <b-card-title>
             <code>{{ repo.name }}</code>
           </b-card-title>
@@ -50,6 +50,12 @@
                       name: 'MCONE.EU',
                       description: 'Selbstentwickeltes Gaming Netzwerk mit Minecraftserver, Teamspeak und Forum - noch in Entwicklung',
                       html_url: 'https://www.mcone.eu'
+                  },
+                  {
+                      id: 'designyourflow',
+                      name: 'DesignYourFlow',
+                      description: 'Firmen Landing Page',
+                      html_url: 'https://designyourflow.de'
                   }
               ],
               error: false
@@ -73,7 +79,7 @@
 
 <style scoped>
   .projects {
-    height: 465px;
+    height: 465px !important;
   }
 
   .wrapper {
