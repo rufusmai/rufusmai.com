@@ -6,8 +6,12 @@ Vue.use(VueI18n)
 let lang = (navigator.language || navigator.userLanguage).split('-')[0]
 let messages = lang === 'de' ? require('@/locales/de').default : require('@/locales/en').default
 
+if (lang !== 'de') {
+  document.querySelector('html').setAttribute('lang', 'en')
+}
+
 export const i18n = new VueI18n({
-  locale: lang,
+  locale: lang === 'de' ? 'de' : 'en',
   fallbackLocale: 'en',
   messages // set locale messages
 })
