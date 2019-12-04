@@ -12,7 +12,7 @@
           placeholder="Dein Name"
           trim
           autofocus
-        ></b-form-input>
+        />
 
         <b-form-invalid-feedback>
           Bitte gib deinen echten Namen an
@@ -27,7 +27,7 @@
           :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
           placeholder="Deine E-Mail Adresse"
           trim
-        ></b-form-input>
+        />
 
         <b-form-invalid-feedback>
           Bitte gib Deine echte E-Mail Adresse ein
@@ -41,7 +41,7 @@
           :state="$v.form.msg.$dirty ? !$v.form.msg.$error : null"
           placeholder="Deine Nachricht"
           rows="3"
-        ></b-form-textarea>
+        />
 
         <b-form-invalid-feedback>
           Bitte gib eine längere Nachricht ein
@@ -56,7 +56,7 @@
           <br>
         </span>
         <b-button class="text-center mt-3" type="submit" variant="outline-secondary">
-          <b-spinner v-if="submit" :disabled="submit" small></b-spinner>
+          <b-spinner v-if="submit" :disabled="submit" small />
           Abschicken
         </b-button>
       </div>
@@ -108,7 +108,7 @@
                     this.submit = true
 
                     this.$recaptcha('login').then((token) => {
-                        this.axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/message' : 'http://localhost:8000/message', {
+                        this.$axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/message' : 'http://localhost:8000/message', {
                             name: this.form.name,
                             token: token,
                             email: this.form.email,

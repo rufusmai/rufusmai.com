@@ -3,7 +3,7 @@
     <div v-if="this.$route.name !== 'Home'" class="back-btn text-left">
       <router-link to="/">
         <fai :icon="['fas', 'chevron-left']"/>
-        Zurück
+        {{ $t('nav.back') }}
       </router-link>
       <hr>
       <h4 v-if="!hideName" class="text-center">{{ this.$route.name }}</h4>

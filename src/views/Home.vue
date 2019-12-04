@@ -1,16 +1,9 @@
 <template>
   <div class="home text-center">
-    <p class="m-0">
-      Während den letzten Jahren habe ich mich unter anderem mit
-      <router-link to="/projects">diesen Projekten</router-link> beschäftigt.
-      Mein Schwerpunkt liegt auf der Anwendungs<wbr>entwicklung mit Java und der Front- & Back-End
-      Entwicklung von Websites.
-      Somit programmiere ich in den Programmiersprachen HTML, CSS, JS & PHP und in den
-      Frameworks Vue.js & Laravel/Lumen.
-      Sowohl in PHP als auch in Java
-      arbeite ich mit den Datenbanken MySQL oder MongoDB
-      und deren Libraries.
-    </p>
+    <i18n path="home.text" tag="p" class="m-0">
+      <router-link to="/projects">{{ $t('home.projects')}}</router-link>
+      <wbr>
+    </i18n>
   </div>
 </template>
 

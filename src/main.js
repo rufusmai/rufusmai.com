@@ -12,6 +12,7 @@ import {faTimesCircle, faCheckCircle} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import './registerServiceWorker'
 import {VueReCaptcha} from "vue-recaptcha-v3";
+import {i18n} from './i18n'
 
 Vue.config.productionTip = false
 
@@ -20,7 +21,7 @@ Vue.use(VueReCaptcha, { siteKey: '6LfgJLsUAAAAAAADroHUowA4fo_u93q-Au6I47fI', loa
 
 Vue.axios = axios;
 Object.defineProperties(Vue.prototype, {
-  axios: {
+  $axios: {
     get() {return axios;}
   },
   $http: {
@@ -33,5 +34,14 @@ Vue.component('fai', FontAwesomeIcon)
 
 new Vue({
   router,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
+
+// Hot updates
+if (module.hot) {
+  module.hot.accept(['./locales/en', './locales/de'], function () {
+    i18n.setLocaleMessage('en', require('./locales/en').default['en'])
+    i18n.setLocaleMessage('de', require('./locales/de').default['de'])
+  })
+}

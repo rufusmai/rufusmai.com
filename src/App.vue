@@ -12,23 +12,23 @@
               <div class="content w-100 text-center">
                 <h1>Rufus Maiwald</h1>
                 <p class="mb-2">
-                  Java- & Webentwickler, DJ
+                  {{ $t('subtitle') }}
                 </p>
                 <div class="social-iconbar">
                   <a v-for="icon in socialIcons" v-bind:key="icon.url" :href="icon.url" aria-label="Social Media Profil öffnen" rel="noopener" target="_blank">
                     <fai :icon="icon.icon" class="social-iconbar-icon" :class="icon.name" size="lg"/>
                   </a>
                 </div>
-                <div class="text-box mx-auto">
+                <div class="text-box mx-auto" :style="`min-height: ${lang === 'de' ? 280 : 240}px;`">
                   <transition name="fade" mode="out-in" @beforeLeave="beforeLeave" @enter="enter"
                               @afterEnter="afterEnter">
                     <router-view/>
                   </transition>
                 </div>
                 <div class="link-box">
-                  <router-link to="/contact">Kontakt</router-link>
+                  <router-link to="/contact">{{ $t('nav.contact') }}</router-link>
                   ·
-                  <router-link to="/projects">Projekte</router-link>
+                  <router-link to="/projects">{{ $t('nav.projects') }}</router-link>
                 </div>
               </div>
             </b-col>
@@ -36,12 +36,16 @@
         </b-col>
         <div class="footer text-muted">
           <p class="p-3">
-            Entwickelt mit
-            <a href="https://vuejs.org/" aria-label="Vue.js Seite öffnen" rel="noopener" target="_blank"><fai :icon="['fab', 'vuejs']" style="color: #3c9162"/></a>
-            und <span class="text-danger">&hearts;</span> von Rufus Maiwald.
+            <i18n path="footer.made" tag="span">
+              <a href="https://vuejs.org/" aria-label="Vue.js Seite öffnen" rel="noopener" target="_blank"><fai :icon="['fab', 'vuejs']" style="color: #3c9162"/></a>
+              <span class="text-danger">&hearts;</span>
+            </i18n>
             <wbr>
-            <a href="https://github.com/rufusmaiwald/rufusmaiwald.de" rel="noopener" target="_blank">
-              <span style="color: #35495e">Auf <fai :icon="['fab', 'github']"/> ansehen</span>
+            <i18n path="footer.view" tag="a" href="https://github.com/rufusmaiwald/rufusmaiwald.de" style="color: #35495e" rel="noopener" target="_blank">
+              <fai :icon="['fab', 'github']"/>
+            </i18n>
+            <a href="#" v-on:click="changeLanguage()" v-b-tooltip.hover :title="lang === 'en' ? 'In Deutsch ansehen' : 'View in English'">
+              <img class="rounded" :alt="lang === 'en' ? 'de' : 'en'" :src="`https://www.countryflags.io/${lang === 'en' ? 'de' : 'gb'}/flat/24.png`">
             </a>
           </p>
         </div>
@@ -51,9 +55,12 @@
 </template>
 
 <script>
+    import {loadLanguageAsync} from "@/i18n";
+
     export default {
-        data: function () {
+        data() {
             return {
+                lang: this.$i18n.locale,
                 bg: false,
                 transitionName: 'slide-left',
                 prevHeight: 0,
@@ -96,6 +103,10 @@
             },
             afterEnter(element) {
                 element.style.height = 'auto';
+            },
+            changeLanguage() {
+                this.lang = this.lang === 'en' ? 'de' : 'en'
+                loadLanguageAsync(this.lang)
             }
         },
         mounted: function () {
@@ -218,7 +229,6 @@
     padding: 20px;
     width: 100%;
     max-width: 400px;
-    min-height: 280px;
     border-radius: $border-radius-lg;
   }
 

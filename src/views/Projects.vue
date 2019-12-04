@@ -11,7 +11,7 @@
             <code>{{ repo.name }}</code>
           </b-card-title>
           <b-card-sub-title>
-            {{ repo.description }}
+            {{ 'url' in repo ? repo.description : $t(repo.description) }}
             <span v-if="repo.description == null">
           <i>Keine Beschreibung</i>
         </span>
@@ -21,7 +21,7 @@
 
       <p class="text-muted mt-3">Powered by <fai :icon="['fab', 'github']"/> API</p>
     </div>
-    <b-spinner v-else-if="!error" variant="secondary"></b-spinner>
+    <b-spinner v-else-if="!error" variant="secondary" />
 
     <b-alert v-if="error" show variant="danger">
       <p>
@@ -48,13 +48,13 @@
                   {
                       id: 'mcone',
                       name: 'MCONE.EU',
-                      description: 'Selbstentwickeltes Gaming Netzwerk mit Minecraftserver, Teamspeak und Forum - noch in Entwicklung',
+                      description: 'projects.mcone',
                       html_url: 'https://www.mcone.eu'
                   },
                   {
                       id: 'designyourflow',
                       name: 'DesignYourFlow',
-                      description: 'Firmen Landing Page',
+                      description: 'projects.designyourflow',
                       html_url: 'https://designyourflow.de'
                   }
               ],
@@ -62,7 +62,7 @@
           }
       },
       mounted: function () {
-          this.axios.get('https://api.github.com/users/rufusmaiwald/repos', {}, {
+          this.$axios.get('https://api.github.com/users/rufusmaiwald/repos', {}, {
               validateStatus: function (status) {
                   return status === 200;
               }
