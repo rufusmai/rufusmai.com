@@ -6,7 +6,6 @@
         {{ $t('nav.back') }}
       </router-link>
       <hr>
-      <h4 v-if="!hideName" class="text-center">{{ this.$route.name }}</h4>
       <slot/>
     </div>
   </div>
@@ -14,13 +13,7 @@
 
 <script>
     export default {
-        name: 'BackButton',
-        props: {
-          hideName: {
-              type: Boolean,
-              default: false
-          }
-        }
+        name: 'BackButton'
     }
 </script>
 

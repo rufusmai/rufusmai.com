@@ -1,6 +1,7 @@
 <template>
   <div class="contact">
     <BackButton/>
+    <h4 class="text-center">{{ $t('contact.sendMessage') }}</h4>
     <b-form class="text-left mx-auto" @submit.stop.prevent="onSubmit">
       <b-form-group>
         <label class="sr-only" for="input-name">Name</label>
@@ -9,13 +10,13 @@
           id="input-name"
           v-model="$v.form.name.$model"
           :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
-          placeholder="Dein Name"
+          :placeholder="$t('contact.name')"
           trim
           autofocus
         />
 
         <b-form-invalid-feedback>
-          Bitte gib deinen echten Namen an
+          {{ $t('contact.realName') }}
         </b-form-invalid-feedback>
       </b-form-group>
       <b-form-group>
@@ -25,12 +26,12 @@
           id="input-email"
           v-model="$v.form.email.$model"
           :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
-          placeholder="Deine E-Mail Adresse"
+          :placeholder="$t('contact.email')"
           trim
         />
 
         <b-form-invalid-feedback>
-          Bitte gib Deine echte E-Mail Adresse ein
+          {{ $t('contact.realMail') }}
         </b-form-invalid-feedback>
       </b-form-group>
       <b-form-group>
@@ -39,12 +40,12 @@
           id="input-msg"
           v-model="$v.form.msg.$model"
           :state="$v.form.msg.$dirty ? !$v.form.msg.$error : null"
-          placeholder="Deine Nachricht"
+          :placeholder="$t('contact.message')"
           rows="3"
         />
 
         <b-form-invalid-feedback>
-          Bitte gib eine längere Nachricht ein
+          {{ $t('contact.longer') }}
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -57,7 +58,7 @@
         </span>
         <b-button class="text-center mt-3" type="submit" variant="outline-secondary">
           <b-spinner v-if="submit" :disabled="submit" small />
-          Abschicken
+          {{ $t('contact.send') }}
         </b-button>
       </div>
     </b-form>
