@@ -30,6 +30,11 @@ const router = new Router({
       component: () => import('../views/Projects.vue')
     },
     {
+      path: '/privacy',
+      name: 'Datenschutz',
+      component: () => import('../views/Privacy.vue')
+    },
+    {
       path: '*',
       name: 'Nicht gefunden',
       component: () => import('../views/404.vue')

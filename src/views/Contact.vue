@@ -1,7 +1,7 @@
 <template>
   <div class="contact">
-    <BackButton/>
-    <h4 class="text-center">{{ $t('contact.sendMessage') }}</h4>
+    <back-button/>
+    <h4 class="text-center mb-4">{{ $t('contact.sendMessage') }}</h4>
     <b-form class="text-left mx-auto" @submit.stop.prevent="onSubmit">
       <b-form-group>
         <label class="sr-only" for="input-name">Name</label>
@@ -50,24 +50,26 @@
       </b-form-group>
 
       <div class="text-center">
-        <span class="captcha text-muted">
-          This site is protected by reCAPTCHA and the Google
-          <a tabindex="-1" href="https://policies.google.com/privacy">Privacy Policy</a> and
-          <a tabindex="-1" href="https://policies.google.com/terms">Terms of Service</a> apply.
-          <br>
-        </span>
+        <i18n path="contact.privacy" tag="span" class="captcha text-muted">
+          <a tabindex="-1" href="#" v-b-modal.privacy-modal @click.stop.prevent>{{ $t('privacy.privacyDeclaration') }}</a>.
+        </i18n>
+        <br>
         <b-button class="text-center mt-3" type="submit" variant="outline-secondary">
           <b-spinner v-if="submit" :disabled="submit" small/>
           {{ $t('contact.send') }}
         </b-button>
       </div>
     </b-form>
+
+    <b-modal id="privacy-modal" size="xl" ok-only :ok-title="$t('privacy.close')" ok-variant="secondary" :title="$t('privacy.title')">
+      <privacy/>
+    </b-modal>
   </div>
 </template>
 
 <script>
   import Vue from 'vue'
-  import {FormPlugin, FormGroupPlugin, FormInputPlugin, FormTextareaPlugin} from 'bootstrap-vue'
+  import {FormPlugin, FormGroupPlugin, FormInputPlugin, FormTextareaPlugin, ModalPlugin} from 'bootstrap-vue'
   import BackButton from '../components/BackButton.vue'
   import {validationMixin} from 'vuelidate'
   import {required, minLength, email} from 'vuelidate/lib/validators'
@@ -76,10 +78,12 @@
   Vue.use(FormGroupPlugin)
   Vue.use(FormInputPlugin)
   Vue.use(FormTextareaPlugin)
+  Vue.use(ModalPlugin)
 
   export default {
     components: {
-      BackButton
+      'back-button': BackButton,
+      'privacy': () => import('./Privacy.vue')
     },
     mixins: [validationMixin],
     data() {

@@ -1,6 +1,6 @@
 <template>
   <div class="projects">
-    <BackButton hide-name/>
+    <back-button hide-name/>
 
     <div v-if="repos.length > 2" class="wrapper">
       <b-card v-for="repo in repos" v-bind:key="repo.id" class="mt-2">
@@ -52,7 +52,7 @@
 
   export default {
     components: {
-      BackButton
+      'back-button': BackButton
     },
     data() {
       return {

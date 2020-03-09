@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-    <BackButton hide-name/>
+    <back-button hide-name/>
     <fai :icon="['far', success ? 'check-circle' : 'times-circle']" size="5x"
          :class="success ? 'text-success' : 'text-danger'"/>
     <h4 class="mt-4">{{ success ? 'Nachricht gesendet!' : 'Ein Fehler ist aufgetreten.' }}</h4>
@@ -14,7 +14,7 @@
 
   export default {
     components: {
-      BackButton
+      'back-button': BackButton
     },
     props: {
       success: Boolean,

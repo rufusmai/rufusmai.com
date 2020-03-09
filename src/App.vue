@@ -4,7 +4,7 @@
       <b-row class="grid align-items-end justify-content-center">
         <b-col md="12" xl="9">
           <b-row>
-            <b-col sm="12" md="6" class="d-flex align-items-center justify-content-center p-5 p-md-0">
+            <b-col sm="12" md="6" class="d-flex align-items-center justify-content-center py-2 px-5 py-sm-4 p-md-0">
               <div class="circle"></div>
               <img class="d-flex avatar" alt="Rufus Maiwald" src="@/assets/avatar.svg">
             </b-col>
@@ -143,6 +143,10 @@
 
         this.installPrompt.userChoice.then(result => {
           this.sendInstalledPWAToast(result.outcome === 'accepted')
+
+          if (result.outcome === 'accepted') {
+            this.installPrompt = null
+          }
         })
       },
       sendInstalledPWAToast(installed) {
@@ -224,31 +228,41 @@
   }
 
   #app:after {
-    content: "";
+    content: '';
 
-    transition: background 1s;
+    @include media-breakpoint-up(sm) {
+      background-image: url('assets/rufi_bg_avatar_bw_45deg.svg');
+      background-attachment: fixed;
+      background-position: top right;
+      background-clip: border-box;
+      background-origin: border-box;
+      background-repeat: repeat;
+      background-size: 300px;
 
-    background-image: url('assets/rufi_bg_avatar_bw_45deg.svg');
-    background-attachment: fixed;
-    background-position: center;
-    background-clip: border-box;
-    background-origin: border-box;
-    background-repeat: repeat;
-    background-size: 300px;
+      opacity: 0.15;
+    }
 
-    opacity: 0.15;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    @include media-breakpoint-up(md) {
+      animation: animate-right 60s linear infinite;
+      animation-delay: 1s;
+    }
+
+    top: -300px;
+    left: -300px;
+    bottom: -300px;
+    right: -300px;
     z-index: -2;
 
     position: fixed;
   }
 
-  .bg:after {
-    background-image: url('assets/rufi_bg_avatar_bw_-45deg.svg') !important;
-    transition: background 1s;
+  @keyframes animate-right {
+    from {
+      transform: scale(1.25) translate(-150px, 150px);
+    }
+    to {
+      transform: scale(1.25) translate(150px, -150px);
+    }
   }
 
   .circle {
@@ -259,7 +273,6 @@
     z-index: -1;
 
     border-radius: 50%;
-
 
     height: 200px;
     width: 200px;

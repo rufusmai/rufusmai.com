@@ -13,6 +13,7 @@ export default {
       email: 'Your email address',
       message: 'Your message',
       send: 'Send',
+      privacy: 'By sending the message you accept the {0}',
       realName: 'Please enter your real name',
       realMail: 'Please enter a real email address',
       longer: 'Please enter a longer message'
@@ -29,6 +30,14 @@ export default {
       back: 'Back',
       contact: 'Contact',
       projects: 'Projects'
+    },
+    privacy: {
+      title: 'Privacy',
+      privacyDeclaration: 'privacy policy',
+      close: 'Close'
+    },
+    imprint: {
+      title: 'Imprint'
     }
   }
 }

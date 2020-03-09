@@ -1,6 +1,6 @@
 <template>
   <div class="404">
-    <BackButton hide-name/>
+    <back-button hide-name/>
     <fai :icon="['far', 'times-circle']" size="5x" class="text-secondary mt-2"/>
     <h3 class="mt-4">Seite nicht gefunden</h3>
   </div>
@@ -12,7 +12,7 @@
   export default {
     name: '404',
     components: {
-      BackButton
+      'back-button': BackButton
     }
   }
 </script>
