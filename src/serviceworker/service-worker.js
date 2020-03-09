@@ -10,7 +10,10 @@ workbox.routing.registerRoute(
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'github-projects',
     plugins: [
-      new workbox.broadcastUpdate.Plugin(),
+      new workbox.broadcastUpdate.Plugin({
+        headersToCheck: ['content-length', 'etag', 'last-modified'],
+        channelName: 'github-projects-updated'
+      }),
     ]
   })
 )

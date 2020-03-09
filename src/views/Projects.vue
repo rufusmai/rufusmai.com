@@ -70,39 +70,20 @@
             html_url: 'https://designyourflow.de'
           }
         ],
+        updateChannel: undefined,
         error: false
       }
     },
     mounted() {
-      navigator.serviceWorker.addEventListener('message', async (event) => {
-        /* eslint no-console: "off" */
-        console.log('message event catched')
-
-        // Optional: ensure the message came from workbox-broadcast-update
-        if (event.data.meta === 'workbox-broadcast-update') {
-          console.log('workbox-broadcast-update message event catched')
-          const {cacheName, updatedUrl} = event.data.payload;
-
-          // Do something with cacheName and updatedUrl.
-          // For example, get the cached content and update
-          // the content on the page.
-          const cache = await caches.open(cacheName);
-          const updatedResponse = await cache.match(updatedUrl);
-
-          console.log('repos before')
-          console.log(this.repos)
-          this.repos = this.repos.filter(obj => !('url' in obj))
-          updatedResponse.json().then((repos) => {
-            repos.forEach(repo => {
-              this.repos.push(repo)
-            });
-            console.log('repos after')
-            console.log(this.repos)
-          });
-        }
-      });
+      this.updateChannel = new BroadcastChannel('github-projects-updated')
+      this.updateChannel.addEventListener("message", async () => {
+        this.fetchRepos();
+      })
 
       this.fetchRepos()
+    },
+    destroyed() {
+      this.updateChannel.close()
     },
     methods: {
       fetchRepos() {
