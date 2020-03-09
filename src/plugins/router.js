@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(Router)
 
@@ -16,30 +16,30 @@ const router = new Router({
     {
       path: '/contact',
       name: 'Nachricht schicken',
-      component: () => import(/* webpackChunkName: "contact" */ './views/Contact.vue')
+      component: () => import('../views/Contact.vue')
     },
     {
       path: '/sent',
       name: 'Nachricht gesendet',
       props: (route) => (route.query),
-      component: () => import(/* webpackChunkName: "contact" */ './views/Sent.vue')
+      component: () => import('../views/Sent.vue')
     },
     {
       path: '/projects',
       name: 'Projekte',
-      component: () => import('./views/Projects.vue')
+      component: () => import('../views/Projects.vue')
     },
     {
       path: '*',
       name: 'Nicht gefunden',
-      component: () => import('./views/404.vue')
+      component: () => import('../views/404.vue')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name+' · Rufus Maiwald'
+  document.title = to.name + ' · Rufus Maiwald'
   next()
 })
 
-export default router;
+export default router

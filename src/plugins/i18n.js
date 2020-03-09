@@ -10,7 +10,7 @@ if (lang !== 'de') {
   document.querySelector('html').setAttribute('lang', 'en')
 }
 
-export const i18n = new VueI18n({
+const i18n = new VueI18n({
   locale: lang === 'de' ? 'de' : 'en',
   fallbackLocale: 'en',
   messages // set locale messages
@@ -43,4 +43,14 @@ export function loadLanguageAsync(lang) {
       return setI18nLanguage(lang)
     }
   )
+}
+
+export default i18n;
+
+// Hot updates
+if (module.hot) {
+  module.hot.accept(['../locales/en', '../locales/de'], function () {
+    i18n.setLocaleMessage('en', require('@/locales/en').default['en'])
+    i18n.setLocaleMessage('de', require('@/locales/de').default['de'])
+  })
 }

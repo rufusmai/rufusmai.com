@@ -15,7 +15,8 @@
                   {{ $t('subtitle') }}
                 </p>
                 <div class="social-iconbar">
-                  <a v-for="icon in socialIcons" v-bind:key="icon.url" :href="icon.url" aria-label="Social Media Profil öffnen" rel="noopener" target="_blank">
+                  <a v-for="icon in socialIcons" v-bind:key="icon.url" :href="icon.url"
+                     aria-label="Social Media Profil öffnen" rel="noopener" target="_blank">
                     <fai :icon="icon.icon" class="social-iconbar-icon" :class="icon.name" size="lg"/>
                   </a>
                 </div>
@@ -29,6 +30,10 @@
                   <router-link to="/contact">{{ $t('nav.contact') }}</router-link>
                   ·
                   <router-link to="/projects">{{ $t('nav.projects') }}</router-link>
+                  <div class="d-inline-block ml-1" v-if="installPrompt">
+                    ·
+                    <a class="pwa-install" href="#" @click.stop.prevent="installPWA">App Installieren</a>
+                  </div>
                 </div>
               </div>
             </b-col>
@@ -37,91 +42,156 @@
         <div class="footer text-muted">
           <p class="p-3">
             <i18n path="footer.made" tag="span">
-              <a href="https://vuejs.org/" aria-label="Vue.js Seite öffnen" rel="noopener" target="_blank"><fai :icon="['fab', 'vuejs']" style="color: #3c9162"/></a>
+              <a href="https://vuejs.org/" aria-label="Vue.js Seite öffnen" rel="noopener" target="_blank">
+                <fai :icon="['fab', 'vuejs']" style="color: #3c9162"/>
+              </a>
               <span class="text-danger">&hearts;</span>
             </i18n>
             <wbr>
-            <i18n path="footer.view" tag="a" href="https://github.com/rufusmaiwald/rufusmaiwald.de" style="color: #35495e" rel="noopener" target="_blank">
+            <i18n path="footer.view" tag="a" href="https://github.com/rufusmaiwald/rufusmaiwald.de"
+                  style="color: #35495e" rel="noopener" target="_blank">
               <fai :icon="['fab', 'github']"/>
             </i18n>
-            <a href="#" v-on:click="changeLanguage()" v-b-tooltip.hover :title="lang === 'en' ? 'In Deutsch ansehen' : 'View in English'">
-              <img class="rounded" :alt="lang === 'en' ? 'de' : 'en'" :src="`https://www.countryflags.io/${lang === 'en' ? 'de' : 'gb'}/flat/24.png`">
+            .
+            <a href="#" v-on:click="changeLanguage()" v-b-tooltip.hover
+               :title="lang === 'en' ? 'In Deutsch ansehen' : 'View in English'">
+              <img class="rounded" :alt="lang === 'en' ? 'de' : 'en'"
+                   :src="`https://www.countryflags.io/${lang === 'en' ? 'de' : 'gb'}/flat/24.png`">
             </a>
           </p>
         </div>
       </b-row>
     </b-container>
+
+    <b-toast id="update-toast" no-auto-hide toaster="b-toaster-bottom-left">
+      <template v-slot:toast-title>
+        <div class="d-flex flex-grow-1 align-items-baseline">
+          <b-img blank blank-color="#28a745" class="mr-2" width="12" height="12"></b-img>
+          <strong class="mr-auto">Rufus Maiwald PWA</strong>
+        </div>
+      </template>
+      <p>
+        Eine neue Version dieser Seite ist verfügbar!
+      </p>
+      <b-button href="#" size="sm" variant="secondary" @click.stop.prevent="updateWorker">Seite aktualisieren</b-button>
+    </b-toast>
   </div>
 </template>
 
 <script>
-    import {loadLanguageAsync} from "@/i18n";
+  import Vue from 'vue'
+  import {ToastPlugin} from "bootstrap-vue"
+  import {loadLanguageAsync} from "@/plugins/i18n"
 
-    export default {
-        data() {
-            return {
-                lang: this.$i18n.locale,
-                bg: false,
-                transitionName: 'slide-left',
-                prevHeight: 0,
-                prevWidth: 0,
-                socialIcons: [
-                    {
-                        name: 'github',
-                        url: 'https://github.com/rufusmaiwald',
-                        icon: ['fab', 'github']
-                    },
-                    {
-                        name: 'spotify',
-                        url: 'https://open.spotify.com/user/rufusmaiwald',
-                        icon: ['fab', 'spotify']
-                    },
-                    {
-                        name: 'facebook',
-                        url: 'https://www.facebook.com/rufusmaiwald',
-                        icon: ['fab', 'facebook']
-                    },
-                    {
-                        name: 'instagram',
-                        url: 'https://instagram.com/rufusmaiwald',
-                        icon: ['fab', 'instagram']
-                    }
-                ]
-            }
-        },
-        methods: {
-            beforeLeave(element) {
-                this.prevHeight = getComputedStyle(element).height;
-            },
-            enter(element) {
-                const {height} = getComputedStyle(element);
-                element.style.height = this.prevHeight;
+  Vue.use(ToastPlugin)
 
-                setTimeout(() => {
-                    element.style.height = height;
-                });
-            },
-            afterEnter(element) {
-                element.style.height = 'auto';
-            },
-            changeLanguage() {
-                this.lang = this.lang === 'en' ? 'de' : 'en'
-                loadLanguageAsync(this.lang)
-            }
-        },
-        mounted: function () {
-            this.$router.beforeEach((to, from, next) => {
-                this.bg = !this.bg
-                next()
-            })
-        },
-        beforeRouteUpdate(to, from, next) {
-            const toDepth = to.path.split('/').length
-            const fromDepth = from.path.split('/').length
-            this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-            next()
-        }
+  export default {
+    data() {
+      return {
+        lang: this.$i18n.locale,
+        bg: false,
+        transitionName: 'slide-left',
+        prevHeight: 0,
+        prevWidth: 0,
+        installPrompt: false,
+        registration: null,
+        socialIcons: [
+          {
+            name: 'github',
+            url: 'https://github.com/rufusmaiwald',
+            icon: ['fab', 'github']
+          },
+          {
+            name: 'spotify',
+            url: 'https://open.spotify.com/user/rufusmaiwald',
+            icon: ['fab', 'spotify']
+          },
+          {
+            name: 'facebook',
+            url: 'https://www.facebook.com/rufusmaiwald',
+            icon: ['fab', 'facebook']
+          },
+          {
+            name: 'instagram',
+            url: 'https://instagram.com/rufusmaiwald',
+            icon: ['fab', 'instagram']
+          }
+        ]
+      }
+    },
+    methods: {
+      beforeLeave(element) {
+        this.prevHeight = getComputedStyle(element).height
+      },
+      enter(element) {
+        const {height} = getComputedStyle(element)
+        element.style.height = this.prevHeight;
+
+        setTimeout(() => {
+          element.style.height = height
+        });
+      },
+      afterEnter(element) {
+        element.style.height = 'auto'
+      },
+      changeLanguage() {
+        this.lang = this.lang === 'en' ? 'de' : 'en'
+        loadLanguageAsync(this.lang)
+      },
+      installPWA() {
+        this.installPrompt.prompt()
+
+        this.installPrompt.userChoice.then(result => {
+          this.sendInstalledPWAToast(result.outcome === 'accepted')
+        })
+      },
+      sendInstalledPWAToast(installed) {
+        const h = this.$createElement
+        const vNodesTitle = h(
+          'div',
+          {class: ['d-flex', 'flex-grow-1', 'align-items-baseline', 'mr-2']},
+          [
+            h('b-img', {
+              props: {blank: true, 'blank-color': installed ? '#28a745' : '#dc3545', width: 12, height: 12},
+              class: 'mr-2'
+            }),
+            h('strong', {class: 'mr-2'}, 'Rufus Maiwald PWA'),
+          ]
+        );
+
+        this.$bvToast.toast(this.$t(installed ? 'home.installedPWA' : 'home.cancelledPWAInstall'), {
+          title: [vNodesTitle],
+          autoHideDelay: 5000
+        })
+      },
+      updateWorker() {
+        if (!this.registration || !this.registration.waiting) return
+        this.registration.waiting.postMessage({action: 'skipWaiting'})
+      }
+    },
+    created() {
+      window.addEventListener('beforeinstallprompt', e => {
+        this.installPrompt = e;
+        e.preventDefault()
+      });
+      document.addEventListener('serviceworkerupdated', e => {
+        this.registration = e.detail
+        this.$bvToast.show('update-toast')
+      })
+    },
+    mounted: function () {
+      this.$router.beforeEach((to, from, next) => {
+        this.bg = !this.bg
+        next()
+      })
+    },
+    beforeRouteUpdate(to, from, next) {
+      const toDepth = to.path.split('/').length
+      const fromDepth = from.path.split('/').length
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+      next()
     }
+  }
 </script>
 
 <style lang="scss">
@@ -216,11 +286,11 @@
     @include media-breakpoint-up(lg) {
       height: 500px;
     }
-  }
 
-  .avatar:hover {
-    filter: brightness(1.05);
-    transition: filter .2s;
+    &:hover {
+      filter: brightness(1.005) drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));
+      transition: filter .2s;
+    }
   }
 
   .text-box {
@@ -239,12 +309,15 @@
   .github:hover {
     color: #000000
   }
+
   .spotify:hover {
     color: #1db954;
   }
+
   .facebook:hover {
     color: #3b5998;
   }
+
   .instagram:hover {
     color: #833ab4;
   }
@@ -263,9 +336,22 @@
   .link-box {
     margin: 10px;
 
-    > a {
+    > a, > div > a {
       margin: 0 5px 0 5px;
       color: $gray-800;
+    }
+  }
+
+  .pwa-install {
+    animation: fadein 2s;
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   }
 

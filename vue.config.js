@@ -1,13 +1,17 @@
 module.exports = {
+  productionSourceMap: false,
   pwa: {
-    msTileColor: '#000000',
-    themeColor: '#000000',
-    appleMobileWebAppStatusBarStyle: 'black',
+    msTileColor: '#FFF',
+    themeColor: '#FFF',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'default',
 
     // configure the workbox plugin
-    workboxPluginMode: 'GenerateSW'
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: 'src/serviceworker/service-worker.js'
+    }
   },
-
   pluginOptions: {
     i18n: {
       locale: 'de',
