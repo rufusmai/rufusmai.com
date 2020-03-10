@@ -244,7 +244,6 @@
 
     @include media-breakpoint-up(md) {
       animation: animate-right 60s linear infinite;
-      animation-delay: 1s;
     }
 
     top: -300px;
