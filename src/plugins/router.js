@@ -44,6 +44,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.name + ' · Rufus Maiwald'
+  document.querySelector('meta[name="robots"]').setAttribute('content',to.name === 'Nicht gefunden' ? 'noindex' : 'all')
+
   next()
 })
 

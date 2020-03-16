@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="bg ? 'bg' : ''">
+  <div id="app">
     <b-container fluid class="grid">
       <b-row class="grid align-items-end justify-content-center">
         <b-col md="12" xl="9">
@@ -89,7 +89,6 @@
     data() {
       return {
         lang: this.$i18n.locale,
-        bg: false,
         transitionName: 'slide-left',
         prevHeight: 0,
         prevWidth: 0,
@@ -181,12 +180,6 @@
       document.addEventListener('serviceworkerupdated', e => {
         this.registration = e.detail
         this.$bvToast.show('update-toast')
-      })
-    },
-    mounted: function () {
-      this.$router.beforeEach((to, from, next) => {
-        this.bg = !this.bg
-        next()
       })
     },
     beforeRouteUpdate(to, from, next) {

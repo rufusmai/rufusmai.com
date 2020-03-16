@@ -61,7 +61,8 @@
       </div>
     </b-form>
 
-    <b-modal id="privacy-modal" size="xl" ok-only :ok-title="$t('privacy.close')" ok-variant="secondary" :title="$t('privacy.title')">
+    <b-modal id="privacy-modal" size="xl" ok-only :ok-title="$t('privacy.close')" ok-variant="secondary"
+             :title="$t('privacy.title')">
       <privacy/>
     </b-modal>
   </div>
@@ -69,7 +70,14 @@
 
 <script>
   import Vue from 'vue'
-  import {FormPlugin, FormGroupPlugin, FormInputPlugin, FormTextareaPlugin, ModalPlugin} from 'bootstrap-vue'
+  import {
+    FormPlugin,
+    FormGroupPlugin,
+    FormInputPlugin,
+    FormTextareaPlugin,
+    ModalPlugin,
+    SpinnerPlugin
+  } from 'bootstrap-vue'
   import BackButton from '../components/BackButton.vue'
   import {validationMixin} from 'vuelidate'
   import {required, minLength, email} from 'vuelidate/lib/validators'
@@ -79,6 +87,7 @@
   Vue.use(FormInputPlugin)
   Vue.use(FormTextareaPlugin)
   Vue.use(ModalPlugin)
+  Vue.use(SpinnerPlugin)
 
   export default {
     components: {
@@ -113,39 +122,36 @@
         }
       }
     },
-    created() {
-      this.loadRecaptcha()
-    },
     methods: {
-      async loadRecaptcha() {
-        var recaptcha = await import('recaptcha-v3')
-        this.recaptcha = await recaptcha.load('6LfgJLsUAAAAAAADroHUowA4fo_u93q-Au6I47fI', {
-          autoHideBadge: true
-        })
-      },
       onSubmit() {
         this.$v.form.$touch()
 
         if (!this.$v.form.$anyError) {
           this.submit = true
 
-          this.recaptcha.execute('login').then((token) => {
-            this.$axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/message' : 'http://localhost:8000/message', {
-              name: this.form.name,
-              token: token,
-              email: this.form.email,
-              msg: this.form.msg
-            }, {
-              validateStatus: function (status) {
-                return status === 200
-              }
-            }).then(response => {
-              this.$router.push({path: 'sent', query: {success: true, response: response}})
-            }).catch(error => {
-              /* eslint-disable no-console */
-              console.error(error.response)
+          import('recaptcha-v3').then(recaptchav3 => {
+            recaptchav3.load('6LfgJLsUAAAAAAADroHUowA4fo_u93q-Au6I47fI', {
+              autoHideBadge: true
+            }).then(recaptcha => {
+              recaptcha.execute('login').then((token) => {
+                this.$axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/message' : 'http://localhost:8000/message', {
+                  name: this.form.name,
+                  token: token,
+                  email: this.form.email,
+                  msg: this.form.msg
+                }, {
+                  validateStatus: function (status) {
+                    return status === 200
+                  }
+                }).then(response => {
+                  this.$router.push({path: 'sent', query: {success: true, response: response}})
+                }).catch(error => {
+                  /* eslint-disable no-console */
+                  console.error(error.response)
 
-              this.$router.push({path: 'sent', query: {success: false, response: error}})
+                  this.$router.push({path: 'sent', query: {success: false, response: error}})
+                })
+              })
             })
           })
         }

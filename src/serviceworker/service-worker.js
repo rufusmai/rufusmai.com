@@ -18,18 +18,6 @@ workbox.routing.registerRoute(
   })
 )
 
-const bgSyncPlugin = new workbox.backgroundSync.Plugin('contact-request-queue', {
-  maxRetentionTime: 24 * 60
-})
-
-workbox.routing.registerRoute(
-  /^https:\/\/api\.rufusmaiwald\.de\/message/,
-  new workbox.strategies.NetworkOnly({
-    plugins: [bgSyncPlugin]
-  }),
-  'POST'
-)
-
 // Setup cache strategy for Google Fonts. They consist of two parts, a static one
 // coming from fonts.gstatic.com (strategy CacheFirst) and a more ferquently updated on
 // from fonts.googleapis.com. Hence, split in two registerroutes
