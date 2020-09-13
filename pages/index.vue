@@ -1,78 +1,71 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        rufusmaiwald.de
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="grid grid-cols-1 lg:grid-cols-5">
+    <div class="col-span-3 flex justify-center items-center h-40 sm:h-auto text-center">
+      <KnowledgeHeader />
+    </div>
+    <div class="col-span-2 relative text-center p-3 mt-10 lg:mt-0">
+      <article class="relative inline-block text-left max-w-sm sm:max-w-none bg-gray-600 bg-opacity-50 rounded-lg p-3">
+        <img src="@/assets/img/profile.jpg" alt="profile" class="profile rounded-full border-2 border-white absolute h-16 w-16">
+
+        <header class="ml-10">
+          <h2 class="text-2xl mb-2 font-bold">
+            {{ $t('profile') }}
+          </h2>
+
+          <ul class="text-gray-400 mb-1 leading-7">
+            <li class="inline-block relative mr-2">
+              <BriefcaseIcon size="18" class="inline" />
+              {{ $t('student') }}
+
+              <div class="tooltip absolute hidden opacity-0 transition-opacity duration-300 ease-in-out rounded p-3 text-black bg-gray-200">
+                LMU München
+              </div>
+            </li>
+            <li class="inline-block mr-2">
+              <CakeIcon size="18" class="inline" /> {{ age }} {{ $t('age') }}
+            </li>
+            <li class="inline-block mr-2">
+              <LocationMarkerIcon size="18" class="inline" /> {{ $t('location') }}
+            </li>
+          </ul>
+        </header>
+      </article>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { BriefcaseIcon, CakeIcon, LocationMarkerIcon } from '@vue-hero-icons/outline'
+import KnowledgeHeader from '../components/KnowledgeHeader'
+
+export default {
+  name: 'Index',
+  components: { KnowledgeHeader, BriefcaseIcon, CakeIcon, LocationMarkerIcon },
+  computed: {
+    age () {
+      const birthday = +new Date('10/09/2000')
+      return ~~((Date.now() - birthday) / (24 * 3600 * 365.25 * 1000))
+    }
+  }
+}
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
+.profile {
+  transform: translate(-50%, -50%);
 }
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+li:hover .tooltip {
   display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  opacity: 1;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.tooltip .tooltip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
 }
 </style>
