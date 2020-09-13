@@ -91,3 +91,5 @@ sw.*
 
 # Tailwindcss build for code completion
 .tailwind
+
+.vercel
