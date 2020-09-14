@@ -1,9 +1,9 @@
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-5">
-    <div class="col-span-3 flex justify-center items-center h-40 sm:h-auto text-center">
+    <div class="col-span-3 sm:px-10 flex justify-center items-center h-40 sm:h-auto text-center">
       <KnowledgeHeader />
     </div>
-    <div class="col-span-2 relative text-center p-3 mt-10 lg:mt-0">
+    <div class="col-span-2 relative text-center p-3 mt-10 lg:mt-0 lg:ml-6">
       <article class="relative inline-block text-left max-w-sm sm:max-w-none bg-gray-600 bg-opacity-50 rounded-lg p-3">
         <img src="@/assets/img/profile.jpg" alt="profile" class="profile rounded-full border-2 border-white absolute h-16 w-16">
 

@@ -15,7 +15,7 @@
         :href="currentFramework.url"
       >
         {{ currentFramework.name }}
-        <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out inline -ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}`" size="40" />
+        <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out inline -ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" size="40" />
       </a>
     </span>
   </h1>
@@ -35,103 +35,103 @@ export default {
       utilities: [
         {
           name: 'HTML',
-          colors: ['orange-500', 'red-500'],
+          colors: ['orange', 'red'],
           language: true,
           frameworks: null
         },
         {
           name: 'Javascript',
-          colors: ['yellow-400', 'yellow-500'],
+          colors: ['yellow', 'yellow'],
           language: true,
           frameworks: [
             {
               name: 'Vue.js',
               url: 'https://vuejs.org/',
-              colors: ['green-600', 'green-800']
+              colors: ['green', 'green']
             },
             {
               name: 'React',
               url: 'https://reactjs.org/',
-              colors: ['blue-300', 'blue-500']
+              colors: ['blue', 'blue']
             },
             {
               name: 'JQuery',
               url: 'https://jquery.com/',
-              colors: ['blue-800', 'teal-700']
+              colors: ['blue', 'teal']
             },
             {
               name: 'NodeJS',
               url: 'https://nodejs.org/',
-              colors: ['green-500', 'green-900']
+              colors: ['green', 'green']
             }
           ]
         },
         {
           name: 'CSS',
-          colors: ['blue-500', 'indigo-500'],
+          colors: ['blue', 'indigo'],
           language: true,
           frameworks: [
             {
               name: 'Sass',
               url: 'https://sass-lang.com/',
-              colors: ['red-300', 'pink-500']
+              colors: ['red', 'pink']
             },
             {
               name: 'Bootstrap',
               url: 'https://getbootstrap.com/',
-              colors: ['purple-300', 'indigo-500']
+              colors: ['purple', 'indigo']
             },
             {
               name: 'Tailwind',
               url: 'https://tailwindcss.com/',
-              colors: ['teal-300', 'teal-700']
+              colors: ['teal', 'teal']
             }
           ]
         },
         {
           name: 'PHP',
-          colors: ['indigo-500', 'purple-500'],
+          colors: ['indigo', 'purple'],
           language: true,
           frameworks: [
             {
               name: 'Laravel',
               url: 'https://laravel.com/',
-              colors: ['red-600', 'red-800']
+              colors: ['red', 'red']
             }
           ]
         },
         {
           name: 'Java',
-          colors: ['red-600', 'blue-900'],
+          colors: ['red', 'blue'],
           language: true,
           frameworks: [
             {
               name: 'Netty',
               url: 'https://netty.io/',
-              colors: ['gray-300', 'blue-600']
+              colors: ['gray', 'blue']
             },
             {
               name: 'Spigot API',
               url: 'https://www.spigotmc.org/',
-              colors: ['orange-500', 'gray-600']
+              colors: ['orange', 'gray']
             }
           ]
         },
         {
           name: 'MySQL',
-          colors: ['blue-500', 'orange-800'],
+          colors: ['blue', 'orange'],
           language: false,
           frameworks: null
         },
         {
           name: 'MongoDB',
-          colors: ['green-500', 'green-800'],
+          colors: ['green', 'green'],
           language: false,
           frameworks: null
         },
         {
           name: 'Git',
-          colors: ['orange-500', 'red-800'],
+          colors: ['orange', 'red'],
           language: false,
           frameworks: null
         }
@@ -166,9 +166,9 @@ export default {
         const color = target[i]
 
         if (i === 0) {
-          classes.push('from-' + color)
+          classes.push(`from-${color}-400`)
         } else if (i <= target.length - 1) {
-          classes.push('via-' + color)
+          classes.push(`via-${color}-600`)
         } else {
           classes.push('via-transparent')
           classes.push('via-transparent')
