@@ -1,24 +1,26 @@
 <template>
-  <h1 class="font-bold text-4xl md:text-5xl">
-    {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
-    <span ref="util" class="magic-text fade-in bg-gradient-to-r bg-clip-text text-transparent" :class="bgUtilClasses">
-      {{ currentUtil.name }}
-    </span>
-    <br>
-    <span v-if="currentFramework">
-      {{ $t('with') }}
-      <a
-        ref="framework"
-        class="magic-text framework-link fade-in bg-gradient-to-r bg-clip-text text-transparent"
-        target="_blank"
-        :class="bgFrameworkClasses"
-        :href="currentFramework.url"
-      >
-        {{ currentFramework.name }}
-        <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out inline -ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" size="40" />
-      </a>
-    </span>
-  </h1>
+  <div class="inline">
+    <h1>
+      {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
+      <span ref="util" class="magic-text bg-gradient-to-r bg-clip-text text-transparent" :class="bgUtilClasses">
+        {{ currentUtil.name }}
+      </span>
+      <br>
+      <span v-if="currentFramework">
+        {{ $t('and') }}
+        <a
+          ref="framework"
+          class="magic-text framework-link bg-gradient-to-r bg-clip-text text-transparent"
+          target="_blank"
+          :class="bgFrameworkClasses"
+          :href="currentFramework.url"
+        >
+          {{ currentFramework.name }}
+          <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out inline w-6 h-6 md:w-12 h-12 sm:-ml-1 md:-ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" />
+        </a>
+      </span>
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -191,6 +193,7 @@ export default {
         this.$refs.util.classList.add('fade-out')
         setTimeout(() => {
           if (this.currentUtilIndex >= this.utilities.length - 1) {
+            this.$refs.util.classList.remove('fade-out')
             this.currentUtilIndex = 0
           } else {
             this.currentUtilIndex++

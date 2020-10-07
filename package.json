@@ -1,6 +1,6 @@
 {
   "name": "rufusmaiwald.de",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -12,16 +12,20 @@
     "tailwind": "npx tailwindcss build assets/css/tailwind.css -o .tailwind/tailwind.css"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-brands-svg-icons": "^5.12.1",
-    "@fortawesome/free-regular-svg-icons": "^5.12.1",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.0",
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/pwa": "^3.1.2",
     "@vue-hero-icons/outline": "^1.6.3",
+    "nanoid": "^2.1.11",
     "nuxt": "^2.14.0",
-    "nuxt-i18n": "^6.15.0"
+    "nuxt-i18n": "^6.15.0",
+    "vee-validate": "^3.4.0",
+    "vue-notification": "^1.3.20"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.4",
@@ -29,7 +33,7 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/tailwindcss": "^2.1.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.5.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2"

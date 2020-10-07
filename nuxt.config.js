@@ -1,11 +1,6 @@
 
 export default {
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
-  /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
@@ -15,11 +10,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Rufus Maiwald | Portfolio',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -29,13 +24,15 @@ export default {
   ** Global CSS
   */
   css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/fontawesome.js'
+    '@/plugins/fontawesome.js',
+    '@/plugins/notifications.client.js'
   ],
   /*
   ** Auto import components
@@ -66,6 +63,57 @@ export default {
   */
   axios: {},
   /*
+  ** pwa module configuration
+   */
+  pwa: {
+    icon: {
+      fileName: 'icon.png'
+    },
+    meta: {
+      mobileAppIOS: true,
+      name: 'Rufus Maiwald | Portfolio',
+      author: 'Rufus Maiwald',
+      description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
+      theme_color: '#1a202c',
+      ogHost: 'rufusmaiwald.de',
+      nativeUI: true,
+      ogImage: {
+        path: '/og_img.png',
+        width: '1200',
+        height: '630',
+        type: 'image/png'
+      },
+      twitterCard: 'summary_large_image',
+      twitterCreator: '@rufusmai'
+    },
+    manifest: {
+      name: 'Rufus Maiwald Portfolio',
+      short_name: 'RM Portfolio',
+      description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
+      background_color: '#1a202c',
+      theme_color: '#1a202c'
+    },
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: 'https://api.github.com/users/rufusmaiwald/.*',
+          handler: 'StaleWhileRevalidate',
+          strategyOptions: {
+            cacheName: 'gh-projects'
+          },
+          strategyPlugins: [{
+            use: 'BroadcastUpdate',
+            config: {
+              headersToCheck: ['content-length', 'etag', 'last-modified']
+            }
+          }]
+        }
+      ],
+      skipWaiting: true,
+      autoRegister: true
+    }
+  },
+  /*
   ** i18n module configuration
    */
   i18n: {
@@ -86,18 +134,45 @@ export default {
     ],
     defaultLocale: 'de',
     strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected'
-    },
+    detectBrowserLanguage: false,
     lazy: true,
     langDir: 'lang/',
     seo: false
+  },
+  /*
+  ** i18n module configuration
+   */
+  auth: {
+    strategies: {
+      local: false,
+      social: {
+        _scheme: 'oauth2',
+        authorization_endpoint: 'https://id.onegaming.group/oauth2/authorize',
+        userinfo_endpoint: 'https://id.onegaming.group/api/v1/user',
+        scope: ['identify'],
+        access_type: undefined,
+        access_token_endpoint: undefined,
+        response_type: 'token',
+        token_type: 'Bearer',
+        redirect_uri: undefined,
+        client_id: '5f68b682e7db6e447df529f0',
+        token_key: 'access_token'
+      }
+    }
   },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    transpile: [
+      'vee-validate/dist/rules'
+    ],
+    extend (config, { isClient }) {
+      // Extend only webpack config for client-bundle
+      if (isClient) {
+        config.devtool = 'source-map'
+      }
+    }
   }
 }

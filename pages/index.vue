@@ -1,46 +1,47 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-5">
-    <div class="col-span-3 sm:px-10 flex justify-center items-center h-40 sm:h-auto text-center">
-      <KnowledgeHeader />
-    </div>
-    <div class="col-span-2 relative text-center p-3 mt-10 lg:mt-0 lg:ml-6">
-      <article class="relative inline-block text-left max-w-sm sm:max-w-none bg-gray-600 bg-opacity-50 rounded-lg p-3">
-        <img src="@/assets/img/profile.jpg" alt="profile" class="profile rounded-full border-2 border-white absolute h-16 w-16">
+  <div class="content-wrapper w-full mx-auto">
+    <div class="flex h-full">
+      <div class="text-center flex-none w-full sm:w-auto sm:text-left font-bold">
+        <h1 class="text-4xl leading-tight xs:text-6xl hero">
+          Java- {{ $t('and') }}<br>
+          Web<wbr>{{ $t('developer') }}
+        </h1>
+        <ul class="text-gray-400 mt-4 text-2xl xs:text-3xl lg:text-5xl">
+          <li class="flex justify-center sm:justify-start flex-row">
+            <LocationMarkerIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
+            <h2>{{ $t('location') }}</h2>
+          </li>
+          <li class="flex justify-center sm:justify-start flex-row">
+            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
+            <h2>{{ age }} {{ $t('age') }}</h2>
+          </li>
+          <li class="flex justify-center sm:justify-start flex-row">
+            <CodeIcon class="flex-none h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
+            <KnowledgeHeader class="leading-tight flex-shrink" />
+          </li>
+        </ul>
+        <nuxt-link
+          to="/projects"
+          class="inline-block rounded-lg transition duration-300 ease-in-out bg-gray-400 hover:bg-gray-500 mt-6 text-xl xs:text-2xl lg:text-3xl font-bold bg-opacity-25 hover:bg-opacity-25 px-4 py-3"
+        >
+          Projekte
+          <ArrowRightIcon size="30" class="inline -mt-1" />
+        </nuxt-link>
+      </div>
+      <div class="flex-grow flex lg:items-center justify-center">
 
-        <header class="ml-10">
-          <h2 class="text-2xl mb-2 font-bold">
-            {{ $t('profile') }}
-          </h2>
-
-          <ul class="text-gray-400 mb-1 leading-7">
-            <li class="inline-block relative mr-2">
-              <BriefcaseIcon size="18" class="inline" />
-              {{ $t('student') }}
-
-              <div class="tooltip absolute hidden opacity-0 transition-opacity duration-300 ease-in-out rounded p-3 text-black bg-gray-200">
-                LMU München
-              </div>
-            </li>
-            <li class="inline-block mr-2">
-              <CakeIcon size="18" class="inline" /> {{ age }} {{ $t('age') }}
-            </li>
-            <li class="inline-block mr-2">
-              <LocationMarkerIcon size="18" class="inline" /> {{ $t('location') }}
-            </li>
-          </ul>
-        </header>
-      </article>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BriefcaseIcon, CakeIcon, LocationMarkerIcon } from '@vue-hero-icons/outline'
+import { CodeIcon, CakeIcon, LocationMarkerIcon, ArrowRightIcon } from '@vue-hero-icons/outline'
 import KnowledgeHeader from '../components/KnowledgeHeader'
 
 export default {
   name: 'Index',
-  components: { KnowledgeHeader, BriefcaseIcon, CakeIcon, LocationMarkerIcon },
+  components: { KnowledgeHeader, CodeIcon, CakeIcon, LocationMarkerIcon, ArrowRightIcon },
   computed: {
     age () {
       const birthday = +new Date('10/09/2000')
@@ -51,17 +52,26 @@ export default {
 </script>
 
 <style>
+@media (min-width: 1024px) {
+  .hero {
+    font-size: 6rem;
+    line-height: 1.2;
+  }
+}
+
 .profile {
   transform: translate(-50%, -50%);
 }
+
 li:hover .tooltip {
   display: block;
   opacity: 1;
 }
+
 .tooltip .tooltip::after {
   content: " ";
   position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
+  bottom: 100%; /* At the top of the tooltip */
   left: 50%;
   margin-left: -5px;
   border-width: 5px;

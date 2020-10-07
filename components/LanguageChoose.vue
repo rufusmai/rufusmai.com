@@ -12,8 +12,8 @@
     <div v-if="dropDownOpened" class="dropdown z-50 absolute px-2 py-1 w-auto rounded-lg left-0 bg-black">
       <ul class="font-bold w-auto block">
         <li v-for="locale of availableLocales" :key="locale.code" class="py-1">
-          <a href="#" class="block flex" @click.prevent.stop="$i18n.setLocale(locale.code); dropDownOpened = false">
-            <img :src="`https://flagcdn.com/w20/${locale.code !== 'en' ? locale.code : 'us'}.png`" height="11" class="rounded-sm max-w-none" :alt="$i18n.locale">
+          <a href="#" class="block flex" @click.prevent.stop="setLocale(locale)">
+            <img :src="`https://flagcdn.com/w20/${locale.code !== 'en' ? locale.code : 'us'}.png`" height="19" width="32" class="rounded-sm max-w-none" :alt="$i18n.locale">
             <p class="ml-2">{{ locale.name }}</p>
           </a>
         </li>
@@ -36,6 +36,18 @@ export default {
   computed: {
     availableLocales () {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
+  },
+  methods: {
+    async setLocale (locale) {
+      this.dropDownOpened = false
+      await this.$i18n.setLocale(locale.code)
+
+      this.$notify({
+        group: 'main',
+        title: this.$t('changedLocale', [locale.name]),
+        duration: 5000
+      })
     }
   }
 }

@@ -7,7 +7,7 @@
     </div>
     <!--<div class="h-6 w-10 bg-gray-400 bg-opacity-50 absolute rounded-md -ml-1" />-->
     <h2
-      class="nav-link relative transition-color duration-300 ease-in-out text-white bg-gradient-to-r bg-clip-text z-20"
+      class="nav-link inline relative transition-color duration-300 ease-in-out text-white bg-gradient-to-r bg-clip-text z-20"
       :class="[active ? '' : 'hover:text-transparent', ...bgClasses]"
     >
       {{ name }}
@@ -21,11 +21,11 @@ export default {
   props: {
     url: {
       type: String,
-      default: null
+      default: ''
     },
     name: {
       type: String,
-      default: null
+      default: ''
     },
     colors: {
       type: Array,
