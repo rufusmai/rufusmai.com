@@ -2,7 +2,7 @@
   <div class="inline">
     <h1>
       {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
-      <br v-if="currentUtil.name.length > 4">
+      <br v-if="currentUtil.name.length > 4" class="sm:hidden">
       <span ref="util" class="magic-text bg-gradient-to-r bg-clip-text text-transparent" :class="bgUtilClasses">
         {{ currentUtil.name }}
       </span>

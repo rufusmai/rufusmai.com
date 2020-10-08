@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed w-screen h-screen bg-gray-900 overflow-hidden">
+  <div class="fixed w-full h-full bg-gray-900 overflow-hidden">
     <div class="square square-1 w-64 h-64 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[0]}-800`" />
     <div class="square square-2 w-48 h-48 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[1]}-800`" />
 

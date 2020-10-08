@@ -15,7 +15,7 @@
         <div class="animation-translate animation-reverse h-8 w-8 bg-gray-100 bg-opacity-50 absolute rounded-md ml-4 -mt-1" />
         <div class="animation-translate animation-reverse h-6 w-6 bg-gray-500 bg-opacity-50 absolute rounded-md ml-6 mt-8" />
 
-        <h1 class="font-bold leading-none text-2xl -mt-1 sm:text-4xl">
+        <h1 class="font-bold leading-none text-2xl sm:-mt-1 xs:text-3xl sm:text-4xl">
           Rufus Maiwald<br>
           <small class="text-gray-500 mt-2 leading-none absolute text-base sm:text-lg">
             Java- {{ $t('and') }} Web<wbr>{{ $t('developer') }}

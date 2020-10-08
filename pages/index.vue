@@ -2,7 +2,7 @@
   <div class="content-wrapper w-full mx-auto">
     <div class="flex h-full">
       <div class="text-center flex-none w-full sm:w-auto sm:text-left font-bold">
-        <h1 class="text-4xl leading-tight xs:text-6xl hero">
+        <h1 class="text-5xl leading-tight xs:text-6xl hero">
           Java- {{ $t('and') }}<br>
           Web<wbr>{{ $t('developer') }}
         </h1>
