@@ -18,7 +18,7 @@
         <h1 class="font-bold leading-none text-2xl -mt-1 sm:text-4xl">
           Rufus Maiwald<br>
           <small class="text-gray-500 mt-2 leading-none absolute text-base sm:text-lg">
-            {{ $t('student') }}
+            Java- {{ $t('and') }} Web<wbr>{{ $t('developer') }}
           </small>
         </h1>
 

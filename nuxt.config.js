@@ -75,7 +75,7 @@ export default {
       author: 'Rufus Maiwald',
       description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
       theme_color: '#1a202c',
-      ogHost: 'rufusmaiwald.de',
+      ogHost: 'https://rufusmaiwald.de',
       nativeUI: true,
       ogImage: {
         path: '/og_img.png',

@@ -15,9 +15,9 @@
 
       <validation-observer v-slot="{ handleSubmit, reset }">
         <form ref="contactForm" class="text-center" @submit.prevent="handleSubmit(submit)" @reset.prevent="reset">
-          <label for="name" class="hidden">{{ $t('name') }}</label>
           <div class="my-4">
             <validation-provider v-slot="{ errors, classes }" rules="required">
+              <label for="name" class="hidden">{{ $t('name') }}</label>
               <input
                 id="name"
                 v-model="form.name"
@@ -32,9 +32,9 @@
             </validation-provider>
           </div>
 
-          <label for="email" class="hidden">{{ $t('email') }}</label>
           <div class="my-4">
             <validation-provider v-slot="{ errors, classes }" rules="required">
+              <label for="email" class="hidden">{{ $t('email') }}</label>
               <input
                 id="email"
                 v-model="form.email"
@@ -48,18 +48,17 @@
             </validation-provider>
           </div>
 
-          <label for="message" class="hidden">{{ $t('message') }}</label>
           <div class="my-4">
             <validation-provider v-slot="{ errors, classes }" rules="required" class="my-2">
+              <label for="message" class="hidden">{{ $t('message') }}</label>
               <textarea
                 id="message"
                 v-model="form.message"
-                type="text"
                 minlength="10"
                 :placeholder="$t('message')"
                 class="inline w-full mb-1 px-5 py-3 bg-gray-500 bg-opacity-25 placeholder-gray-400 hover:bg-opacity-50 transition duration-300 ease-in-out focus:outline-none rounded"
                 :class="classes"
-              ></textarea>
+              />
               <small class="text-red-600">{{ errors[0] }}</small>
             </validation-provider>
           </div>

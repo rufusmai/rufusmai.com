@@ -2,6 +2,7 @@
   <div class="inline">
     <h1>
       {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
+      <br v-if="currentUtil.name.length > 4">
       <span ref="util" class="magic-text bg-gradient-to-r bg-clip-text text-transparent" :class="bgUtilClasses">
         {{ currentUtil.name }}
       </span>
@@ -16,7 +17,7 @@
           :href="currentFramework.url"
         >
           {{ currentFramework.name }}
-          <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out inline w-6 h-6 md:w-12 h-12 sm:-ml-1 md:-ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" />
+          <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out hidden sm:inline w-6 h-6 md:w-12 h-12 -ml-1 md:-ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" />
         </a>
       </span>
     </h1>

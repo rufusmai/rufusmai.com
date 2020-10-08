@@ -134,10 +134,10 @@
 <script>
 import { ExternalLinkIcon, HomeIcon } from '@vue-hero-icons/outline'
 
-import mconeLogo from '../assets/img/projects/mc1_logo.png'
+import mconeLogo from '../assets/img/projects/mc1_logo.jpg'
 import mconeImg from '../assets/img/projects/mc1_screen.jpg'
 
-import onegmgLogo from '../assets/img/projects/1gmg_logo.png'
+import onegmgLogo from '../assets/img/projects/1gmg_logo.jpg'
 import onegmgImg from '../assets/img/projects/1gmg_screen.jpg'
 
 import portfolioLogo from '../assets/img/avatar.svg'

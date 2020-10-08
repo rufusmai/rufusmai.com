@@ -22,7 +22,7 @@ export default {
   // index
   profile: 'Steckbrief',
   age: 'Jahre',
-  location: 'München, Deutschland',
+  location: 'München',
   developer: 'entwickler',
 
   // projects

@@ -8,11 +8,15 @@
         </h1>
         <ul class="text-gray-400 mt-4 text-2xl xs:text-3xl lg:text-5xl">
           <li class="flex justify-center sm:justify-start flex-row">
-            <LocationMarkerIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
+            <LocationMarkerIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
             <h2>{{ $t('location') }}</h2>
           </li>
           <li class="flex justify-center sm:justify-start flex-row">
-            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
+            <BriefcaseIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
+            <h2>{{ $t('student') }}</h2>
+          </li>
+          <li class="flex justify-center sm:justify-start flex-row">
+            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
             <h2>{{ age }} {{ $t('age') }}</h2>
           </li>
           <li class="flex justify-center sm:justify-start flex-row">
@@ -36,12 +40,12 @@
 </template>
 
 <script>
-import { CodeIcon, CakeIcon, LocationMarkerIcon, ArrowRightIcon } from '@vue-hero-icons/outline'
+import { CodeIcon, CakeIcon, BriefcaseIcon, LocationMarkerIcon, ArrowRightIcon } from '@vue-hero-icons/outline'
 import KnowledgeHeader from '../components/KnowledgeHeader'
 
 export default {
   name: 'Index',
-  components: { KnowledgeHeader, CodeIcon, CakeIcon, LocationMarkerIcon, ArrowRightIcon },
+  components: { KnowledgeHeader, CodeIcon, CakeIcon, BriefcaseIcon, LocationMarkerIcon, ArrowRightIcon },
   computed: {
     age () {
       const birthday = +new Date('10/09/2000')
