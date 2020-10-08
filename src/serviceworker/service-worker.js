@@ -30,6 +30,8 @@ workbox.routing.registerRoute(
   'POST'
 )
 
+workbox.core.skipWaiting()
+
 // Setup cache strategy for Google Fonts. They consist of two parts, a static one
 // coming from fonts.gstatic.com (strategy CacheFirst) and a more ferquently updated on
 // from fonts.googleapis.com. Hence, split in two registerroutes
