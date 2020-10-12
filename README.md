@@ -3,7 +3,8 @@
 👉 [rufusmaiwald.de](https://rufusmaiwald.de)
 
 This site aims to be a small portfolio about me as developer. 
-Its made using the newest web technologies und frameworks.
+Its made using the newest web technologies und frameworks.  
+Click [here](https://github.com/rufusmaiwald/rufusmaiwald.de/tree/v1) to watch `v1` repository.
 
 ## 💻 Development
 
@@ -18,7 +19,7 @@ For internationalization [vue-i18n](http://kazupon.github.io/vue-i18n/) and its 
 to allow easy reactive translations on the whole site.
 
 This site can be installed and used offline using the built in service worker from the [@nuxt/pwa](https://pwa.nuxtjs.org/) module.
-Just click `Install` on the right navbar. This button appears if your browser thinks you might want to install this PWA.
+Just click `Install` on the left navbar. This button appears if your browser thinks you might want to install this PWA.
 
 As a small easter egg you can test the Oauth2 login of my project [OneGaming](https://id.onegaming.group) right on the projects page.
 

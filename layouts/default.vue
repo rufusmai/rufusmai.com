@@ -145,7 +145,12 @@ export default {
           icon: ['fab', 'github']
         },
         {
-          name: 'Spotify',
+          name: 'Twitter',
+          url: 'https://twitter.com/rufusmai',
+          icon: ['fab', 'twitter']
+        },
+        {
+          name: 'Instagram',
           url: 'https://www.instagram.com/rufusmaiwald',
           icon: ['fab', 'instagram']
         },
@@ -153,11 +158,6 @@ export default {
           name: 'LinkedIn',
           url: 'https://www.linkedin.com/in/rufus-maiwald-20832a137',
           icon: ['fab', 'linkedin']
-        },
-        {
-          name: 'Xing',
-          url: 'https://www.xing.com/profile/Rufus_Maiwald/cv',
-          icon: ['fab', 'xing']
         }
       ]
     }
