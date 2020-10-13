@@ -1,8 +1,10 @@
-# rufusmaiwald.de - digital business card
+# rufusmaiwald.de - digital business card `v1`
 
-View: [rufusmaiwald.de](https://rufusmaiwald.de)
+View: [v1.rufusmaiwald.de](https://v1.rufusmaiwald.de)
 
 This site aims to be a digital business card and shows some information about me as developer.
+
+> 👆 ***This branch and the associated website is outdated and was replaced by `v2`. Click [here](https://github.com/rufusmaiwald/rufusmaiwald.de) to view master branch.***
 
 ### Development
 

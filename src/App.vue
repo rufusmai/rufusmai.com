@@ -1,6 +1,12 @@
 <template>
   <div id="app" :class="bg ? 'bg' : ''">
-    <b-container fluid class="grid">
+    <b-alert v-model="showAlert" variant="dark" class="alert" dismissible>
+      <i18n tag="span" path="outdated">
+        <a href="https://rufusmaiwald.de" rel="noopener">{{ $t('newerVersion') }}</a>
+      </i18n>
+    </b-alert>
+
+    <b-container fluid class="grid position-relative">
       <b-row class="grid align-items-end justify-content-center">
         <b-col md="12" xl="9">
           <b-row>
@@ -48,7 +54,7 @@
               <span class="text-danger">&hearts;</span>
             </i18n>
             <wbr>
-            <i18n path="footer.view" tag="a" href="https://github.com/rufusmaiwald/rufusmaiwald.de"
+            <i18n path="footer.view" tag="a" href="https://github.com/rufusmaiwald/rufusmaiwald.de/tree/v1"
                   style="color: #35495e" rel="noopener" target="_blank">
               <fai :icon="['fab', 'github']"/>
             </i18n>
@@ -80,15 +86,19 @@
 
 <script>
   import Vue from 'vue'
-  import {ToastPlugin} from "bootstrap-vue"
+  import {ToastPlugin, AlertPlugin, BAlert} from "bootstrap-vue"
   import {loadLanguageAsync} from "@/plugins/i18n"
 
-  Vue.use(ToastPlugin)
+  Vue.use(ToastPlugin, AlertPlugin)
 
   export default {
+    components: {
+      'b-alert': BAlert
+    },
     data() {
       return {
         lang: this.$i18n.locale,
+        showAlert: true,
         bg: false,
         transitionName: 'slide-left',
         prevHeight: 0,
@@ -200,6 +210,16 @@
 
 <style lang="scss">
   @import "assets/app";
+
+  .alert {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    z-index: 99999;
+  }
 
   .fade-enter-active,
   .fade-leave-active {

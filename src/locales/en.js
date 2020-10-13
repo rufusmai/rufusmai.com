@@ -1,5 +1,7 @@
 export default {
   en: {
+    outdated: 'This site was replaced by a {0}!',
+    newerVersion: 'newer version',
     subtitle: 'Java- & Webdeveloper, Student',
     home: {
       text: 'During the last years I spent my time with {0}. My focus is on application development with Java and on front & backend development of websites. Thus I\'m using the programming languages HTML, CSS, JS & PHP and the frameworks Vue.js & Laravel/Lumen. Both in PHP and in Java I work with the Databases MySQL or MongoDB and with their libraries.',
