@@ -168,12 +168,6 @@ export default {
   build: {
     transpile: [
       'vee-validate/dist/rules'
-    ],
-    extend (config, { isClient }) {
-      // Extend only webpack config for client-bundle
-      if (isClient) {
-        config.devtool = 'source-map'
-      }
-    }
+    ]
   }
 }
