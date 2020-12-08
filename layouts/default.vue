@@ -89,7 +89,7 @@
                   <span class="text-red-500">&hearts;</span>
                 </i18n>
 
-                <i18n path="viewOnGithub" tag="a" class="text-gray-400 hover:text-gray-300 transition duration-300 ease-in-out" href="https://github.com/rufusmaiwald/rufusmaiwald.de" target="_blank" rel="noopener">
+                <i18n path="viewOnGithub" tag="a" class="text-gray-400 hover:text-gray-300 transition duration-300 ease-in-out" href="https://github.com/rufusmai/rufusmaiwald.de" target="_blank" rel="noopener">
                   <fai :icon="['fab', 'github']" />
                 </i18n>
               </footer>
@@ -141,7 +141,7 @@ export default {
       socialMedia: [
         {
           name: 'Github',
-          url: 'https://github.com/rufusmaiwald',
+          url: 'https://github.com/rufusmai',
           icon: ['fab', 'github']
         },
         {

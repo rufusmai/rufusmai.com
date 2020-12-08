@@ -35,7 +35,7 @@
           </nuxt-link>
           <a
             v-if="Object.keys(project.links).includes('gh')"
-            :href="`https://github.com/rufusmaiwald/${project.links.gh}`"
+            :href="`https://github.com/rufusmai/${project.links.gh}`"
             class="font-medium text-xl transition-colors duration-300 ease-in-out text-gray-100 hover:text-gray-300"
             target="_blank"
             rel="noopener"
@@ -230,7 +230,7 @@ export default {
         '&code_challenge_method=S256'
     },
     fetchGithubRepos () {
-      this.$axios.get('https://api.github.com/users/rufusmaiwald/repos', {
+      this.$axios.get('https://api.github.com/users/rufusmai/repos', {
         headers: {
           accept: 'application/vnd.github.v3+json'
         },
