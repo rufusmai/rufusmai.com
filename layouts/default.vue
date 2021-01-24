@@ -7,20 +7,19 @@
     </client-only>
 
     <div class="relative flex flex-col z-20 h-full">
-      <header class="p-3 sm:p-4 w-full flex-none flex">
-        <nuxt-link class="mr-4" to="/">
-          <img src="../assets/img/avatar.svg" alt="Avatar" class="avatar h-12 w-12 bg-gray-100 bg-opacity-50 relative rounded-lg z-20">
-        </nuxt-link>
-        <div class="animation-translate h-8 w-8 bg-gray-300 bg-opacity-50 absolute rounded-md mt-2" />
-        <div class="animation-translate animation-reverse h-8 w-8 bg-gray-100 bg-opacity-50 absolute rounded-md ml-4 -mt-1" />
-        <div class="animation-translate animation-reverse h-6 w-6 bg-gray-500 bg-opacity-50 absolute rounded-md ml-6 mt-8" />
+      <header class="pt-3 px-3 sm:pt-4 sm:px-4 w-full flex-none flex">
+        <div class="flex items-center sm:-mt-2">
+          <nuxt-link class="mr-4" to="/">
+            <img src="../assets/img/avatar.svg" alt="Avatar" class="avatar border border-gray-500 h-14 w-14 bg-gray-600 bg-opacity-25 relative rounded-lg z-20">
+          </nuxt-link>
 
-        <h1 class="font-bold leading-none text-2xl sm:-mt-1 xs:text-3xl sm:text-4xl">
-          Rufus Maiwald<br>
-          <small class="text-gray-500 mt-2 leading-none absolute text-base sm:text-lg">
-            Java- {{ $t('and') }} Web<wbr>{{ $t('developer') }}
-          </small>
-        </h1>
+          <h1 class="font-bold leading-normal sm:leading-none text-2xl sm:mt-2 xs:text-3xl sm:text-4xl">
+            Rufus Maiwald
+            <small class="text-gray-500 block leading-none text-base sm:text-lg">
+              Java- {{ $t('and') }} Web<wbr>{{ $t('developer') }}
+            </small>
+          </h1>
+        </div>
 
         <div class="ml-auto">
           <button v-if="avatar" class="focus:outline-none">
@@ -28,11 +27,22 @@
             <ChevronDownIcon class="hidden xs:inline" size="20" />
           </button>
           <button
-            class="p-3 transition duration-75 relative ease-in-out z-50 sm:hidden bg-transparent sm:bg-gray-800 my-auto mt-1 rounded-lg focus:outline-none"
+            class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-300 hover:text-gray-200 hover:bg-gray-700 hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
             aria-label="Collapse Menu"
             @click="menuOpened = !menuOpened"
           >
-            <MenuLink :open="menuOpened" />
+            <span class="sr-only">Open main menu</span>
+            <!-- Heroicon name: menu -->
+            <svg
+              class="h-8 w-8"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </button>
         </div>
       </header>
@@ -44,13 +54,33 @@
             :class="menuOpened ? '' : 'opacity-0'"
             class="transition-opacity relative rounded-lg duration-300 z-40 ease-in-out flex-col place-content-between w-full p-4 bg-black sm:w-auto sm:h-full sm:pointer-events-auto sm:bg-transparent sm:flex sm:opacity-100"
           >
-            <ul class="p-3 inline-block self-start transition duration-500 ease-in-out bg-gray-600 hover:bg-gray-500 bg-opacity-25 hover:bg-opacity-25 space-x-3 rounded-lg">
-              <li v-for="link in socialMedia" :key="link.name" class="inline">
-                <a :href="link.url" target="_blank" rel="noopener" :aria-label="link.name">
-                  <fai :icon="link.icon" size="lg" />
-                </a>
-              </li>
-            </ul>
+            <div class="flex justify-between">
+              <ul class="p-3 inline-block self-start transition duration-500 ease-in-out bg-gray-600 hover:bg-gray-500 bg-opacity-25 hover:bg-opacity-25 space-x-3 rounded-lg border border-gray-600 hover:border-gray-500">
+                <li v-for="link in socialMedia" :key="link.name" class="inline">
+                  <a :href="link.url" target="_blank" rel="noopener" :aria-label="link.name">
+                    <fai :icon="link.icon" size="lg" />
+                  </a>
+                </li>
+              </ul>
+              <button
+                type="button"
+                class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-300 hover:text-gray-200 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
+                @click="menuOpened = false"
+              >
+                <span class="sr-only">Close menu</span>
+                <!-- Heroicon name: x -->
+                <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
             <div class="font-bold leading-relaxed text-3xl mt-2">
               <ul>
@@ -89,7 +119,14 @@
                   <span class="text-red-500">&hearts;</span>
                 </i18n>
 
-                <i18n path="viewOnGithub" tag="a" class="text-gray-400 hover:text-gray-300 transition duration-300 ease-in-out" href="https://github.com/rufusmai/rufusmaiwald.de" target="_blank" rel="noopener">
+                <i18n
+                  path="viewOnGithub"
+                  tag="a"
+                  class="text-gray-400 hover:text-gray-300 transition duration-300 ease-in-out"
+                  href="https://github.com/rufusmai/rufusmaiwald.de"
+                  target="_blank"
+                  rel="noopener"
+                >
                   <fai :icon="['fab', 'github']" />
                 </i18n>
               </footer>
@@ -105,7 +142,6 @@
 
 <script>
 import { ChevronDownIcon } from '@vue-hero-icons/outline'
-import MenuLink from '../components/MenuLink'
 import NavLink from '../components/NavLink'
 import Background from '../components/Background'
 import LanguageChoose from '../components/LanguageChoose'
@@ -113,7 +149,7 @@ import NuxtLogo from '../components/icons/NuxtLogo'
 import TailwindcssLogo from '../components/icons/TailwindcssLogo'
 
 export default {
-  components: { TailwindcssLogo, NuxtLogo, LanguageChoose, Background, NavLink, MenuLink, ChevronDownIcon },
+  components: { TailwindcssLogo, NuxtLogo, LanguageChoose, Background, NavLink, ChevronDownIcon },
   data () {
     return {
       menuOpened: false,
@@ -129,13 +165,13 @@ export default {
           name: 'projects',
           page: 'projects',
           url: '/projects',
-          colors: ['purple', 'pink', 'red']
+          colors: ['purple', 'fuchsia', 'pink']
         },
         {
           name: 'contact',
           page: 'contact',
           url: '/contact',
-          colors: ['yellow', 'orange', 'pink']
+          colors: ['rose', 'orange', 'yellow']
         }
       ],
       socialMedia: [
@@ -232,7 +268,7 @@ html, body, #__nuxt, #__layout {
 }
 
 .avatar {
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(20px);
 }
 
 .animation-translate {

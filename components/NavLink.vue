@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="url">
-    <div class="transition-opacity duration-150 ease-in-out" :class="active ? '' : 'opacity-0'">
+    <div class="transition-opacity delay-150 duration-300 ease-in-out" :class="active ? '' : 'opacity-0'">
       <div class="h-6 w-10 animation-translate bg-opacity-75 absolute rounded-md mt-5 -ml-1" :class="'bg-' + colors[0] + '-500'" />
       <div class="h-5 w-5 animation-translate bg-opacity-75 absolute rounded-md mt-3 ml-10" :class="'bg-' + colors[1] + '-500'" />
       <div class="h-5 w-8 animation-translate animation-reverse bg-opacity-75 absolute rounded-md mt-8 ml-16" :class="'bg-' + colors[2] + '-500'" />

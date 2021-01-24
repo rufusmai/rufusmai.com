@@ -1,20 +1,6 @@
 <template>
-  <div class="fixed w-full h-full bg-gray-900 overflow-hidden">
-    <div class="square square-1 w-64 h-64 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[0]}-800`" />
-    <div class="square square-2 w-48 h-48 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[1]}-800`" />
-
-    <div class="square square-3 w-48 h-32 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[1]}-800`" />
-
-    <div class="square square-4 w-32 h-32 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[1]}-800`" />
-    <div class="square square-5 w-24 h-24 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[2]}-800`" />
-
-    <div class="square square-6 w-32 h-32 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[0]}-800`" />
-    <div class="square square-7 w-24 h-24 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[2]}-800`" />
-
-    <div class="square square-8 w-24 h-24 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[0]}-800`" />
-
-    <div class="square square-9 w-48 h-48 bg-opacity-25 transition-all duration-500 ease-in-out hidden sm:block" :class="`bg-${colors[2]}-800`" />
-    <div class="square square-10 w-24 h-24 bg-opacity-25 transition-all duration-500 ease-in-out" :class="`bg-${colors[1]}-800`" />
+  <div class="background-wrapper fixed w-full h-full bg-gray-900 overflow-hidden">
+    <div class="square square-1 w-64 h-64 bg-opacity-25 hidden sm:block" :class="[`bg-${colors[0]}-800`, $route.name === 'contact' ? 'contact' : '']" />
   </div>
 </template>
 
@@ -31,15 +17,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .background-wrapper {
+    filter: blur(50px);
+  }
+
   .square {
     position: absolute;
-    border-radius: 1rem;
-    animation: bgMove 60s linear infinite;
+    border-radius: 50%;
   }
   .square-1 {
-    top: 50%;
-    right: 0;
+    top: 0;
+    left: 0;
+    transform: translate(-25%, -25%);
+    transition: transform 2s ease-in-out;
+    transition-delay: 2s;
     animation-delay: -3s;
+  }
+  .square-1.contact {
+    transform: translate(calc(9rem), calc(3rem));
   }
   .square-2 {
     top: 70%;

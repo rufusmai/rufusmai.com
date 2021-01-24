@@ -6,30 +6,30 @@
           Java- {{ $t('and') }}<br>
           Web<wbr>{{ $t('developer') }}
         </h1>
-        <ul class="text-gray-400 mt-4 text-2xl xs:text-3xl lg:text-5xl">
-          <li class="flex justify-center sm:justify-start flex-row">
-            <LocationMarkerIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
+        <ul class="text-gray-400 mt-4 text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
+            <LocationMarkerIcon class="h-4 w-4 xs:h-6 xs:w-6 md:h-8 md:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
             <h2>{{ $t('location') }}</h2>
           </li>
-          <li class="flex justify-center sm:justify-start flex-row">
-            <BriefcaseIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
+          <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
+            <BriefcaseIcon class="h-4 w-4 xs:h-6 xs:w-6 md:h-8 md:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
             <h2>{{ $t('student') }}</h2>
           </li>
-          <li class="flex justify-center sm:justify-start flex-row">
-            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-3 mr-2 sm:mr-5" />
+          <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
+            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 md:h-8 md:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
             <h2>{{ age }} {{ $t('age') }}</h2>
           </li>
-          <li class="flex justify-center sm:justify-start flex-row">
-            <CodeIcon class="flex-none h-4 w-4 xs:h-6 xs:w-6 lg:h-12 lg:w-12 mt-2 mr-2 sm:mr-5" />
-            <KnowledgeHeader class="leading-tight flex-shrink" />
+          <li class="flex justify-center sm:justify-start flex-row mt-3 md:mt-4 min-h">
+            <CodeIcon class="h-4 w-4 mt-2 xs:mt-3 xs:h-6 xs:w-6 md:mt-1 md:h-8 md:w-8 lg:mt-0 lg:h-12 lg:w-12 mr-2 md:mr-5" />
+            <KnowledgeHeader class="flex-shrink" />
           </li>
         </ul>
         <nuxt-link
           to="/projects"
-          class="inline-block rounded-lg transition duration-300 ease-in-out bg-gray-400 hover:bg-gray-500 mt-6 text-xl xs:text-2xl lg:text-3xl font-bold bg-opacity-25 hover:bg-opacity-25 px-4 py-3"
+          class="mt-8 inline-flex items-center text-gray-300 font-semibold text-3xl px-4 py-3 border border-gray-500 shadow-sm rounded-lg bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
         >
           Projekte
-          <ArrowRightIcon size="30" class="inline -mt-1" />
+          <ArrowRightIcon size="30" class="ml-2" />
         </nuxt-link>
       </div>
       <div class="flex-grow flex lg:items-center justify-center">

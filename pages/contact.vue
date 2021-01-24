@@ -1,70 +1,61 @@
 <template>
-  <div class="contact w-full lg:h-full flex justify-center lg:items-center text-center">
-    <div class="p-4 sm:p-6 max-w-lg rounded-lg flex-shrink lg:my-4 lg:-mt-4 bg-gray-800 bg-opacity-50">
-      <div class="mx-4">
-        <ChatAlt2Icon size="100" class="mx-auto hidden sm:block" />
+  <div class="content-wrapper block h-full mx-auto w-full">
+    <div class="max-w-md">
+      <div class="">
+        <ChatAlt2Icon size="100" class="hidden sm:block" />
 
-        <h2 class="font-bold text-3xl">
+        <h2 class="font-bold mt-3 text-3xl">
           {{ $t('sendMessage') }}
         </h2>
-        <p class="text-gray-400 mb-4">
+        <p class="text-gray-400 mt-2 mb-4">
           {{ $t('messageInfo') }}<br>
           {{ $t('answer') }}
         </p>
       </div>
 
       <validation-observer v-slot="{ handleSubmit, reset }">
-        <form ref="contactForm" class="text-center" @submit.prevent="handleSubmit(submit)" @reset.prevent="reset">
-          <div class="my-4">
-            <validation-provider v-slot="{ errors, classes }" rules="required">
-              <label for="name" class="hidden">{{ $t('name') }}</label>
-              <input
-                id="name"
-                v-model="form.name"
-                type="text"
-                autocomplete="name"
-                :placeholder="$t('name')"
-                autofocus
-                class="inline w-full mb-1 px-5 py-3 bg-gray-500 bg-opacity-25 placeholder-gray-400 hover:bg-opacity-50 transition duration-300 ease-in-out focus:outline-none rounded"
-                :class="classes"
-              >
-              <small class="text-red-600">{{ errors[0] }}</small>
-            </validation-provider>
-          </div>
+        <form ref="contactForm" class="" @submit.prevent="handleSubmit(submit)" @reset.prevent="reset">
+          <validation-provider v-slot="{ errors, classes }" rules="required">
+            <label for="name" class="hidden">{{ $t('name') }}</label>
+            <input
+              id="name"
+              v-model="form.name"
+              type="text"
+              autocomplete="name"
+              :placeholder="$t('name')"
+              autofocus
+              class="inline px-5 py-3 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 placeholder-gray-400 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-500 rounded-md transition duration-300 ease-in-out"
+              :class="classes"
+            >
+          </validation-provider>
 
-          <div class="my-4">
-            <validation-provider v-slot="{ errors, classes }" rules="required">
-              <label for="email" class="hidden">{{ $t('email') }}</label>
-              <input
-                id="email"
-                v-model="form.email"
-                type="email"
-                autocomplete="email"
-                :placeholder="$t('email')"
-                class="inline w-full mb-1 px-5 py-3 bg-gray-500 bg-opacity-25 placeholder-gray-400 hover:bg-opacity-50 transition duration-300 ease-in-out focus:outline-none rounded"
-                :class="classes"
-              >
-              <small class="text-red-600">{{ errors[0] }}</small>
-            </validation-provider>
-          </div>
+          <validation-provider v-slot="{ errors, classes }" rules="required">
+            <label for="email" class="hidden">{{ $t('email') }}</label>
+            <input
+              id="email"
+              v-model="form.email"
+              type="email"
+              autocomplete="email"
+              :placeholder="$t('email')"
+              class="inline mt-4 px-5 py-3 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 placeholder-gray-400 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-500 rounded-md transition duration-300 ease-in-out"
+              :class="classes"
+            >
+          </validation-provider>
 
-          <div class="my-4">
-            <validation-provider v-slot="{ errors, classes }" rules="required" class="my-2">
-              <label for="message" class="hidden">{{ $t('message') }}</label>
-              <textarea
-                id="message"
-                v-model="form.message"
-                minlength="10"
-                :placeholder="$t('message')"
-                class="inline w-full mb-1 px-5 py-3 bg-gray-500 bg-opacity-25 placeholder-gray-400 hover:bg-opacity-50 transition duration-300 ease-in-out focus:outline-none rounded"
-                :class="classes"
-              />
-              <small class="text-red-600">{{ errors[0] }}</small>
-            </validation-provider>
-          </div>
+          <validation-provider v-slot="{ errors, classes }" rules="required" class="my-2">
+            <label for="message" class="hidden">{{ $t('message') }}</label>
+            <textarea
+              id="message"
+              v-model="form.message"
+              minlength="10"
+              :placeholder="$t('message')"
+              class="inline mt-4 px-5 py-3 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 placeholder-gray-400 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-500 rounded-md transition duration-300 ease-in-out"
+              :class="classes"
+            />
+          </validation-provider>
 
           <div
-            class="captcha-wrapper my-2 bg-gray-700 bg-opacity-75 mx-auto rounded-lg"
+            class="captcha-wrapper mt-2 bg-gray-700 bg-opacity-75 rounded-lg"
             :class="captchaId == null ? 'animate-pulse' : ''"
           >
             <vue-recaptcha
@@ -85,13 +76,13 @@
 
           <button
             type="submit"
-            class="px-4 py-3 mt-3 bg-opacity-75 hover:bg-opacity-50 focus:outline-none text-white disabled:bg-pink-200 text-xl transition duration-300 ease-in-out font-medium rounded"
-            :class="form.success ? 'bg-green-700' : (form.success === null ? 'bg-gray-700' : 'bg-red-700')"
+            class="mt-3 inline-flex items-center font-semibold text-xl px-4 py-3 border border-gray-500 shadow-sm rounded-lg bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out disabled:text-opacity-50"
+            :class="form.success ? 'border-green-600 text-green-600' : (form.success === null ? '' : 'border-red-600 text-red-600')"
             :disabled="form.loading || form.success !== null"
           >
             <svg
               v-if="form.loading"
-              class="animate-spin inline-block -mt-2 mr-1 h-5 w-5 text-white"
+              class="animate-spin inline-block mr-2 h-5 w-5 text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -110,7 +101,7 @@
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-            <ChatAltIcon v-else-if="form.success === null" size="20" class="inline -mt-1" />
+            <ChatAltIcon v-else-if="form.success === null" size="20" class="inline mr-2" />
             {{ $t(form.success ? 'formSuccess' : (form.success === null ? 'send' : 'formError')) }}
           </button>
         </form>
@@ -128,8 +119,8 @@ import VueRecaptcha from 'vue-recaptcha'
 setInteractionMode('eager')
 configure({
   classes: {
-    valid: 'bg-green-700',
-    invalid: 'bg-red-600'
+    valid: 'border-green-600 bg-green-900',
+    invalid: 'border-red-600 ring-red-600 bg-red-900'
   }
 })
 
@@ -230,6 +221,14 @@ export default {
 }
 </script>
 
+<style>
+iframe {
+  border-radius: 4px;
+  width: 302px;
+  height: 76px;
+}
+</style>
+
 <style scoped>
 .captcha-wrapper {
   height: 136px;
@@ -238,8 +237,8 @@ export default {
 
 @media (min-width: 400px) {
   .captcha-wrapper {
-    height: 74px;
-    width: 300px;
+    height: 76px;
+    width: 302px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="inline">
+  <div class="knowledge-header inline">
     <h1>
       {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
       <br v-if="currentUtil.name.length > 4" class="sm:hidden">
@@ -212,6 +212,9 @@ export default {
 </script>
 
 <style scoped>
+.knowledge-header {
+  min-height: 96px;
+}
 .magic-text {
   opacity: 1;
   margin: 0;

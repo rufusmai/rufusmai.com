@@ -4,31 +4,10 @@
 ** Docs: https://tailwindcss.com/docs/configuration
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-  theme: {
-    screens: {
-      xs: '500px',
-      // => @media (min-width: 500px) { ... }
-
-      sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
-      md: '768px',
-      // => @media (min-width: 768px) { ... }
-
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      xl: '1280px'
-      // => @media (min-width: 1280px) { ... }
-    }
-  },
-  variants: {
-    extend: {
-      opacity: ['disabled']
-    }
-  },
-  plugins: [],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
@@ -44,8 +23,28 @@ module.exports = {
       whitelistPatterns: [/^bg-.*-(500|800)$/, /^(from|via|to)-.*-(400|600)$/, /^text-.*-300/]
     }
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
-  }
+  darkMode: 'class', // or 'media' or 'class'
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans]
+      },
+      colors: {
+        gray: colors.gray,
+        teal: colors.teal,
+        fuchsia: colors.fuchsia,
+        orange: colors.orange,
+        rose: colors.rose
+      }
+    }
+  },
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+      textOpacity: ['disabled']
+    }
+  },
+  plugins: [
+    require('@tailwindcss/forms')
+  ]
 }

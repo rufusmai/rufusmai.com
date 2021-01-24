@@ -47,7 +47,8 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode'
   ],
   /*
   ** Nuxt.js modules
@@ -56,6 +57,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/google-fonts',
     'nuxt-i18n'
   ],
   /*
@@ -141,7 +143,7 @@ export default {
     seo: false
   },
   /*
-  ** i18n module configuration
+  ** auth module configuration
    */
   auth: {
     strategies: {
@@ -160,6 +162,25 @@ export default {
         token_key: 'access_token'
       }
     }
+  },
+  /*
+  ** color mode module configuration
+   */
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'dark', // fallback value if not system preference found
+    classSuffix: ''
+  },
+  /*
+  ** google fonts module configuration
+   */
+  googleFonts: {
+    families: {
+      Inter: {
+        wght: [400, 600, 700]
+      }
+    },
+    display: 'swap'
   },
   /*
   ** Build configuration
