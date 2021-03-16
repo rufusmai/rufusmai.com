@@ -9,15 +9,6 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: {
-    // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      'components/**/*.vue',
-      'layouts/**/*.vue',
-      'pages/**/*.vue',
-      'plugins/**/*.js',
-      'nuxt.config.js'
-    ],
     options: {
       whitelist: ['bg-green-700', 'bg-red-600'],
       whitelistPatterns: [/^bg-.*-(500|800)$/, /^(from|via|to)-.*-(400|600)$/, /^text-.*-300/]
@@ -27,7 +18,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans]
+        sans: ['Noto Sans SC', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         gray: colors.gray,
@@ -35,6 +26,20 @@ module.exports = {
         fuchsia: colors.fuchsia,
         orange: colors.orange,
         rose: colors.rose
+      },
+      animation: {
+        hover: 'hover 20s linear infinite alternate',
+        bg: 'bg 40s linear infinite'
+      },
+      keyframes: {
+        hover: {
+          from: { transform: 'translateX(0) scale(1)' },
+          to: { transform: 'translateX(-10px) scale(1.2)' }
+        },
+        bg: {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-600px)' }
+        }
       }
     }
   },

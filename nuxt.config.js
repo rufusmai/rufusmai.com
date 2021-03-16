@@ -164,10 +164,16 @@ export default {
     }
   },
   /*
+  ** tailwindcss module configuration
+   */
+  tailwindcss: {
+    jit: false
+  },
+  /*
   ** color mode module configuration
    */
   colorMode: {
-    preference: 'system', // default value of $colorMode.preference
+    preference: 'dark', // default value of $colorMode.preference
     fallback: 'dark', // fallback value if not system preference found
     classSuffix: ''
   },
@@ -176,7 +182,7 @@ export default {
    */
   googleFonts: {
     families: {
-      Inter: {
+      'Noto+Sans+SC': {
         wght: [400, 600, 700]
       }
     },
