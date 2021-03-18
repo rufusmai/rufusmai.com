@@ -1,4 +1,3 @@
-
 export default {
   /*
   ** Nuxt target
@@ -39,7 +38,7 @@ export default {
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
-  components: true,
+  components: false,
   /*
   ** Nuxt.js dev-modules
   */
@@ -57,6 +56,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxt/content',
     '@nuxtjs/google-fonts',
     'nuxt-i18n'
   ],
@@ -78,7 +78,7 @@ export default {
       author: 'Rufus Maiwald',
       description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
       theme_color: '#1a202c',
-      ogHost: 'https://rufusmaiwald.de',
+      ogHost: 'https://rufusmai.com',
       nativeUI: true,
       ogImage: {
         path: '/og_img.png',
@@ -120,7 +120,7 @@ export default {
   ** i18n module configuration
    */
   i18n: {
-    baseUrl: 'https://rufusmaiwald.de',
+    baseUrl: 'https://rufusmai.com',
     locales: [
       {
         code: 'de',

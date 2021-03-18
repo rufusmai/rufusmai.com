@@ -1,6 +1,7 @@
 export default {
+  developer: 'entwickler',
   home: 'Home',
-  student: 'Informatikstudent',
+  student: 'Studiert Informatik',
   projects: 'Projekte',
   contact: 'Kontakt',
   developedWith: 'Entwickelt mit {0}{1} und {2} von Rufus Maiwald.',
@@ -12,6 +13,13 @@ export default {
   success: 'erfolgreich',
   cancel: 'abgebrochen',
   updated: 'Die Seite wurde auf eine neue Version aktualisiert!',
+  iconsFrom: 'Icons von',
+  avatarFrom: 'Avatar von',
+
+  // error
+  pageNotFound: 'Die Seite konnte nicht gefunden werden!',
+  errorOccurred: 'Ein Fehler ist aufgetreten!',
+  backToHome: 'Zurück zur Startseite',
 
   // knowledge
   me: 'Ich',
@@ -23,16 +31,15 @@ export default {
   profile: 'Steckbrief',
   age: 'Jahre',
   location: 'München',
-  developer: 'entwickler',
 
   // projects
   openPage: 'Öffnen',
+  startPage: 'Startseite',
   toHome: 'Zur Startseite',
+  minecraftNetwork: 'Minecraftnetzwerk',
+  accountSite: 'Accountseite',
   portfolio: 'Portfolio',
   thisSite: 'Diese Seite',
-  mconeDescription: 'MC ONE ist ein Minecraftnetzwerk, was mit einer eigenen Orchestrations Software in Java einzelne Minecraft Server mithilfe von Netty verwaltet. Die Server selbst laufen mit eigenen Java Plugins. Alle Systeme benutzen MongoDB als Datenbank.',
-  onegmgDescription: 'OneGaming ID ist eine Account Verwaltungsseite und ein Oauth2 Provider für alle Websites, die zu OneGaming und MC ONE gehören (inkl. dieser Seite). Accounts lassen sich mithilfe eines anderen Oauth Dienstes erstellen.',
-  portfolioDescription: 'Dieses Portfolio zeigt den Einsatz neuester Webtechnologien und Frameworks. Durch den eingebauten ServiceWorker lässt sich die Seite als App installieren und offline nutzen. Mehr Infos zu Entwicklung und Deployment auf Github.',
   githubProjects: 'Github Projekte',
   liveFrom: 'Live von',
   with: 'mit',

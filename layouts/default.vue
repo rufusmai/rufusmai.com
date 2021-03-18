@@ -1,210 +1,57 @@
 <template>
-  <div class="box-border h-full w-full text-white">
-    <Background :colors="colors" />
-
+  <div class="box-border min-h-screen w-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
     <client-only>
-      <notifications group="main" position="bottom right" classes="rounded-lg mb-2 mx-2 p-3 text-gray-300 notification" />
+      <notifications
+        group="main"
+        position="bottom right"
+        classes="rounded-lg mb-2 mx-2 p-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700"
+      />
     </client-only>
 
-    <div class="relative flex flex-col z-20 h-full">
-      <header class="pt-3 px-3 sm:pt-4 sm:px-4 w-full flex-none flex">
-        <div class="flex items-center sm:-mt-2">
-          <nuxt-link class="mr-4" to="/">
-            <img src="../assets/img/avatar.svg" alt="Avatar" class="avatar border border-gray-500 h-14 w-14 bg-gray-600 bg-opacity-25 relative rounded-lg z-20">
-          </nuxt-link>
+    <HoverCredits />
+    <IconBackground />
 
-          <h1 class="font-bold leading-normal sm:leading-none text-2xl sm:mt-2 xs:text-3xl sm:text-4xl">
-            Rufus Maiwald
-            <small class="text-gray-500 block leading-none text-base sm:text-lg">
-              Java- {{ $t('and') }} Web<wbr>{{ $t('developer') }}
-            </small>
-          </h1>
-        </div>
+    <div class="relative z-20 flex flex-col min-h-screen">
+      <Header
+        :menu-opened.sync="menuOpened"
+        :colors="colors"
+      />
 
-        <div class="ml-auto">
-          <button v-if="avatar" class="focus:outline-none">
-            <img :src="avatar" alt="Avatar" class="h-10 w-10 inline-block rounded-lg border-2 border-white border-opacity-50">
-            <ChevronDownIcon class="hidden xs:inline" size="20" />
-          </button>
-          <button
-            class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-300 hover:text-gray-200 hover:bg-gray-700 hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-            aria-label="Collapse Menu"
-            @click="menuOpened = !menuOpened"
-          >
-            <span class="sr-only">Open main menu</span>
-            <!-- Heroicon name: menu -->
-            <svg
-              class="h-8 w-8"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
+      <div class="flex-grow flex flex-row">
+        <Menu
+          :menu-opened.sync="menuOpened"
+          :install-prompt="installPrompt"
+        />
 
-      <div class="flex-grow flex flex-row xl:relative">
-        <div :class="menuOpened ? '' : 'pointer-events-none'" class="nav-wrapper flex-none p-2 absolute z-20 w-full h-screen top-0 sm:relative sm:w-auto sm:h-auto sm:pointer-events-auto sm:p-0">
-          <button class="absolute sm:hidden inset-0 h-full w-full transition duration-300 ease-in-out cursor-default bg-opacity-25" :class="menuOpened ? 'bg-black' : ''" aria-label="Close Menu" @click="menuOpened = false" />
-          <nav
-            :class="menuOpened ? '' : 'opacity-0'"
-            class="transition-opacity relative rounded-lg duration-300 z-40 ease-in-out flex-col place-content-between w-full p-4 bg-black sm:w-auto sm:h-full sm:pointer-events-auto sm:bg-transparent sm:flex sm:opacity-100"
-          >
-            <div class="flex justify-between">
-              <ul class="p-3 inline-block self-start transition duration-500 ease-in-out bg-gray-600 hover:bg-gray-500 bg-opacity-25 hover:bg-opacity-25 space-x-3 rounded-lg border border-gray-600 hover:border-gray-500">
-                <li v-for="link in socialMedia" :key="link.name" class="inline">
-                  <a :href="link.url" target="_blank" rel="noopener" :aria-label="link.name">
-                    <fai :icon="link.icon" size="lg" />
-                  </a>
-                </li>
-              </ul>
-              <button
-                type="button"
-                class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-300 hover:text-gray-200 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-                @click="menuOpened = false"
-              >
-                <span class="sr-only">Close menu</span>
-                <!-- Heroicon name: x -->
-                <svg
-                  class="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <div class="font-bold leading-relaxed text-3xl mt-2">
-              <ul>
-                <li v-for="link in navigation" :key="link.name">
-                  <NavLink :name="$t(link.name)" :url="link.url" :colors="link.colors" :active="$nuxt.$route.name === link.page" @click.native="menuOpened = false" />
-                </li>
-                <client-only>
-                  <transition name="install">
-                    <li v-if="installPrompt" class="hover:text-gray-500 transition duration-300 ease-in-out">
-                      <NavLink :name="$t('install')" :colors="['gray', 'gray', 'gray']" class="inline-block" @click.native="installPwa" />
-                    </li>
-                  </transition>
-                </client-only>
-              </ul>
-            </div>
-
-            <div class="mt-auto pt-2">
-              <LanguageChoose />
-            </div>
-          </nav>
-        </div>
-
-        <div class="wrapper inline-block flex-grow h-full p-2 sm:p-4">
+        <div class="wrapper inline-block flex-grow min-h-full p-2 sm:p-4">
           <div class="flex h-full flex-col justify-between">
-            <Nuxt />
-
-            <client-only>
-              <footer class="text-center text-gray-500 xs:p-2 mt-4">
-                <i18n path="developedWith" tag="span">
-                  <a href="https://nuxtjs.org/" target="_blank" rel="noopener" aria-label="Nuxt.js">
-                    <NuxtLogo class="w-4 h-4 inline" />
-                  </a>
-                  <a href="https://tailwindcss.com/" target="_blank" rel="noopener" aria-label="TailwindCSS">
-                    <TailwindcssLogo class="w-4 h-4 inline" />
-                  </a>
-                  <span class="text-red-500">&hearts;</span>
-                </i18n>
-
-                <i18n
-                  path="viewOnGithub"
-                  tag="a"
-                  class="text-gray-400 hover:text-gray-300 transition duration-300 ease-in-out"
-                  href="https://github.com/rufusmai/rufusmaiwald.de"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <fai :icon="['fab', 'github']" />
-                </i18n>
-              </footer>
-            </client-only>
+            <Nuxt class="mt-6 sm:m-0" />
+            <Footer />
           </div>
         </div>
       </div>
     </div>
-
-    <footer />
   </div>
 </template>
 
 <script>
-import { ChevronDownIcon } from '@vue-hero-icons/outline'
-import NavLink from '../components/NavLink'
-import Background from '../components/Background'
-import LanguageChoose from '../components/LanguageChoose'
-import NuxtLogo from '../components/icons/NuxtLogo'
-import TailwindcssLogo from '../components/icons/TailwindcssLogo'
+import HoverCredits from '../components/Layout/HoverCredits'
+import IconBackground from '../components/layout/background/IconBackground'
+import Header from '../components/layout/Header'
+import navigation from '../mixins/navigation'
+import Menu from '../components/layout/menu/Menu'
+import Footer from '../components/layout/Footer'
 
 export default {
-  components: { TailwindcssLogo, NuxtLogo, LanguageChoose, Background, NavLink, ChevronDownIcon },
+  components: { Footer, Menu, Header, IconBackground, HoverCredits },
+  mixins: [navigation],
   data () {
     return {
       menuOpened: false,
-      installPrompt: null,
-      navigation: [
-        {
-          name: 'home',
-          page: 'index',
-          url: '/',
-          colors: ['teal', 'blue', 'indigo']
-        },
-        {
-          name: 'projects',
-          page: 'projects',
-          url: '/projects',
-          colors: ['purple', 'fuchsia', 'pink']
-        },
-        {
-          name: 'contact',
-          page: 'contact',
-          url: '/contact',
-          colors: ['rose', 'orange', 'yellow']
-        }
-      ],
-      socialMedia: [
-        {
-          name: 'Github',
-          url: 'https://github.com/rufusmai',
-          icon: ['fab', 'github']
-        },
-        {
-          name: 'Twitter',
-          url: 'https://twitter.com/rufusmai',
-          icon: ['fab', 'twitter']
-        },
-        {
-          name: 'Instagram',
-          url: 'https://www.instagram.com/rufusmaiwald',
-          icon: ['fab', 'instagram']
-        },
-        {
-          name: 'LinkedIn',
-          url: 'https://www.linkedin.com/in/rufus-maiwald-20832a137',
-          icon: ['fab', 'linkedin']
-        }
-      ]
+      installPrompt: null
     }
   },
   computed: {
-    loggedIn () {
-      return this.$store.state.auth.loggedIn
-    },
-    avatar () {
-      return this.$store.state.auth.user ? this.$store.state.auth.user.avatar : null
-    },
     colors () {
       for (const route of this.navigation) {
         if (route.page === this.$nuxt.$route.name) {
@@ -222,7 +69,7 @@ export default {
     }
 
     window.addEventListener('beforeinstallprompt', this.beforeInstall)
-    await this.$store.dispatch('fetchUser')
+    this.$store.dispatch('fetchUser')
   },
   beforeDestroy () {
     window.removeEventListener('beforeinstallprompt', this.beforeInstall)
@@ -231,20 +78,6 @@ export default {
     beforeInstall (e) {
       this.installPrompt = e
       e.preventDefault()
-    },
-    installPwa () {
-      this.installPrompt.prompt()
-      this.installPrompt.userChoice.then((result) => {
-        this.$notify({
-          group: 'main',
-          title: this.$t('pwaInstallation') + ' ' + this.$t(result.outcome === 'accepted' ? 'success' : 'cancel'),
-          duration: 5000
-        })
-
-        if (result.outcome === 'accepted') {
-          this.installPrompt = null
-        }
-      })
     },
     pwaInstalled (event) {
       if (event.isUpdate) {
@@ -257,59 +90,22 @@ export default {
     }
   },
   head () {
-    return this.$nuxtI18nSeo()
+    return this.$nuxtI18nHead({ addSeoAttributes: true })
   }
 }
 </script>
 
 <style>
-html, body, #__nuxt, #__layout {
-  height: 100%;
+.avatar-gradient {
+  transition: background-image 300ms ease-in-out;
 }
 
-.avatar {
-  backdrop-filter: blur(20px);
-}
-
-.animation-translate {
-  animation: translateX 20s linear infinite;
-  animation-direction: alternate;
-}
-
-.animation-reverse {
-  animation-direction: alternate-reverse;
-}
-
-@keyframes translateX {
-  from {
-    transform: translateX(0) scale(1);;
-  }
-  to {
-    transform: translateX(-10px) scale(1.2);
-  }
-}
-
-.page-enter-active, .page-leave-active {
-  transition: opacity .3s;
-}
-.page-enter, .page-leave-active {
-  opacity: 0;
-}
-
-@media (min-width: 1024px) {
-  .content-wrapper {
-    max-width: calc((100vw - 166px) * .9);
-  }
-}
-
-.notification {
-  background: rgba(0, 0, 0, .5) !important;
-}
-
+.page-enter-active, .page-leave-active,
 .install-enter-active, .install-leave-active {
-  transition: opacity .5s;
+  @apply transition-opacity ease-in-out duration-300;
 }
-.install-enter, .install-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+.page-enter, .page-leave-active,
+.install-enter, .install-leave-to {
+  @apply opacity-0;
 }
 </style>

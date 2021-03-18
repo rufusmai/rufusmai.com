@@ -3,7 +3,7 @@
     <h1>
       {{ $t('me') }} {{ $t(currentUtil.language ? 'develop' : 'use') }}
       <br v-if="currentUtil.name.length > 4" class="sm:hidden">
-      <span ref="util" class="magic-text bg-gradient-to-r bg-clip-text text-transparent" :class="bgUtilClasses">
+      <span ref="util" class="magic-text bg-gradient-to-r bg-clip-text text-transparent" :style="{'--tw-gradient-stops': bgUtilClasses}">
         {{ currentUtil.name }}
       </span>
       <br>
@@ -11,13 +11,16 @@
         {{ $t('and') }}
         <a
           ref="framework"
-          class="magic-text framework-link bg-gradient-to-r bg-clip-text text-transparent"
+          class="group magic-text framework-link bg-gradient-to-r bg-clip-text text-transparent"
           target="_blank"
-          :class="bgFrameworkClasses"
+          :style="{'--tw-gradient-stops': bgFrameworkClasses}"
           :href="currentFramework.url"
         >
           {{ currentFramework.name }}
-          <ExternalLinkIcon class="link-icon opacity-0 transition-opacity duration-300 ease-in-out hidden sm:inline w-6 h-6 md:w-12 h-12 -ml-1 md:-ml-2 -mt-2" :class="`text-${currentFramework.colors[0]}-300`" />
+          <ExternalLinkIcon
+            class="link-icon opacity-0 transition-opacity group-hover:opacity-60 dark:group-hover:opacity-60 duration-300 ease-in-out hidden sm:inline w-6 h-6 md:w-12 h-12 -ml-1 md:-ml-2 -mt-2"
+            :style="{color: linkColor}"
+          />
         </a>
       </span>
     </h1>
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+import colorTheme from 'tailwindcss/colors'
 import { ExternalLinkIcon } from '@vue-hero-icons/outline'
 
 export default {
@@ -36,12 +40,12 @@ export default {
       currentUtilIndex: 0,
       currentFrameworkIndex: 0,
       utilities: [
-        {
+        /* {
           name: 'HTML',
           colors: ['orange', 'red'],
           language: true,
           frameworks: null
-        },
+        }, */
         {
           name: 'Javascript',
           colors: ['yellow', 'yellow'],
@@ -60,7 +64,7 @@ export default {
             {
               name: 'JQuery',
               url: 'https://jquery.com/',
-              colors: ['blue', 'teal']
+              colors: ['blue', 'blue']
             },
             {
               name: 'NodeJS',
@@ -100,6 +104,11 @@ export default {
               name: 'Laravel',
               url: 'https://laravel.com/',
               colors: ['red', 'red']
+            },
+            {
+              name: 'Wordpress',
+              url: 'https://wordpress.org/',
+              colors: ['gray', 'gray']
             }
           ]
         },
@@ -114,7 +123,7 @@ export default {
               colors: ['gray', 'blue']
             },
             {
-              name: 'Spigot API',
+              name: 'SpigotMC',
               url: 'https://www.spigotmc.org/',
               colors: ['orange', 'gray']
             }
@@ -122,7 +131,7 @@ export default {
         },
         {
           name: 'MySQL',
-          colors: ['blue', 'orange'],
+          colors: ['orange', 'orange'],
           language: false,
           frameworks: null
         },
@@ -131,13 +140,13 @@ export default {
           colors: ['green', 'green'],
           language: false,
           frameworks: null
-        },
+        }/*,
         {
           name: 'Git',
           colors: ['orange', 'red'],
           language: false,
           frameworks: null
-        }
+        } */
       ]
     }
   },
@@ -153,48 +162,41 @@ export default {
     },
     bgFrameworkClasses () {
       return this.bgClasses(this.currentFramework.colors)
+    },
+    linkColor () {
+      const variant = this.$colorMode.value === 'light' ? 600 : 400
+      return colorTheme[this.currentFramework.colors[0]][variant]
     }
   },
   mounted () {
-    this.timer = setInterval(() => this.updateText(), 5000)
+    this.timer = setInterval(this.updateText, 5000)
   },
   beforeDestroy () {
     clearInterval(this.timer)
   },
   methods: {
-    bgClasses (target) {
-      const classes = []
-
-      for (let i = 0; i < target.length; i++) {
-        const color = target[i]
-
-        if (i === 0) {
-          classes.push(`from-${color}-400`)
-        } else if (i <= target.length - 1) {
-          classes.push(`via-${color}-600`)
-        } else {
-          classes.push('via-transparent')
-          classes.push('via-transparent')
-          classes.push('via-transparent')
-          classes.push('to-transparent')
-        }
-      }
-
-      return classes
+    bgClasses (colors) {
+      return `${colorTheme[colors[0]][400]}, ${colorTheme[colors[1]][600]}, transparent, transparent`
     },
     updateText () {
-      if (this.currentUtil.frameworks == null || this.currentUtil.frameworks.length - 1 <= this.currentFrameworkIndex) {
+      if (
+        this.currentUtil.frameworks == null ||
+        (this.currentUtil.frameworks.length - 1) <= this.currentFrameworkIndex
+      ) {
         if (this.currentFramework) {
           this.$refs.framework.classList.add('fade-out')
+
           setTimeout(() => {
+            this.$refs.framework.classList.remove('fade-out')
             this.currentFrameworkIndex = 0
           }, 1250)
         }
 
         this.$refs.util.classList.add('fade-out')
         setTimeout(() => {
+          this.$refs.util.classList.remove('fade-out')
+
           if (this.currentUtilIndex >= this.utilities.length - 1) {
-            this.$refs.util.classList.remove('fade-out')
             this.currentUtilIndex = 0
           } else {
             this.currentUtilIndex++
@@ -203,6 +205,7 @@ export default {
       } else {
         this.$refs.framework.classList.add('fade-out')
         setTimeout(() => {
+          this.$refs.framework.classList.remove('fade-out')
           this.currentFrameworkIndex++
         }, 1250)
       }
@@ -216,18 +219,12 @@ export default {
   min-height: 96px;
 }
 .magic-text {
-  opacity: 1;
-  margin: 0;
+  @apply opacity-100 m-0 relative z-10;
   transition: background-position 1.5s ease-in-out, opacity 1.5s cubic-bezier(1,0,1,.5);
-  position: relative;
-  z-index: 10;
   background-size: 350%;
 }
 .fade-out {
-  opacity: 0;
+  @apply opacity-0;
   background-position: 100%;
-}
-.framework-link:hover .link-icon {
-  opacity: .6;
 }
 </style>

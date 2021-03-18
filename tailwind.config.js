@@ -8,12 +8,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: {
-    options: {
-      whitelist: ['bg-green-700', 'bg-red-600'],
-      whitelistPatterns: [/^bg-.*-(500|800)$/, /^(from|via|to)-.*-(400|600)$/, /^text-.*-300/]
-    }
-  },
+  purge: {},
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
@@ -28,6 +23,7 @@ module.exports = {
         rose: colors.rose
       },
       animation: {
+        ping: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
         hover: 'hover 20s linear infinite alternate',
         bg: 'bg 40s linear infinite'
       },
@@ -40,6 +36,12 @@ module.exports = {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(-600px)' }
         }
+      },
+      width: {
+        screenh: '100vh'
+      },
+      lineHeight: {
+        heading: '1.2 !important'
       }
     }
   },

@@ -1,0 +1,23 @@
+title: Portfolio
+subtitle: thisSite
+
+links:
+  int: /
+  gh: rufusmai.com
+logo: '%avatar%'
+img: /img/projects/portfolio_screen.jpg
+
+tags:
+  - Nuxt.js
+  - PWA
+  - tailwindcss
+
+de: |-
+  Dieses Portfolio zeigt den Einsatz neuester Webtechnologien und Frameworks.
+  Durch den eingebauten ServiceWorker lässt sich die Seite als App installieren und offline nutzen.
+  Mehr Infos zu Entwicklung und Deployment auf Github.
+
+en: |-
+  This portfolio shows the usage of the newest web technologies and frameworks.
+  This app can be installed and used offline with the magic of the built in service worker.
+  More information about development and deployment on Github.
