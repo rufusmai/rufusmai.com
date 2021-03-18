@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import HoverCredits from '../components/Layout/HoverCredits'
+import HoverCredits from '../components/layout/HoverCredits'
 import IconBackground from '../components/layout/background/IconBackground'
 import Header from '../components/layout/Header'
 import navigation from '../mixins/navigation'

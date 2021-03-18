@@ -37,7 +37,7 @@
 
 <script>
 import { CodeIcon, CakeIcon, AcademicCapIcon, LocationMarkerIcon } from '@vue-hero-icons/outline'
-import KnowledgeHeader from '../components/Index/KnowledgeHeader'
+import KnowledgeHeader from '../components/index/KnowledgeHeader'
 
 export default {
   name: 'Index',
