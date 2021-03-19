@@ -18,6 +18,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        src: 'https://rufusmai-analytics.herokuapp.com/umami.js',
+        async: true,
+        defer: true,
+        'data-website-id': 'c2a24943-137f-468a-91a1-d219221f7bf9',
+        'data-domains': 'rufusmai.com,rufusmaiwald-de-git-add-light-theme-and-improve-design-rufusmai.vercel.app'
+      }
     ]
   },
   /*
@@ -173,7 +182,7 @@ export default {
   ** color mode module configuration
    */
   colorMode: {
-    preference: 'dark', // default value of $colorMode.preference
+    preference: 'system', // default value of $colorMode.preference
     fallback: 'dark', // fallback value if not system preference found
     classSuffix: ''
   },
@@ -182,9 +191,7 @@ export default {
    */
   googleFonts: {
     families: {
-      'Noto+Sans+SC': {
-        wght: [400, 600, 700]
-      }
+      'Noto+Sans+SC': [400, 600, 700]
     },
     display: 'swap'
   },

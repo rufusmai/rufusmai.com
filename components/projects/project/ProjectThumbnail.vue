@@ -24,7 +24,7 @@
         <Button
           v-else-if="title === 'OneGaming ID'"
           class="inline-flex bg-opacity-90 text-md px-2.5 py-1.5"
-          @click="login"
+          @click.prevent="login"
         >
           <OneGamingLogo class="h-4 mr-1.5" />
           <span class="sm:hidden">1GMG Login</span>

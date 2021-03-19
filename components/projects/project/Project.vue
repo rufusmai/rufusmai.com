@@ -6,7 +6,7 @@
         alt="Logo"
         class="h-12 w-12 mr-3 bg-white dark:bg-gray-800 rounded-full border border-gray-400 dark:border-gray-500"
       >
-      <h2 class="text-3xl leading-10" :class="project.subTitle ? 'mb-2' : 'mb-4'">
+      <h2 class="text-3xl w-full leading-10 mb-2">
         <span v-if="project.subtitle" class="relative block mb-3">
           <span class="absolute block text-base font-semibold text-gray-500 dark:text-gray-300 leading-none ml-px">
             {{ $t(project.subtitle) }}

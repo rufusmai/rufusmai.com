@@ -2,8 +2,15 @@
   <header class="pt-3 px-3 sm:pt-4 sm:px-4 w-full flex-none flex">
     <div class="flex items-center sm:-mt-2">
       <nuxt-link class="mr-4 relative" to="/">
-        <div class="absolute rounded-lg z-10 inset-1/2 transform -translate-x-1/2 -translate-y-1/2 h-16 w-16 bg-gradient-to-r blur-10 avatar-gradient opacity-50 dark:opacity-75" :class="[`from-${colors[0]}-500`, `to-${colors[2]}-500`]" />
-        <img src="~/assets/img/avatar.svg" alt="Avatar" class="avatar h-14 w-14 bg-white dark:bg-gray-800 bg-opacity-75 border border-gray-400 dark:border-gray-500 border-opacity-75 hover:border-opacity-100 relative z-20 rounded-lg transition duration-200 ease-in-out">
+        <div
+          class="absolute rounded-lg z-10 inset-1/2 transform -translate-x-1/2 -translate-y-1/2 h-16 w-16 bg-gradient-to-r blur-10 avatar-gradient opacity-50 dark:opacity-75"
+          :style="{'--tw-gradient-stops': bgColors}"
+        />
+        <img
+          src="~/assets/img/avatar.svg"
+          alt="Avatar"
+          class="avatar h-14 w-14 bg-white dark:bg-gray-800 bg-opacity-75 border border-gray-400 dark:border-gray-500 border-opacity-75 hover:border-opacity-100 relative z-20 rounded-lg transition duration-200 ease-in-out"
+        >
       </nuxt-link>
 
       <h1 class="font-bold leading-normal sm:leading-none text-2xl sm:mt-2 xs:text-3xl sm:text-4xl">
@@ -31,6 +38,7 @@
 </template>
 
 <script>
+import colorTheme from 'tailwindcss/colors'
 import { ChevronDownIcon, MenuIcon } from '@vue-hero-icons/outline'
 import menuToggle from '../../mixins/menuToggle'
 
@@ -50,6 +58,9 @@ export default {
     },
     avatar () {
       return this.$store.state.auth.user ? this.$store.state.auth.user.avatar : null
+    },
+    bgColors () {
+      return `${colorTheme[this.colors[0]][500]}, ${colorTheme[this.colors[2]][500]}`
     }
   }
 }

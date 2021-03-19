@@ -22,7 +22,7 @@
             <h2>{{ age }} {{ $t('age') }}</h2>
           </li>
           <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
-            <AcademicCapIcon class="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
+            <AcademicCapIcon class="acicon h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
             <h2>{{ $t('student') }} <span class="hidden sm:inline">B.Sc.</span></h2>
           </li>
           <li class="flex justify-center sm:justify-start flex-row mt-3 md:mt-4 min-h">
@@ -50,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.acicon path {
+  fill: none;
+}
+</style>

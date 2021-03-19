@@ -58,15 +58,17 @@
             class="captcha-wrapper shadow-sm mt-2 bg-gray-300 dark:bg-gray-700 bg-opacity-75 rounded-lg mx-auto sm:mx-0"
             :class="captchaId == null ? 'animate-pulse' : ''"
           >
-            <vue-recaptcha
-              ref="captcha"
-              :sitekey="captchaSiteKey"
-              :theme="$colorMode.value"
-              :load-recaptcha-script="true"
-              @verify="setToken"
-              @render="captchaRendered"
-              @error="captchaError"
-            />
+            <client-only>
+              <vue-recaptcha
+                ref="captcha"
+                :sitekey="captchaSiteKey"
+                :theme="$colorMode.value"
+                :load-recaptcha-script="true"
+                @verify="setToken"
+                @render="captchaRendered"
+                @error="captchaError"
+              />
+            </client-only>
           </div>
           <small v-if="captchaValErr && token == null" class="block text-red-600">
             {{ $t('validation.captcha') }}

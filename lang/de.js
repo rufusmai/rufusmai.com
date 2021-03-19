@@ -37,7 +37,7 @@ export default {
   startPage: 'Startseite',
   toHome: 'Zur Startseite',
   minecraftNetwork: 'Minecraftnetzwerk',
-  accountSite: 'Accountseite',
+  accountSite: 'SSO Anbieter',
   portfolio: 'Portfolio',
   thisSite: 'Diese Seite',
   githubProjects: 'Github Projekte',
