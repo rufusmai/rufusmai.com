@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-sm md:m-0">
+  <div class="mx-auto w-full lg:w-auto max-w-sm md:m-0">
     <div class="flex flex-col h-full rounded-lg px-4 py-2 bg-white backdrop-blur dark:bg-gray-600 bg-opacity-50 dark:bg-opacity-50 border border-gray-400 dark:border-gray-500 hover:border-gray-500 dark:hover:border-gray-400 transition duration-200 ease-in-out">
       <div class="mb-2">
         <h2 class="font-semibold text-2xl">

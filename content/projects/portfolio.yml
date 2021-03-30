@@ -1,6 +1,7 @@
 title: Portfolio
 subtitle: thisSite
 
+sort: 3
 links:
   int: /
   gh: rufusmai.com
