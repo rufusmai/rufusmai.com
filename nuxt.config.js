@@ -85,7 +85,7 @@ export default {
       name: 'Rufus Maiwald | Portfolio',
       author: 'Rufus Maiwald',
       description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
-      theme_color: '#1a202c',
+      theme_color: '#18181b',
       ogHost: 'https://rufusmai.com',
       nativeUI: true,
       ogImage: {
@@ -99,10 +99,10 @@ export default {
     },
     manifest: {
       name: 'Rufus Maiwald Portfolio',
-      short_name: 'RM Portfolio',
+      short_name: 'rufusmai',
       description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
-      background_color: '#1a202c',
-      theme_color: '#1a202c'
+      background_color: '#18181b',
+      theme_color: '#18181b'
     },
     workbox: {
       runtimeCaching: [
