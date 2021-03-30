@@ -79,7 +79,7 @@
           <Button
             type="submit"
             class="mt-3 inline-flex text-xl"
-            :class="form.success ? 'border-green-600 text-green-600' : (form.success === null ? '' : 'border-red-600 text-red-600')"
+            :class="form.success ? 'border-green-500 hover:border-green-500 text-green-600 dark:border-green-500 dark:hover:border-green-500 dark:text-green-600' : (form.success === null ? '' : 'border-red-600 hover:border-red-600 text-red-600 dark:border-red-500 dark:hover:border-red-500 dark:text-red-600')"
             :disabled="form.loading || form.success !== null"
           >
             <svg
@@ -113,6 +113,7 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 import { ChatAltIcon, ChatAlt2Icon } from '@vue-hero-icons/outline'
 import { ValidationObserver, ValidationProvider, configure, setInteractionMode, extend } from 'vee-validate'
 import { required, email, min } from 'vee-validate/dist/rules'
@@ -183,12 +184,12 @@ export default {
         this.captchaValErr = false
         this.form.loading = true
 
-        this.$axios.post(process.env.NODE_ENV === 'production' ? 'https://api.rufusmaiwald.de/v1/contact' : 'http://localhost:8000/v1/contact', {
+        this.$axios.post('/api/contact', {
           name: this.form.name,
           token: this.captchaToken,
           email: this.form.email,
           message: this.form.message
-        }).then((response) => {
+        }).then(() => {
           this.form.success = true
         }).catch((error) => {
           console.error(error)
