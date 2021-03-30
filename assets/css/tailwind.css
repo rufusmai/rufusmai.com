@@ -21,6 +21,22 @@
     @apply px-5 py-3 shadow-sm w-full rounded-md bg-white dark:bg-gray-800 backdrop-blur border-gray-400 dark:border-gray-500 border-opacity-75 placeholder-gray-500 dark:placeholder-gray-400 transition duration-200 ease-in-out hover:border-opacity-100 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500
   }
 
+  /* Change Autocomplete styles in Chrome*/
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill,
+  .dark textarea:-webkit-autofill:hover,
+  .dark textarea:-webkit-autofill:focus,
+  .dark select:-webkit-autofill,
+  .dark select:-webkit-autofill:hover,
+  .dark select:-webkit-autofill:focus {
+    /*border: inherit;
+    -webkit-text-fill-color: black;*/
+    -webkit-box-shadow: 0 0 0 1000px #213358 inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   html, body, #__nuxt, #__layout {
     height: 100%;
   }

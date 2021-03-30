@@ -24,7 +24,7 @@ export default {
         async: true,
         defer: true,
         'data-website-id': 'c2a24943-137f-468a-91a1-d219221f7bf9',
-        'data-domains': 'rufusmai.com,rufusmaiwald-de-git-add-light-theme-and-improve-design-rufusmai.vercel.app'
+        'data-domains': 'rufusmai.com'
       }
     ]
   },

@@ -5,8 +5,15 @@ const qs = require('qs')
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const {
-    body
+    body,
+    method
   } = request
+
+  if (method !== 'POST') {
+    return response.json({
+      msg: 'Method not allowed!'
+    }).status(405)
+  }
 
   if (!(body && body.name && body.token && body.email && body.message)) {
     return response.json({

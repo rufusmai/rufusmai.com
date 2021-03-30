@@ -184,7 +184,7 @@ export default {
         this.captchaValErr = false
         this.form.loading = true
 
-        this.$axios.post('/api/contact', {
+        this.$axios.post('/contact', {
           name: this.form.name,
           token: this.captchaToken,
           email: this.form.email,
