@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button v-if="menuOpen" class="absolute w-screen inset-0 focus:outline-none cursor-default z-30" @click="menuOpen = false" />
     <div class="relative">
       <transition
         leave-class="transition ease-in duration-100"
@@ -30,7 +31,7 @@
       </transition>
     </div>
 
-    <Button class="relative pr-8" @click.native="menuOpen = !menuOpen">
+    <Button class="relative z-40 pr-8" @click.native="menuOpen = !menuOpen">
       <span class="block truncate">
         <img
           :src="`https://flagcdn.com/h24/${$i18n.locale !== 'en' ? $i18n.locale : 'us'}.png`"

@@ -1,16 +1,16 @@
 <template>
   <a :href="links.ext" class="relative block z-20" target="_blank" rel="noopener">
-    <div class="thumbnail blur-20 absolute opacity-50 z-10" :style="{'background-color': bgColor}" />
-    <div class="thumbnail absolute z-10 rounded-lg bg-white dark:bg-black bg-opacity-75" />
+    <div class="thumbnail blur-20 absolute opacity-50 z-10 max-w-full" :style="{'background-color': bgColor}" />
+    <div class="thumbnail absolute z-10 rounded-lg bg-white dark:bg-black bg-opacity-75 max-w-full" />
 
     <img
       :src="image"
       :alt="`${title} Hero`"
-      class="thumbnail relative z-20 rounded-lg mt-2 bg-gray-600 opacity-75 shadow-sm border border-gray-400 dark:border-gray-500"
+      class="thumbnail max-w-full relative z-20 rounded-lg mt-2 bg-gray-600 opacity-75 shadow-sm border border-gray-400 dark:border-gray-500"
     >
 
     <client-only>
-      <div class="flex m-3 justify-between space-x-2 absolute z-20 bottom-0 -right-6">
+      <div class="flex m-3 justify-between space-x-2 absolute z-20 bottom-0 right-0 sm:-right-6">
         <Button
           v-if="Object.keys(links).includes('gh')"
           :href="`https://github.com/rufusmai/${links.gh}`"

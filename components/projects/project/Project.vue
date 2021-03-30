@@ -36,7 +36,7 @@
         />
       </div>
 
-      <p class="mt-2 font-semibold text-gray-500">
+      <p class="mt-2 font-semibold text-gray-400">
         {{ $i18n.locale === 'de' ? project.de : project.en }}
       </p>
     </div>

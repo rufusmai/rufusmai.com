@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button v-if="menuOpen" class="absolute w-screen inset-0 focus:outline-none cursor-default z-30" @click="menuOpen = false" />
     <div class="relative">
       <transition
         leave-class="transition ease-in duration-100"
@@ -13,7 +14,7 @@
               :key="theme.name"
               class="hover:bg-gray-200 dark:hover:bg-gray-700 cursor-default select-none relative py-2 pl-3 pr-9"
               :class="{'bg-gray-100 dark:bg-gray-600': $colorMode.preference === theme.name}"
-              @click="$colorMode.preference = theme.name"
+              @click="setColorMode(theme.name)"
             >
               <component :is="theme.component" />
               <span v-if="$colorMode.preference === theme.name" class="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -25,7 +26,7 @@
       </transition>
     </div>
 
-    <Button class="relative pr-8" @click.native="menuOpen = !menuOpen">
+    <Button class="relative z-40 pr-8" @click.native="menuOpen = !menuOpen">
       <span class="block truncate">
         <component :is="colorMode.component" />
       </span>
@@ -71,6 +72,13 @@ export default {
       }
 
       return this.colorModes[1]
+    }
+  },
+  methods: {
+    setColorMode (colorMode) {
+      this.$colorMode.preference = colorMode
+
+      this.$root.$emit('colorModeChanged', { colorMode })
     }
   }
 }

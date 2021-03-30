@@ -90,7 +90,15 @@ export default {
     }
   },
   head () {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
+    return {
+      htmlAttrs: i18nHead.htmlAttrs,
+      meta: [
+        { hid: 'color-scheme', name: 'color-scheme', content: this.$colorMode.value },
+        ...i18nHead.meta
+      ],
+      link: i18nHead.link
+    }
   }
 }
 </script>

@@ -13,8 +13,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.' },
-      { name: 'color-scheme', content: 'dark' }
+      { hid: 'description', name: 'description', content: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

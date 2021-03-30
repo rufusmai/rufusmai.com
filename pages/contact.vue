@@ -48,18 +48,20 @@
               id="message"
               v-model="form.message"
               minlength="10"
+              rows="3"
               :placeholder="$t('message')"
-              class="mt-4 bg-opacity-50 dark:bg-opacity-50"
+              class="block mt-4 bg-opacity-50 dark:bg-opacity-50"
               :class="classes"
             />
           </validation-provider>
 
           <div
-            class="captcha-wrapper shadow-sm mt-2 bg-gray-300 dark:bg-gray-700 bg-opacity-75 rounded-lg mx-auto sm:mx-0"
+            class="captcha-wrapper shadow-sm mt-4 bg-gray-300 dark:bg-gray-700 bg-opacity-75 rounded-lg mx-auto sm:mx-0"
             :class="captchaId == null ? 'animate-pulse' : ''"
           >
             <client-only>
               <vue-recaptcha
+                v-if="captchaShow"
                 ref="captcha"
                 :sitekey="captchaSiteKey"
                 :theme="$colorMode.value"
@@ -130,6 +132,7 @@ export default {
   components: { Button, ChatAltIcon, ChatAlt2Icon, ValidationObserver, ValidationProvider, VueRecaptcha },
   data () {
     return {
+      captchaShow: true,
       captchaSiteKey: '6Lf8Wc8ZAAAAAM1a6HZOzAu3io2RbJ9YizvJ74z4',
       captchaId: null,
       captchaToken: null,
@@ -156,6 +159,13 @@ export default {
     extend('min', {
       ...min,
       message: (_, values) => i18n.t('validation.min', values)
+    })
+
+    this.$root.$on('colorModeChanged', () => {
+      this.captchaShow = false
+      setTimeout(() => {
+        this.captchaShow = true
+      }, 100)
     })
   },
   methods: {

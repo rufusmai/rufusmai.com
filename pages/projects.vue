@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper block h-full mx-auto w-full">
-    <div class="pb-2 space-y-8 md:space-y-0 md:flex gap-8">
+    <div class="pb-2 space-y-8 md:space-y-0 md:flex flex-wrap gap-8">
       <Project
         v-for="(project, id) in projects"
         :key="id"
@@ -16,14 +16,14 @@
       <div v-if="$fetchState.pending" class="mt-4 pb-4 space-y-8 md:space-y-0 md:space-x-4 md:flex flex-row flex-no-wrap md:overflow-x-auto scroll">
         <div v-for="i in [0, 1, 2]" :key="i" class="h-32 w-64 bg-gray-300 dark:bg-gray-600 bg-opacity-75 rounded-lg animate-pulse" />
       </div>
-      <div v-else class="gh-wrapper mt-4 pb-4 space-y-8 md:space-y-0 md:flex gap-4">
+      <div v-else class="w-full mt-4 pb-2 space-y-8 md:space-y-0 md:flex flex-wrap gap-4">
         <GithubRepo
           v-for="repo in githubRepos"
           :key="repo.id"
           :repo="repo"
         />
       </div>
-      <div v-if="githubRepos.length > 0" class="flex items-center justify-center md:justify-start live-indicator text-gray-500 dark:text-gray-400">
+      <div v-if="githubRepos.length > 0" class="flex items-center justify-center md:justify-start text-gray-500 dark:text-gray-400">
         <span class="relative inline-flex h-2 w-2 mr-2 mt-0.5">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 dark:bg-green-300" />
           <span class="relative inline-flex rounded-full h-2 w-2 bg-green-300 dark:bg-green-300" />
@@ -49,7 +49,7 @@ export default {
       transformRequest: (data, headers) => {
         delete headers.common.Authorization
       }
-    })
+    }).then(repos => repos.filter(repo => !repo.archived))
   },
   fetchOnServer: false,
   async asyncData ({ $content }) {
@@ -102,11 +102,3 @@ export default {
   }
 }
 </script>
-
-<style>
-@media (min-width: 1705px) {
-  .live-indicator {
-    margin: -.6rem 0
-  }
-}
-</style>
