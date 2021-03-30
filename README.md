@@ -1,10 +1,10 @@
 # Rufus Maiwald Portfolio `v2`
 
-👉 [rufusmaiwald.de](https://rufusmaiwald.de)
+👉 [rufusmai.com](https://rufusmai.com)
 
 This site aims to be a small portfolio about me as developer. 
 Its made using the newest web technologies und frameworks.  
-Click [here](https://github.com/rufusmaiwald/rufusmaiwald.de/tree/v1) to watch `v1` repository.
+Click [here](https://github.com/rufusmai/rufusmai.com/tree/v1) to watch `v1` repository.
 
 ## 💻 Development
 

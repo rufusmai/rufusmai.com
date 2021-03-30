@@ -1,4 +1,3 @@
-
 export default {
   /*
   ** Nuxt target
@@ -14,11 +13,19 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.' },
-      { name: 'color-scheme', content: 'dark' }
+      { hid: 'description', name: 'description', content: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        src: 'https://rufusmai-analytics.herokuapp.com/umami.js',
+        async: true,
+        defer: true,
+        'data-website-id': 'c2a24943-137f-468a-91a1-d219221f7bf9',
+        'data-domains': 'rufusmai.com,rufusmaiwald-de-git-add-light-theme-and-improve-design-rufusmai.vercel.app'
+      }
     ]
   },
   /*
@@ -39,7 +46,7 @@ export default {
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
-  components: true,
+  components: false,
   /*
   ** Nuxt.js dev-modules
   */
@@ -47,7 +54,8 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode'
   ],
   /*
   ** Nuxt.js modules
@@ -56,6 +64,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxt/content',
+    '@nuxtjs/google-fonts',
     'nuxt-i18n'
   ],
   /*
@@ -76,7 +86,7 @@ export default {
       author: 'Rufus Maiwald',
       description: 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.',
       theme_color: '#1a202c',
-      ogHost: 'https://rufusmaiwald.de',
+      ogHost: 'https://rufusmai.com',
       nativeUI: true,
       ogImage: {
         path: '/og_img.png',
@@ -118,7 +128,7 @@ export default {
   ** i18n module configuration
    */
   i18n: {
-    baseUrl: 'https://rufusmaiwald.de',
+    baseUrl: 'https://rufusmai.com',
     locales: [
       {
         code: 'de',
@@ -141,7 +151,7 @@ export default {
     seo: false
   },
   /*
-  ** i18n module configuration
+  ** auth module configuration
    */
   auth: {
     strategies: {
@@ -160,6 +170,29 @@ export default {
         token_key: 'access_token'
       }
     }
+  },
+  /*
+  ** tailwindcss module configuration
+   */
+  tailwindcss: {
+    jit: false
+  },
+  /*
+  ** color mode module configuration
+   */
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'dark', // fallback value if not system preference found
+    classSuffix: ''
+  },
+  /*
+  ** google fonts module configuration
+   */
+  googleFonts: {
+    families: {
+      'Noto+Sans+SC': [400, 600, 700]
+    },
+    display: 'swap'
   },
   /*
   ** Build configuration

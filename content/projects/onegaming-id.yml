@@ -1,0 +1,24 @@
+title: OneGaming ID
+subtitle: accountSite
+
+sort: 1
+links:
+  ext: https://id.onegaming.group
+logo: /img/projects/1gmg_logo.jpg
+img: /img/projects/1gmg_screen.jpg
+
+tags:
+  - PHP
+  - Oauth2
+  - Vue.js
+  - Laravel
+
+de: |-
+  OneGaming ID ist eine Account Verwaltungsseite und ein Oauth2 Provider für alle Websites,
+  die zu OneGaming und MC ONE gehören (inkl. dieser Seite).
+  Accounts lassen sich mithilfe eines anderen Oauth Dienstes erstellen.
+
+en: |-
+  OneGaming ID is a account management platform and an Oauth2 Provider for all websites,
+  that belong to OneGaming or MC ONE (including this site).
+  Accounts can be created using other Oauth providers or via minecraft server authentication.

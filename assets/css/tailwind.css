@@ -1,3 +1,45 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply px-5 py-3 shadow-sm w-full rounded-md bg-white dark:bg-gray-800 backdrop-blur border-gray-400 dark:border-gray-500 border-opacity-75 placeholder-gray-500 dark:placeholder-gray-400 transition duration-200 ease-in-out hover:border-opacity-100 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500
+  }
+
+  html, body, #__nuxt, #__layout {
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  @responsive {
+    .blur-10 {
+      filter: blur(10px);
+    }
+    .blur-20 {
+      filter: blur(20px);
+    }
+    .backdrop-blur {
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  .animate-reverse {
+    animation-direction: alternate-reverse;
+  }
+}
