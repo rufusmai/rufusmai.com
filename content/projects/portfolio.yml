@@ -6,7 +6,7 @@ links:
   int: /
   gh: rufusmai.com
 logo: '%avatar%'
-img: /img/projects/portfolio_screen.jpg
+img: /img/projects/portfolio_screen_light.jpg
 
 tags:
   - Nuxt.js
