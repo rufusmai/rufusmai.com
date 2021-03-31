@@ -26,7 +26,7 @@
       </transition>
     </div>
 
-    <Button class="relative z-40 pr-8" @click.native="menuOpen = !menuOpen">
+    <Button class="relative z-40 pr-8" aria-label="Choose color scheme" @click.native="menuOpen = !menuOpen">
       <span class="block truncate">
         <component :is="colorMode.component" />
       </span>

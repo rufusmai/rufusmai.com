@@ -16,6 +16,7 @@
       <div class="flex justify-between">
         <SocialMedia />
         <button
+          aria-label="Close Menu"
           class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
           @click="toggleMenu"
         >

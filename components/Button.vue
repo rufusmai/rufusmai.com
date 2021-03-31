@@ -14,14 +14,12 @@ export default {
   name: 'Button',
   props: {
     to: {
-      required: false,
       type: String,
       default: null
     },
     href: {
-      required: false,
       type: String,
-      default: ''
+      default: null
     }
   },
   computed: {

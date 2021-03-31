@@ -19,7 +19,7 @@
         target="_blank"
         rel="noopener"
       >
-        <fai :icon="['fab', 'github']" />
+        <GithubLogo class="inline-block -mt-1 mx-0.5 h-4 w-4" />
       </i18n>
     </footer>
   </client-only>
@@ -28,10 +28,11 @@
 <script>
 import TailwindcssLogo from '../icons/TailwindcssLogo'
 import NuxtLogo from '../icons/NuxtLogo'
+import GithubLogo from '../icons/GithubLogo'
 
 export default {
   name: 'Footer',
-  components: { TailwindcssLogo, NuxtLogo }
+  components: { GithubLogo, TailwindcssLogo, NuxtLogo }
 }
 </script>
 

@@ -9,6 +9,8 @@
         <img
           src="~/assets/img/avatar.svg"
           alt="Avatar"
+          height="56"
+          width="56"
           class="avatar h-14 w-14 bg-white dark:bg-gray-800 bg-opacity-75 border border-gray-400 dark:border-gray-500 border-opacity-75 hover:border-opacity-100 relative z-20 rounded-lg transition duration-200 ease-in-out"
         >
       </nuxt-link>
@@ -28,7 +30,7 @@
       </button>
       <button
         class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-        aria-label="Collapse Menu"
+        aria-label="Open Menu"
         @click="toggleMenu"
       >
         <MenuIcon class="h-8 w-8" />

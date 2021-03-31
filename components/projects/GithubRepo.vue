@@ -11,7 +11,7 @@
       </div>
       <div class="mt-auto space-x-3 font-semibold">
         <a :href="repo.html_url" target="_blank" rel="noopener" class="hover:text-gray-500 dark:hover:text-gray-200 transition duration-300 ease-in-out">
-          <fai :icon="['fab', 'github']" />
+          <GithubLogo class="inline-block h-4 w-4 -mt-1" />
           <span>Github</span>
         </a>
         <nuxt-link v-if="repo.name === 'rufusmai.com'" to="/" class="hover:text-gray-500 dark:hover:text-gray-200 transition duration-300 ease-in-out">
@@ -29,10 +29,11 @@
 
 <script>
 import { ExternalLinkIcon, HomeIcon } from '@vue-hero-icons/outline'
+import GithubLogo from '../icons/GithubLogo'
 
 export default {
   name: 'GithubRepo',
-  components: { ExternalLinkIcon, HomeIcon },
+  components: { GithubLogo, ExternalLinkIcon, HomeIcon },
   props: {
     repo: {
       type: Object,

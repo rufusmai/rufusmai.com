@@ -11,6 +11,7 @@
         {{ $t('and') }}
         <a
           ref="framework"
+          rel="noopener"
           class="group magic-text framework-link bg-gradient-to-r bg-clip-text text-transparent"
           target="_blank"
           :style="{'--tw-gradient-stops': bgFrameworkClasses}"

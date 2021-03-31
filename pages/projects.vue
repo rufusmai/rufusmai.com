@@ -28,7 +28,7 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 dark:bg-green-300" />
           <span class="relative inline-flex rounded-full h-2 w-2 bg-green-300 dark:bg-green-300" />
         </span>
-        {{ $t('liveFrom') }} <fai :icon="['fab', 'github']" class="mx-1" /> API
+        {{ $t('liveFrom') }} <GithubLogo class="mx-1 inline-block h-4 w-4" /> API
       </div>
     </div>
   </div>
@@ -37,10 +37,11 @@
 <script>
 import Project from '../components/projects/project/Project'
 import GithubRepo from '../components/projects/GithubRepo'
+import GithubLogo from '../components/icons/GithubLogo'
 
 export default {
   name: 'Projects',
-  components: { GithubRepo, Project },
+  components: { GithubRepo, Project, GithubLogo },
   async fetch () {
     this.githubRepos = await this.$axios.$get('https://api.github.com/users/rufusmai/repos', {
       headers: {

@@ -65,7 +65,7 @@ export default {
   async mounted () {
     const workbox = await window.$workbox
     if (workbox) {
-      workbox.addEventListener('installed')
+      workbox.addEventListener('installed', this.pwaInstalled)
     }
 
     window.addEventListener('beforeinstallprompt', this.beforeInstall)
