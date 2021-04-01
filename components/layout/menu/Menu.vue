@@ -15,13 +15,16 @@
     >
       <div class="flex justify-between">
         <SocialMedia />
-        <button
-          aria-label="Close Menu"
-          class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-          @click="toggleMenu"
-        >
-          <XIcon class="h-6 w-6" />
-        </button>
+        <div class="flex items-center space-x-2">
+          <AvatarMenu class="sm:hidden" />
+          <button
+            aria-label="Close Menu"
+            class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
+            @click="toggleMenu"
+          >
+            <XIcon class="h-6 w-6" />
+          </button>
+        </div>
       </div>
 
       <Navbar
@@ -46,10 +49,11 @@ import LanguageChoose from './chooser/LanguageChoose'
 import ThemeChoose from './chooser/ThemeChoose'
 import SocialMedia from './SocialMedia'
 import Navbar from './navbar/Navbar'
+import AvatarMenu from '../header/AvatarMenu'
 
 export default {
   name: 'Menu',
-  components: { Navbar, SocialMedia, LanguageChoose, ThemeChoose, XIcon },
+  components: { AvatarMenu, Navbar, SocialMedia, LanguageChoose, ThemeChoose, XIcon },
   mixins: [menuToggle],
   props: {
     installPrompt: {

@@ -37,7 +37,6 @@
 
 <script>
 import colorTheme from 'tailwindcss/colors'
-import oauth from '../../../mixins/oauth'
 
 import OneGamingLogo from '../../icons/OneGamingLogo'
 import GithubLogo from '../../icons/GithubLogo'
@@ -46,7 +45,6 @@ import Button from '../../Button'
 export default {
   name: 'ProjectThumbnail',
   components: { Button, OneGamingLogo, GithubLogo },
-  mixins: [oauth],
   props: {
     title: {
       type: String,
@@ -71,23 +69,8 @@ export default {
     }
   },
   methods: {
-    async login () {
-      const state = this.generateRandomString()
-      localStorage.setItem('pkce_state', state)
-
-      const codeVerifier = this.generateRandomString()
-      localStorage.setItem('pkce_code_verifier', codeVerifier)
-
-      const codeChallenge = await this.pkceChallengeFromVerifier(codeVerifier)
-
-      window.location = 'http://id.onegaming.group/api/v1/oauth2/authorize' +
-        '?response_type=code' +
-        '&client_id=' + encodeURIComponent('5f68b682e7db6e447df529f0') +
-        '&state=' + encodeURIComponent(state) +
-        '&scope=' + encodeURIComponent('openid profile') +
-        '&redirect_uri=' + encodeURIComponent(window.location.origin + '/login') +
-        '&code_challenge=' + encodeURIComponent(codeChallenge) +
-        '&code_challenge_method=S256'
+    login () {
+      this.$auth.loginWith('onegamingId')
     }
   }
 }

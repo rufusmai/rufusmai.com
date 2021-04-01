@@ -6,9 +6,9 @@
         position="bottom right"
         classes="rounded-lg mb-2 mx-2 p-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700"
       />
+      <HoverCredits v-if="!$auth.loggedIn" />
     </client-only>
 
-    <HoverCredits />
     <IconBackground />
 
     <div class="relative z-20 flex flex-col min-h-screen">
@@ -37,7 +37,7 @@
 <script>
 import HoverCredits from '../components/layout/HoverCredits'
 import IconBackground from '../components/layout/background/IconBackground'
-import Header from '../components/layout/Header'
+import Header from '../components/layout/header/Header'
 import navigation from '../mixins/navigation'
 import Menu from '../components/layout/menu/Menu'
 import Footer from '../components/layout/Footer'
@@ -69,7 +69,6 @@ export default {
     }
 
     window.addEventListener('beforeinstallprompt', this.beforeInstall)
-    this.$store.dispatch('fetchUser')
   },
   beforeDestroy () {
     window.removeEventListener('beforeinstallprompt', this.beforeInstall)

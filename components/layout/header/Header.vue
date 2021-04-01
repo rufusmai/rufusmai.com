@@ -23,11 +23,8 @@
       </h1>
     </div>
 
-    <div class="ml-auto">
-      <button v-if="avatar" class="focus:outline-none">
-        <img :src="avatar" alt="Avatar" class="h-10 w-10 inline-block rounded-lg border-2 border-white border-opacity-50">
-        <ChevronDownIcon class="hidden xs:inline" size="20" />
-      </button>
+    <div class="ml-auto flex items-center sm:space-x-2">
+      <AvatarMenu class="hidden sm:block" />
       <button
         class="sm:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:bg-opacity-25 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
         aria-label="Open Menu"
@@ -41,12 +38,13 @@
 
 <script>
 import colorTheme from 'tailwindcss/colors'
-import { ChevronDownIcon, MenuIcon } from '@vue-hero-icons/outline'
-import menuToggle from '../../mixins/menuToggle'
+import { MenuIcon } from '@vue-hero-icons/outline'
+import menuToggle from '../../../mixins/menuToggle'
+import AvatarMenu from './AvatarMenu'
 
 export default {
   name: 'Header',
-  components: { MenuIcon, ChevronDownIcon },
+  components: { AvatarMenu, MenuIcon },
   mixins: [menuToggle],
   props: {
     colors: {
@@ -55,12 +53,6 @@ export default {
     }
   },
   computed: {
-    loggedIn () {
-      return this.$store.state.auth.loggedIn
-    },
-    avatar () {
-      return this.$store.state.auth.user ? this.$store.state.auth.user.avatar : null
-    },
     bgColors () {
       return `${colorTheme[this.colors[0]][500]}, ${colorTheme[this.colors[2]][500]}`
     }

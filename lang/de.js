@@ -7,7 +7,6 @@ export default {
   developedWith: 'Entwickelt mit {0}{1} und {2} von Rufus Maiwald.',
   viewOnGithub: 'Auf {0} ansehen',
   changedLocale: 'Sprache auf {0} geändert',
-  loggedIn: 'Eingeloggt als {0}',
   install: 'Installieren',
   pwaInstallation: 'Installation',
   success: 'erfolgreich',
@@ -15,6 +14,10 @@ export default {
   updated: 'Die Seite wurde auf eine neue Version aktualisiert!',
   iconsFrom: 'Icons von',
   avatarFrom: 'Avatar von',
+  loggedIn: 'Eingeloggt als {0}',
+  loggedInUsingOneGaming: 'Eingeloggt mit {0} OneGaming ID',
+  loggingIn: 'Anmelden',
+  loggedOut: 'Du wurdest erfolgreich abgemeldet!',
 
   // error
   pageNotFound: 'Die Seite konnte nicht gefunden werden!',

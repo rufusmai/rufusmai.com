@@ -64,6 +64,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/auth-next',
     'nuxt-i18n'
   ],
   /*
@@ -154,19 +155,20 @@ export default {
   auth: {
     strategies: {
       local: false,
-      social: {
-        _scheme: 'oauth2',
-        authorization_endpoint: 'https://id.onegaming.group/oauth2/authorize',
-        userinfo_endpoint: 'https://id.onegaming.group/api/v1/user',
-        scope: ['identify'],
-        access_type: undefined,
-        access_token_endpoint: undefined,
-        response_type: 'token',
-        token_type: 'Bearer',
-        redirect_uri: undefined,
-        client_id: '5f68b682e7db6e447df529f0',
-        token_key: 'access_token'
+      onegamingId: {
+        scheme: 'oauth2',
+        endpoints: {
+          authorization: 'https://id.onegaming.group/api/v1/oauth2/authorize',
+          token: 'https://id.onegaming.group/api/v1/oauth2/token',
+          userInfo: 'https://id.onegaming.group/api/v1/user'
+        },
+        clientId: '5f68b682e7db6e447df529f0',
+        scope: ['openid', 'profile']
       }
+    },
+    cookie: false,
+    redirect: {
+      logout: false
     }
   },
   /*
