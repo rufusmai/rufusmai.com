@@ -45,11 +45,11 @@
 <script>
 import { XIcon } from '@vue-hero-icons/outline'
 import menuToggle from '../../../mixins/menuToggle'
+import AvatarMenu from '../header/AvatarMenu'
 import LanguageChoose from './chooser/LanguageChoose'
 import ThemeChoose from './chooser/ThemeChoose'
 import SocialMedia from './SocialMedia'
 import Navbar from './navbar/Navbar'
-import AvatarMenu from '../header/AvatarMenu'
 
 export default {
   name: 'Menu',

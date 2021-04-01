@@ -29,6 +29,8 @@ This site is deployed on [Vercel](https://vercel.com).
 It provides multiple deployments for each branch and commit for free.
 Its integrated with github for deployment info and has many ready to go build templates for nuxt, next, vue, react, ...
 
+The contact form is realized via [Serverless Functions](https://vercel.com/docs/serverless-functions/introduction) written in Node.js and Typescript.
+
 ## 🛠 Build Setup
 
 ```bash

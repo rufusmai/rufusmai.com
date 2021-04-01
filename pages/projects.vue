@@ -94,6 +94,7 @@ export default {
         const { cacheName, updatedURL } = event.data.payload
 
         if (cacheName === 'gh-projects') {
+          // eslint-disable-next-line no-console
           console.log('gh-projects broadcast update!')
           const cache = await caches.open(cacheName)
           const updatedResponse = await cache.match(updatedURL, { ignoreVary: true, ignoreSearch: true })
