@@ -20,10 +20,10 @@ export default {
     ],
     script: [
       {
-        src: 'https://rufusmai-analytics.herokuapp.com/umami.js',
+        src: 'https://datenkrake.rufusmai.com/umami.js',
         async: true,
         defer: true,
-        'data-website-id': 'c2a24943-137f-468a-91a1-d219221f7bf9',
+        'data-website-id': '1d1ae607-8a41-427e-b78f-028b000d5461',
         'data-domains': 'rufusmai.com'
       }
     ]
@@ -170,12 +170,6 @@ export default {
     redirect: {
       logout: false
     }
-  },
-  /*
-  ** tailwindcss module configuration
-   */
-  tailwindcss: {
-    jit: false
   },
   /*
   ** color mode module configuration

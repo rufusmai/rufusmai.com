@@ -8,7 +8,14 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: {},
+  mode: 'jit',
+  purge: [
+    'components/**/*.vue',
+    'layouts/**/*.vue',
+    'pages/**/*.vue',
+    'plugins/**/*.js',
+    'nuxt.config.js'
+  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {

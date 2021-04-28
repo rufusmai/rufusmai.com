@@ -3,46 +3,63 @@ import axios, { AxiosResponse } from 'axios'
 
 const qs = require('qs')
 
-export default async (request: VercelRequest, response: VercelResponse) => {
+export default async (req: VercelRequest, res: VercelResponse): Promise<void> => {
   const {
     body,
     method
-  } = request
+  } = req
 
   if (method !== 'POST') {
-    return response.json({
-      msg: 'Method not allowed!'
-    }).status(405)
+    res
+      .status(405)
+      .json({
+        msg: 'Method not allowed!'
+      })
+    return
   }
 
   if (!(body && body.name && body.token && body.email && body.message)) {
-    return response.json({
-      msg: 'Missing parameter!'
-    }).status(400)
+    res
+      .status(400)
+      .json({
+        msg: 'Missing parameter!'
+      })
+    return
   }
 
-  const status = await verifyCaptcha(body.token, request.connection.remoteAddress)
+  const status = await verifyCaptcha(body.token, req.connection.remoteAddress)
   if (status.status !== 200) {
-    return response.json({
-      msg: 'Could not verify captcha!'
-    }).status(500)
+    res
+      .status(500)
+      .json({
+        msg: 'Could not verify captcha!'
+      })
+    return
   }
   if (!status.data.success) {
-    return response.json({
-      msg: 'Captcha error!'
-    }).status(403)
+    res
+      .status(403)
+      .json({
+        msg: 'Captcha error!'
+      })
+    return
   }
 
   const mail = await sendMail(body.name, body.email, body.message)
   if (mail.status !== 200) {
-    return response.json({
-      msg: 'The message could not be sent!'
-    }).status(500)
+    res
+      .status(500)
+      .json({
+        msg: 'The message could not be sent!'
+      })
+    return
   }
 
-  return response.json({
-    msg: 'Message sent!'
-  }).status(200)
+  res
+    .status(200)
+    .json({
+      msg: 'Message sent!'
+    })
 }
 
 function verifyCaptcha (token: string, remoteAddress: string): Promise<AxiosResponse> {
