@@ -41,12 +41,6 @@ export default {
       currentUtilIndex: 0,
       currentFrameworkIndex: 0,
       utilities: [
-        /* {
-          name: 'HTML',
-          colors: ['orange', 'red'],
-          language: true,
-          frameworks: null
-        }, */
         {
           name: 'Javascript',
           colors: ['yellow', 'yellow'],
@@ -141,13 +135,29 @@ export default {
           colors: ['green', 'green'],
           language: false,
           frameworks: null
-        }/*,
+        },
         {
-          name: 'Git',
-          colors: ['orange', 'red'],
-          language: false,
-          frameworks: null
-        } */
+          name: 'Cloud Computing',
+          colors: ['red', 'pink'],
+          language: true,
+          frameworks: [
+            {
+              name: 'AWS',
+              url: 'https://aws.amazon.com/',
+              colors: ['orange', 'yellow']
+            },
+            {
+              name: 'Google Cloud',
+              url: 'https://cloud.google.com/',
+              colors: ['blue', 'yellow']
+            },
+            {
+              name: 'Firebase',
+              url: 'https://firebase.google.com/',
+              colors: ['amber', 'orange']
+            }
+          ]
+        }
       ]
     }
   },

@@ -3,7 +3,7 @@
     <client-only>
       <div class="hidden xl:block">
         <img class="absolute inset-y-1/2 transform -translate-y-1/2 right-0 max-h-full" src="../assets/img/gradient-hello-400.png" alt="Blurry image background">
-        <img class="absolute inset-y-1/2 transform -translate-y-1/2 right-0 h-96 max-h-full opacity-90 dark:opacity-75" src="../assets/img/hello-600.png" alt="Winking avatar of me">
+        <img class="absolute inset-y-1/2 transform -translate-y-1/2 right-0 h-96 max-h-full opacity-90 dark:opacity-75" src="../assets/img/hello.png" alt="Winking avatar of me">
       </div>
     </client-only>
 
