@@ -31,7 +31,7 @@ export default {
         },
         {
           name: 'Instagram',
-          url: 'https://www.instagram.com/rufusmaiwald',
+          url: 'https://www.instagram.com/rufus.mai',
           icon: InstagramLogo
         },
         {
