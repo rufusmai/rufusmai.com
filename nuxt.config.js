@@ -106,7 +106,7 @@ export default {
     workbox: {
       runtimeCaching: [
         {
-          urlPattern: 'https://api.github.com/users/rufusmaiwald/.*',
+          urlPattern: 'https://api.github.com/users/rufusmai/*',
           handler: 'StaleWhileRevalidate',
           strategyOptions: {
             cacheName: 'gh-projects'

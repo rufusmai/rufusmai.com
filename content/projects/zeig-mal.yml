@@ -1,0 +1,25 @@
+title: Zeig mal
+subtitle: urlShortener
+visible: true
+
+sort: 2
+links:
+  ext: https://zeig.ml
+  gh: rufusmai/zeig.ml
+logo: /img/projects/zeig-mal_logo.jpg
+img: /img/projects/zeig-mal_screenshot.jpg
+
+tags:
+  - Firebase
+  - Next.js
+  - Tailwindcss
+
+de: |-
+  Für diesen kleinen URL-Shortener implementiere ich ein minimalistisches und intuitives Design.
+  Mithilfe von Firebase erhält der Nutzer die Anzahl der Live-Aufrufe.
+  Das Back-End ist mit Google Cloud Functions ebenso minimalistisch implementiert.
+
+en: |-
+  For this tiny URL shortener I'm implementing a minimalist and intuitive design.
+  Using Firebase the user gets a count of live views on his shortened URLs.
+  The back-end is implemented using Google Cloud Functions in a minimalist design, too.

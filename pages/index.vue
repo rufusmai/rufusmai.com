@@ -12,7 +12,7 @@
         <h1 class="leading-heading tracking-tight sm:tracking-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
           Freelance<br>
           Full-Stack<br>
-          Webengineer
+          Engineer
         </h1>
         <ul class="text-gray-600 dark:text-gray-400 mt-6 md:mt-8 lg:mt-12 text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
           <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">

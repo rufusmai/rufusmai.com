@@ -14,7 +14,7 @@
     <div class="flex m-3 justify-between space-x-2 absolute z-20 bottom-0 right-0 sm:-right-6">
       <Button
         v-if="Object.keys(links).includes('gh')"
-        :href="`https://github.com/rufusmai/${links.gh}`"
+        :href="`https://github.com/${links.gh}`"
         class="inline-flex bg-opacity-90 text-md px-2.5 py-1.5"
         target="_blank"
         rel="noopener"
@@ -23,7 +23,7 @@
         Github
       </Button>
       <Button
-        v-else-if="title === 'OneGaming ID'"
+        v-if="title === 'OneGaming ID'"
         class="inline-flex bg-opacity-90 text-md px-2.5 py-1.5"
         @click.native="login"
       >

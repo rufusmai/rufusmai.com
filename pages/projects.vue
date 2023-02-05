@@ -14,7 +14,7 @@
         {{ $t('githubProjects') }}
       </h1>
       <div v-if="$fetchState.pending" class="mt-4 pb-4 space-y-8 md:space-y-0 md:space-x-4 md:flex flex-row flex-no-wrap md:overflow-x-auto scroll">
-        <div v-for="i in [0, 1, 2]" :key="i" class="h-32 w-64 bg-gray-300 dark:bg-gray-600 bg-opacity-75 rounded-lg animate-pulse" />
+        <div v-for="(el, i) in new Array(5).fill(null)" :key="i" class="h-32 w-64 bg-gray-300 dark:bg-gray-600 bg-opacity-75 rounded-lg animate-pulse" />
       </div>
       <div v-else class="w-full mt-4 pb-2 space-y-8 md:space-y-0 md:flex flex-wrap gap-4">
         <GithubRepo
@@ -39,23 +39,33 @@ import Project from '../components/projects/project/Project'
 import GithubRepo from '../components/projects/GithubRepo'
 import GithubLogo from '../components/icons/GithubLogo'
 
+const visibleRepos = ['mcone-networkmanager', 'mcone-cloud', 'mcone-coresystem', 'rufusmai.com', 'joycon-controller', 'lumen-vue-cli', 'prompt', 'tailpress']
+const repoFilter = repo => !repo.archived && visibleRepos.includes(repo.name)
+const githubFetchConfig = {
+  headers: {
+    accept: 'application/vnd.github.v3+json'
+  },
+  transformRequest: (data, headers) => {
+    delete headers.common.Authorization
+    delete headers.Authorization
+  }
+}
+
 export default {
   name: 'Projects',
   components: { GithubRepo, Project, GithubLogo },
   async fetch () {
-    this.githubRepos = await this.$axios.$get('https://api.github.com/users/rufusmai/repos', {
-      headers: {
-        accept: 'application/vnd.github.v3+json'
-      },
-      transformRequest: (data, headers) => {
-        delete headers.common.Authorization
-        delete headers.Authorization
-      }
-    }).then(repos => repos.filter(repo => !repo.archived))
+    this.githubRepos = await this.$axios.$get('https://api.github.com/users/rufusmai/repos', githubFetchConfig)
+      .then(repos => repos.filter(repoFilter))
+
+    this.$axios.$get('https://api.github.com/users/mconeeu/repos', githubFetchConfig)
+      .then(repos => repos.map(repo => ({ ...repo, name: `mcone-${repo.name}` })).filter(repoFilter))
+      .then(repos => this.githubRepos.push(...repos))
   },
   fetchOnServer: false,
   async asyncData ({ $content }) {
     const projects = await $content('projects')
+      .where({ visible: true })
       .sortBy('sort')
       .only(['title', 'subtitle', 'links', 'logo', 'img', 'tags', 'de', 'en'])
       .fetch()

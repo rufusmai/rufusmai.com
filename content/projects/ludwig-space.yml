@@ -1,0 +1,24 @@
+title: ludwig space
+subtitle: artGallery
+visible: true
+
+sort: 1
+links:
+  ext: https://ludwig-space.com
+logo: /img/projects/ludwig-space_logo.png
+img: /img/projects/ludwig-space_screen.png
+
+tags:
+  - Next.js
+  - Typescript
+  - Tailwindcss
+
+de: |-
+  Bei dieser Galerie Seite habe ich Wert auf ein einzigartiges und modernes Design gelegt.
+  Ich benutze Framer-Motion für die Animationen und das Next.js mit React Server Components.
+  Für einfaches Content Management benutzt die Seite TinaCMS.
+
+en: |-
+  For this gallery page I've put a lot of effort into a unique and modern design.
+  I'm using Framer-Motion for the animations and Next.js with React Server Components.
+  For easy content management the site is implemented using TinaCMS.

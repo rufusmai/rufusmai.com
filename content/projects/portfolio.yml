@@ -1,10 +1,11 @@
 title: Portfolio
 subtitle: thisSite
+visible: false
 
-sort: 3
+sort: 5
 links:
   int: /
-  gh: rufusmai.com
+  gh: rufusmai/rufusmai.com
 logo: '%avatar%'
 img: /img/projects/portfolio_screen.jpg
 
@@ -14,11 +15,11 @@ tags:
   - tailwindcss
 
 de: |-
-  Dieses Portfolio zeigt den Einsatz neuester Webtechnologien und Frameworks.
-  Durch den eingebauten ServiceWorker lässt sich die Seite als App installieren und offline nutzen.
-  Mehr Infos zu Entwicklung und Deployment auf Github.
+  In dieser Seite verwende ich einige neue Webtechnologien wie Server Side Rendering und Static Site Generation.
+  Das Portfolio lässt sich mithilfe des Service Workers auch offline benutzen.
+  Mehr Informationen zu Entwicklung und Deployment auf Github.
 
 en: |-
-  This portfolio shows the usage of the newest web technologies and frameworks.
-  This app can be installed and used offline with the magic of the built in service worker.
+  For this page I'm using plenty of new web technologies like Server Side Rendering and Static Site Generation.
+  The portfolio can be used offline with the magic of the built in service worker.
   More information about development and deployment on Github.

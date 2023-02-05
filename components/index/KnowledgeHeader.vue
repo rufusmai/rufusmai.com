@@ -47,46 +47,51 @@ export default {
           language: true,
           frameworks: [
             {
-              name: 'Vue.js',
-              url: 'https://vuejs.org/',
-              colors: ['green', 'green']
-            },
-            {
               name: 'React',
               url: 'https://reactjs.org/',
               colors: ['blue', 'blue']
             },
             {
+              name: 'Vue.js',
+              url: 'https://vuejs.org/',
+              colors: ['green', 'green']
+            },
+            {
+              name: 'Node.js',
+              url: 'https://nodejs.org/',
+              colors: ['green', 'green']
+            },
+            {
               name: 'JQuery',
               url: 'https://jquery.com/',
               colors: ['blue', 'blue']
-            },
-            {
-              name: 'NodeJS',
-              url: 'https://nodejs.org/',
-              colors: ['green', 'green']
             }
           ]
         },
         {
-          name: 'CSS',
-          colors: ['blue', 'indigo'],
+          name: 'Cloud Computing',
+          colors: ['red', 'pink'],
           language: true,
           frameworks: [
             {
-              name: 'Sass',
-              url: 'https://sass-lang.com/',
-              colors: ['red', 'pink']
+              name: 'AWS',
+              url: 'https://aws.amazon.com/',
+              colors: ['orange', 'yellow']
             },
             {
-              name: 'Bootstrap',
-              url: 'https://getbootstrap.com/',
+              name: 'Cloudformation',
+              url: 'https://firebase.google.com/',
               colors: ['purple', 'indigo']
             },
             {
-              name: 'Tailwind',
-              url: 'https://tailwindcss.com/',
-              colors: ['teal', 'teal']
+              name: 'Google Cloud',
+              url: 'https://cloud.google.com/',
+              colors: ['blue', 'yellow']
+            },
+            {
+              name: 'Firebase',
+              url: 'https://firebase.google.com/',
+              colors: ['amber', 'orange']
             }
           ]
         },
@@ -104,6 +109,28 @@ export default {
               name: 'Wordpress',
               url: 'https://wordpress.org/',
               colors: ['gray', 'gray']
+            }
+          ]
+        },
+        {
+          name: 'CSS',
+          colors: ['blue', 'indigo'],
+          language: true,
+          frameworks: [
+            {
+              name: 'Tailwind',
+              url: 'https://tailwindcss.com/',
+              colors: ['teal', 'teal']
+            },
+            {
+              name: 'Sass',
+              url: 'https://sass-lang.com/',
+              colors: ['red', 'pink']
+            },
+            {
+              name: 'Bootstrap',
+              url: 'https://getbootstrap.com/',
+              colors: ['purple', 'indigo']
             }
           ]
         },
@@ -135,28 +162,6 @@ export default {
           colors: ['green', 'green'],
           language: false,
           frameworks: null
-        },
-        {
-          name: 'Cloud Computing',
-          colors: ['red', 'pink'],
-          language: true,
-          frameworks: [
-            {
-              name: 'AWS',
-              url: 'https://aws.amazon.com/',
-              colors: ['orange', 'yellow']
-            },
-            {
-              name: 'Google Cloud',
-              url: 'https://cloud.google.com/',
-              colors: ['blue', 'yellow']
-            },
-            {
-              name: 'Firebase',
-              url: 'https://firebase.google.com/',
-              colors: ['amber', 'orange']
-            }
-          ]
         }
       ]
     }

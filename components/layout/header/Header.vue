@@ -18,7 +18,7 @@
       <h1 class="font-bold leading-normal sm:leading-none text-2xl sm:mt-2 xs:text-3xl sm:text-4xl">
         Rufus Maiwald
         <small class="text-gray-500 tracking-tight sm:tracking-normal dark:text-gray-400 block leading-none text-base sm:text-lg">
-          Java- & Web{{ $t('developer') }}
+          Full-Stack Software{{ $t('developer') }}
         </small>
       </h1>
     </div>

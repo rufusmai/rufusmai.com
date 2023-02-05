@@ -1,9 +1,11 @@
 title: MC ONE
 subtitle: minecraftNetwork
+visible: true
 
-sort: 2
+sort: 4
 links:
   ext: https://www.mcone.eu
+  gh: mconeeu
 logo: /img/projects/mc1_logo.jpg
 img: /img/projects/mc1_screen.jpg
 
@@ -14,13 +16,11 @@ tags:
   - MongoDB
 
 de: |-
-  MC ONE ist ein Minecraftnetzwerk,
-  was mit einer eigenen Orchestrations Software in Java einzelne Minecraft Server mithilfe von Netty verwaltet.
-  Die Server selbst laufen mit eigenen Java Plugins.
-  Alle Systeme benutzen MongoDB als Datenbank.
+  Neben der Landingpage und dem Back-End habe ich eine eigene Orchestrations Software für Spiele-Server
+  mithilfe von Packets mit Netty in Java geschrieben.
+  Der Minecraft Server mit vielen selbst geschriebenen Plugins ist Open Source auf Github.
 
 en: |-
-  MC ONE is a minecraft network.
-  It uses a self coded orchestration software written in Java to maintain individual minecraft servers using packets and Netty.
-  The servers Java plugins are self coded too.
-  All systems use MongoDB as database.
+  Besides the landing page and back-end,
+  I've implemented an orchestration software for maintaining gaming servers using packets with Netty in Java.
+  The self-extended minecraft server with a huge collection of custom made plugins is open source on Github.

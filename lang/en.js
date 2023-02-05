@@ -39,6 +39,8 @@ export default {
   openPage: 'Open',
   startPage: 'Home',
   toHome: 'Back to Home',
+  artGallery: 'art gallery',
+  urlShortener: 'URL shortener',
   minecraftNetwork: 'minecraft network',
   accountSite: 'SSO provider',
   portfolio: 'Portfolio',
