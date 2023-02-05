@@ -32,6 +32,8 @@
 import colorTheme from 'tailwindcss/colors'
 import { ExternalLinkIcon } from '@vue-hero-icons/outline'
 
+const UPDATE_INTERVAL = 4000
+
 export default {
   name: 'KnowledgeHeader',
   components: { ExternalLinkIcon },
@@ -69,25 +71,27 @@ export default {
           ]
         },
         {
-          name: 'Cloud Computing',
-          colors: ['red', 'pink'],
+          name: 'AWS',
+          colors: ['orange', 'yellow'],
           language: true,
           frameworks: [
-            {
-              name: 'AWS',
-              url: 'https://aws.amazon.com/',
-              colors: ['orange', 'yellow']
-            },
             {
               name: 'Cloudformation',
               url: 'https://firebase.google.com/',
               colors: ['purple', 'indigo']
             },
             {
-              name: 'Google Cloud',
+              name: 'Amplify',
               url: 'https://cloud.google.com/',
-              colors: ['blue', 'yellow']
-            },
+              colors: ['red', 'orange']
+            }
+          ]
+        },
+        {
+          name: 'Google Cloud',
+          colors: ['yellow', 'green'],
+          language: true,
+          frameworks: [
             {
               name: 'Firebase',
               url: 'https://firebase.google.com/',
@@ -185,7 +189,7 @@ export default {
     }
   },
   mounted () {
-    this.timer = setInterval(this.updateText, 5000)
+    this.timer = setInterval(this.updateText, UPDATE_INTERVAL)
   },
   beforeDestroy () {
     clearInterval(this.timer)
