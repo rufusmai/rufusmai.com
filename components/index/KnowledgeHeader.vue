@@ -100,6 +100,23 @@ export default {
           ]
         },
         {
+          name: 'Python',
+          colors: ['blue', 'amber'],
+          language: true,
+          frameworks: [
+            {
+              name: 'Flask',
+              url: 'https://laravel.com/',
+              colors: ['gray', 'gray']
+            },
+            {
+              name: 'Django',
+              url: 'https://wordpress.org/',
+              colors: ['blue', 'blue']
+            }
+          ]
+        },
+        {
           name: 'PHP',
           colors: ['indigo', 'purple'],
           language: true,
