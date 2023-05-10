@@ -1,7 +1,9 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
 import axios, { AxiosResponse } from 'axios'
+import { SendEmailCommand, SendEmailCommandOutput, SESClient } from '@aws-sdk/client-ses'
 
 const qs = require('qs')
+const sesClient = new SESClient({ region: process.env.AWS_SES_REGION })
 
 export default async (req: VercelRequest, res: VercelResponse): Promise<void> => {
   const {
@@ -45,8 +47,10 @@ export default async (req: VercelRequest, res: VercelResponse): Promise<void> =>
     return
   }
 
-  const mail = await sendMail(body.name, body.email, body.message)
-  if (mail.status !== 200) {
+  try {
+    await sendMail(body.name, body.email, body.message)
+  } catch (e) {
+    console.error(e)
     res
       .status(500)
       .json({
@@ -74,22 +78,29 @@ function verifyCaptcha (token: string, remoteAddress: string): Promise<AxiosResp
   })
 }
 
-function sendMail (name: string, email: string, msg: string): Promise<AxiosResponse> {
-  return axios.post('https://api.mailgun.net/v3/sandbox03a7b9ad9fa14a79bacee564d894d936.mailgun.org/messages', qs.stringify({
-    from: 'Homepage API <homepage@rufusmaiwald.de>',
-    'h:Reply-To': `${name} <${email}>`,
-    to: process.env.RECEIVER_MAIL_ADDRESS,
-    subject: 'Neue Kontaktanfrage über rufusmai.com',
-    text: `
+function sendMail (name: string, email: string, msg: string): Promise<SendEmailCommandOutput> {
+  return sesClient.send(new SendEmailCommand({
+    Source: 'Homepage API <homepage@rufusmai.com>',
+    Destination: {
+      ToAddresses: [process.env.RECEIVER_MAIL_ADDRESS]
+    },
+    ReplyToAddresses: [`${name} <${email}>`],
+    Message: {
+      Body: {
+        Text: {
+          Charset: 'UTF-8',
+          Data: `
 E-Mail von ${name} (${email})
 
 Nachricht:
 ${msg}
         `
-  }), {
-    auth: { username: 'api', password: process.env.MAILGUN_SECRET },
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: 'Neue Kontaktanfrage über rufusmai.com'
+      }
     }
-  })
+  }))
 }
