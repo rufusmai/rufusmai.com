@@ -36,7 +36,7 @@ export default {
         },
         {
           name: 'LinkedIn',
-          url: 'https://www.linkedin.com/in/rufus-maiwald-20832a137',
+          url: 'https://www.linkedin.com/in/rufus-maiwald',
           icon: LinkedInLogo
         }
       ]
