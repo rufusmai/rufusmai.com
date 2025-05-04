@@ -20,8 +20,7 @@ export default {
     ],
     script: [
       {
-        src: 'https://datenkrake.rufusmai.com/umami.js',
-        async: true,
+        src: '/stats/script.js',
         defer: true,
         'data-website-id': '1d1ae607-8a41-427e-b78f-028b000d5461',
         'data-domains': 'rufusmai.com'
