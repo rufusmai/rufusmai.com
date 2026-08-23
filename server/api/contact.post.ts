@@ -1,7 +1,7 @@
 import { SendEmailCommand, SESClient } from '@aws-sdk/client-ses'
 import type { SendEmailCommandOutput } from '@aws-sdk/client-ses'
 
-const sesClient = new SESClient({ region: process.env.AWS_SES_REGION })
+const sesClient = new SESClient({ region: process.env.AWS_REGION })
 
 interface ContactBody {
   name?: string
