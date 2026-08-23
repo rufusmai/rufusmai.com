@@ -71,6 +71,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
 
   nitro: {
+    // Prerender the pages to static HTML, as `nuxt generate` used to. The build
+    // still has to be `nuxt build` so that server routes (the contact endpoint)
+    // are deployed as functions - a fully static build drops them.
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    },
+
     // Serve Umami first-party from /stats, matching the previous vercel.json rewrite.
     vercel: {
       config: {
