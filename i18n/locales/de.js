@@ -58,6 +58,7 @@ export default {
     required: 'Dieses Feld wird benötigt',
     email: 'Bitte gib deine echte E-Mail Adresse ein',
     min: 'Diese Nachricht ist zu kurz',
+    captchaUnavailable: 'Das Captcha konnte nicht geladen werden',
     captcha: 'Das Captcha wird benötigt'
   }
 }

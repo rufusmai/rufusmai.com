@@ -15,12 +15,12 @@
           <span>Github</span>
         </a>
         <nuxt-link v-if="repo.name === 'rufusmai.com'" to="/" class="hover:text-gray-500 dark:hover:text-gray-200 transition duration-300 ease-in-out">
-          <HomeIcon size="16" class="inline -mt-1" />
+          <HomeIcon class="inline h-4 w-4 -mt-1" />
           <span>{{ $t('startPage') }}</span>
         </nuxt-link>
         <a v-else-if="repo.homepage" :href="repo.homepage" target="_blank" rel="noopener" class="hover:text-gray-500 dark:hover:text-gray-200 transition duration-300 ease-in-out">
           <span>Homepage</span>
-          <ArrowTopRightOnSquareIcon size="16" class="inline -mt-0.5" />
+          <ArrowTopRightOnSquareIcon class="inline h-4 w-4 -mt-0.5" />
         </a>
       </div>
     </div>

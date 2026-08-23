@@ -9,7 +9,6 @@
 ** `vue-recaptcha` has no stable Vue 3 release, and the widget is a thin wrapper
 ** around grecaptcha's explicit-render API, so it is kept local instead.
 */
-const SCRIPT_ID = 'recaptcha-api'
 let scriptPromise = null
 
 function loadRecaptcha () {
@@ -22,12 +21,16 @@ function loadRecaptcha () {
       window.__recaptchaOnload = () => resolve(window.grecaptcha)
 
       const script = document.createElement('script')
-      script.id = SCRIPT_ID
+      script.id = 'recaptcha-api'
       script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=__recaptchaOnload'
       script.async = true
       script.defer = true
-      script.onerror = reject
+      script.onerror = () => reject(new Error('Could not load reCAPTCHA'))
       document.head.appendChild(script)
+    }).catch((error) => {
+      // Do not cache the failure, so a later mount can try again.
+      scriptPromise = null
+      throw error
     })
   }
 
@@ -56,6 +59,11 @@ export default {
     try {
       const grecaptcha = await loadRecaptcha()
 
+      // The component can be unmounted while the script is still loading.
+      if (!this.$refs.container) {
+        return
+      }
+
       this.widgetId = grecaptcha.render(this.$refs.container, {
         'sitekey': this.sitekey,
         'theme': this.theme,
@@ -67,6 +75,17 @@ export default {
       this.$emit('render', this.widgetId)
     } catch (error) {
       this.$emit('error', error)
+    }
+  },
+  beforeUnmount () {
+    // Release the widget, otherwise every re-render leaves one behind.
+    if (this.widgetId !== null) {
+      try {
+        window.grecaptcha?.reset(this.widgetId)
+      } catch {
+        // the widget is already gone
+      }
+      this.widgetId = null
     }
   },
   methods: {

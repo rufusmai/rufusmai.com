@@ -59,12 +59,11 @@
 
         <div
           class="captcha-wrapper shadow-sm mt-4 bg-gray-300/75 dark:bg-gray-700/75 rounded-lg mx-auto sm:mx-0"
-          :class="captchaId == null ? 'animate-pulse' : ''"
+          :class="captchaId == null && !captchaFailed ? 'animate-pulse' : ''"
         >
           <ClientOnly>
             <Recaptcha
               v-if="captchaShow"
-              :key="$colorMode.value"
               ref="captcha"
               :sitekey="captchaSiteKey"
               :theme="$colorMode.value"
@@ -74,7 +73,10 @@
             />
           </ClientOnly>
         </div>
-        <small v-if="captchaValErr && captchaToken == null" class="block text-red-600">
+        <small v-if="captchaFailed" class="block text-red-600">
+          {{ $t('validation.captchaUnavailable') }}
+        </small>
+        <small v-else-if="captchaValErr && captchaToken == null" class="block text-red-600">
           {{ $t('validation.captcha') }}
         </small>
 
@@ -124,7 +126,8 @@ export default {
   components: { BaseButton, Recaptcha, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftRightIcon, VeeForm, VeeField },
   data () {
     return {
-      captchaShow: true,
+      captchaShow: false,
+      captchaFailed: false,
       captchaSiteKey: '6Lf8Wc8ZAAAAAM1a6HZOzAu3io2RbJ9YizvJ74z4',
       captchaId: null,
       captchaToken: null,
@@ -144,6 +147,21 @@ export default {
       return value => (value !== undefined && value !== null && String(value).trim() !== '') || this.$t('validation.required', { _field_: '' })
     }
   },
+  watch: {
+    '$colorMode.value' () {
+      this.captchaShow = false
+      this.captchaId = null
+      this.captchaFailed = false
+      setTimeout(() => {
+        this.captchaShow = true
+      }, 100)
+    }
+  },
+  mounted () {
+    // Mounting here rather than during hydration keeps the widget from being
+    // rendered against a colour mode that is about to change.
+    this.captchaShow = true
+  },
   methods: {
     fieldClasses (meta) {
       if (!meta.dirty && !meta.touched) {
@@ -156,12 +174,14 @@ export default {
     },
     captchaRendered (id) {
       this.captchaId = id
+      this.captchaFailed = false
     },
     setToken (token) {
       this.captchaToken = token
     },
     captchaError (error) {
       console.error(error)
+      this.captchaFailed = true
     },
     async submit () {
       if (!this.captchaToken) {
