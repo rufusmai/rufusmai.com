@@ -67,6 +67,9 @@ typings/
 
 # nuxt.js build output
 .nuxt
+.output
+.data
+.vercel
 
 # Nuxt generate
 dist
@@ -93,3 +96,11 @@ sw.js
 .tailwind
 
 .vercel
+
+# Yarn (node-modules linker: only the config is tracked)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.pnp.*

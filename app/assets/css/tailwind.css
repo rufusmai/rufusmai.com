@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@source '..';
+
+/* `darkMode: 'class'` from the old tailwind.config.js (@nuxtjs/color-mode sets the class). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+** Theme configuration (Tailwind v4 is configured in CSS).
+** The palettes are pinned to the values this site was built against: the old
+** config pulled `colors.gray` etc. from Tailwind v2, whose `gray` is what
+** Tailwind v3 renamed to `zinc`.
+*/
+@theme {
+  --font-sans: 'Noto Sans SC', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Tailwind v2 `gray` (= v3+ `zinc`) */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+
+  /* Tailwind v2 accent palettes */
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+
+  --color-fuchsia-50: #fdf4ff;
+  --color-fuchsia-100: #fae8ff;
+  --color-fuchsia-200: #f5d0fe;
+  --color-fuchsia-300: #f0abfc;
+  --color-fuchsia-400: #e879f9;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-600: #c026d3;
+  --color-fuchsia-700: #a21caf;
+  --color-fuchsia-800: #86198f;
+  --color-fuchsia-900: #701a75;
+
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-rose-800: #9f1239;
+  --color-rose-900: #881337;
+
+  --color-blue-200: #bfdbfe;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+
+  --color-purple-200: #e9d5ff;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+
+  --color-pink-200: #fbcfe8;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+
+  --color-yellow-200: #fef08a;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+
+  --color-red-200: #fecaca;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+
+  --color-amber-200: #fde68a;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+
+  /* `animation` / `keyframes` from the old tailwind.config.js */
+  --animate-ping: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-hover: hover 20s linear infinite alternate;
+  --animate-bg: bg 40s linear infinite;
+
+  @keyframes hover {
+    from { transform: translateX(0) scale(1); }
+    to { transform: translateX(-10px) scale(1.2); }
+  }
+
+  @keyframes bg {
+    from { transform: translateY(0); }
+    to { transform: translateY(-600px); }
+  }
+}
+
+/* `width: { screenh: '100vh' }` */
+@utility w-screenh {
+  width: 100vh;
+}
+
+/* `lineHeight: { heading: '1.2 !important' }` */
+@utility leading-heading {
+  line-height: 1.2 !important;
+}
+
+@utility blur-10 {
+  filter: blur(10px);
+}
+
+@utility blur-20 {
+  filter: blur(20px);
+}
+
+/* Kept as a plain 5px backdrop blur, overriding Tailwind's own `backdrop-blur`. */
+@utility backdrop-blur {
+  backdrop-filter: blur(5px);
+}
+
+@utility animate-reverse {
+  animation-direction: alternate-reverse;
+}
+
+@layer base {
+  /*
+  ** Tailwind v4 defaults that changed from v2, restored so the site keeps
+  ** rendering the way it did.
+  */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply px-5 py-3 shadow-sm w-full rounded-md bg-white dark:bg-gray-800 backdrop-blur border-gray-400/75 dark:border-gray-500/75 transition duration-200 ease-in-out hover:border-gray-400 dark:hover:border-gray-500 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500;
+    @apply placeholder:text-gray-500 dark:placeholder:text-gray-400;
+  }
+
+  /* Change Autocomplete styles in Chrome */
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill,
+  .dark textarea:-webkit-autofill:hover,
+  .dark textarea:-webkit-autofill:focus,
+  .dark select:-webkit-autofill,
+  .dark select:-webkit-autofill:hover,
+  .dark select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #213358 inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  html, body, #__nuxt {
+    height: 100%;
+  }
+}
