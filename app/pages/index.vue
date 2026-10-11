@@ -20,12 +20,16 @@
             <h2>{{ $t('location') }}</h2>
           </li>
           <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
-            <CakeIcon class="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
-            <h2>{{ age }} {{ $t('age') }}</h2>
+            <BriefcaseIcon class="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
+            <h2>{{ $t('founded') }}</h2>
           </li>
           <li class="flex justify-center items-center sm:justify-start flex-row mt-3 md:mt-4">
-            <AcademicCapIcon class="acicon h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
-            <h2>{{ $t('student') }} <span class="hidden sm:inline">B.Sc.</span></h2>
+            <RectangleGroupIcon class="h-4 w-4 xs:h-6 xs:w-6 sm:h-8 sm:w-8 lg:h-12 lg:w-12 mr-2 md:mr-5" />
+            <h2>
+              <nuxt-link to="/services">
+                {{ $t('offer') }}
+              </nuxt-link>
+            </h2>
           </li>
           <li class="flex justify-center sm:justify-start flex-row mt-3 md:mt-4 min-h">
             <CodeBracketIcon class="h-4 w-4 mt-2 xs:mt-3 xs:h-6 xs:w-6 sm:mt-1 sm:h-8 sm:w-8 lg:mt-0 lg:h-12 lg:w-12 mr-2 md:mr-5" />
@@ -38,23 +42,11 @@
 </template>
 
 <script>
-import { CodeBracketIcon, CakeIcon, AcademicCapIcon, MapPinIcon } from '@heroicons/vue/24/outline'
+import { CodeBracketIcon, BriefcaseIcon, RectangleGroupIcon, MapPinIcon } from '@heroicons/vue/24/outline'
 import KnowledgeHeader from '../components/index/KnowledgeHeader.vue'
 
 export default {
   name: 'Index',
-  components: { KnowledgeHeader, CodeBracketIcon, CakeIcon, AcademicCapIcon, MapPinIcon },
-  computed: {
-    age () {
-      const birthday = +new Date('10/09/2000')
-      return ~~((Date.now() - birthday) / (24 * 3600 * 365.25 * 1000))
-    }
-  }
+  components: { KnowledgeHeader, CodeBracketIcon, BriefcaseIcon, RectangleGroupIcon, MapPinIcon }
 }
 </script>
-
-<style>
-.acicon path {
-  fill: none;
-}
-</style>

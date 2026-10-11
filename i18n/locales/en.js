@@ -1,7 +1,7 @@
 export default {
   developer: 'developer',
   home: 'Home',
-  student: 'Studying Comp. Science',
+  servicesNav: 'Services',
   projects: 'Projects',
   contact: 'Contact',
   developedWith: 'Developed with {nuxt}{tailwind} and {heart} by Rufus Maiwald.',
@@ -27,9 +27,34 @@ export default {
   and: 'and',
 
   // index
-  profile: 'Profile',
-  age: 'years',
   location: 'Munich, Germany',
+  founded: 'In business since 2023',
+  offer: 'Websites, apps & backends',
+  businessLine: 'Software development from Munich, founded 2023',
+
+  // services
+  servicesTitle: 'Services',
+  servicesIntro: 'I build software for companies and independent professionals, from the first idea to day-to-day operation.',
+  services: {
+    websites: {
+      title: 'Websites',
+      text: 'Custom, fast websites with their own design and simple content management.'
+    },
+    apps: {
+      title: 'Apps',
+      text: 'Applications for web and mobile, from prototype to release.'
+    },
+    backend: {
+      title: 'Backend',
+      text: 'APIs, databases and cloud infrastructure that fit your product.'
+    },
+    portal: {
+      title: 'Customer portal',
+      text: 'For my clients I am building a customer portal where they can see the status of their orders and invoices.'
+    }
+  },
+  servicesAi: 'I use Claude by Anthropic in my development work.',
+  servicesCta: 'Request a project',
 
   // projects
   openPage: 'Open',

@@ -6,6 +6,12 @@ export const navigation = [
     colors: ['teal', 'blue', 'indigo']
   },
   {
+    name: 'servicesNav',
+    page: 'services',
+    url: '/services',
+    colors: ['green', 'teal', 'blue']
+  },
+  {
     name: 'projects',
     page: 'projects',
     url: '/projects',

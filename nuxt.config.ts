@@ -1,7 +1,23 @@
 import tailwindcss from '@tailwindcss/vite'
 
-const title = 'Rufus Maiwald | Portfolio'
-const description = 'Rufus Maiwald ist Java- und Webentwickler und studiert Informatik in München. Hier erfährst du mehr über ihn.'
+const title = 'Rufus Maiwald | Softwareentwicklung'
+const description = 'Rufus Maiwald entwickelt Websites, Apps und Backends für Unternehmen und Selbstständige. Einzelunternehmen aus München, gegründet 2023.'
+
+// Describes the business to search engines and other crawlers.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  'name': 'Rufus Maiwald',
+  'description': description,
+  'url': 'https://rufusmai.com',
+  'email': 'mail@rufusmai.com',
+  'foundingDate': '2023-03',
+  'founder': { '@type': 'Person', 'name': 'Rufus Maiwald' },
+  'address': { '@type': 'PostalAddress', 'addressLocality': 'München', 'addressCountry': 'DE' },
+  'areaServed': 'DE',
+  'knowsAbout': ['Web development', 'App development', 'Backend development'],
+  'sameAs': ['https://github.com/rufusmai', 'https://www.linkedin.com/in/rufus-maiwald']
+}
 
 export default defineNuxtConfig({
 
@@ -44,6 +60,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ],
       script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(structuredData) },
         // Umami, proxied through /stats so it is served from this domain.
         {
           'src': '/stats/script.js',
@@ -136,7 +153,7 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Rufus Maiwald Portfolio',
+      name: 'Rufus Maiwald Softwareentwicklung',
       short_name: 'rufusmai',
       description,
       background_color: '#18181b',

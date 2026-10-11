@@ -1,7 +1,7 @@
 export default {
   developer: 'entwickler',
   home: 'Home',
-  student: 'Studiert Informatik',
+  servicesNav: 'Leistungen',
   projects: 'Projekte',
   contact: 'Kontakt',
   developedWith: 'Entwickelt mit {nuxt}{tailwind} und {heart} von Rufus Maiwald.',
@@ -27,9 +27,34 @@ export default {
   and: 'und',
 
   // index
-  profile: 'Steckbrief',
-  age: 'Jahre',
   location: 'München',
+  founded: 'Selbstständig seit 2023',
+  offer: 'Websites, Apps & Backends',
+  businessLine: 'Softwareentwicklung aus München, gegründet 2023',
+
+  // services
+  servicesTitle: 'Leistungen',
+  servicesIntro: 'Ich entwickle Software für Unternehmen und Selbstständige – von der ersten Idee bis zum laufenden Betrieb.',
+  services: {
+    websites: {
+      title: 'Websites',
+      text: 'Individuelle, schnelle Websites mit eigenem Design und einfachem Content-Management.'
+    },
+    apps: {
+      title: 'Apps',
+      text: 'Anwendungen für Web und Mobilgeräte, vom Prototyp bis zum Release.'
+    },
+    backend: {
+      title: 'Backend',
+      text: 'APIs, Datenbanken und Cloud-Infrastruktur, die zu deinem Produkt passen.'
+    },
+    portal: {
+      title: 'Kundenportal',
+      text: 'Für meine Kunden entwickle ich ein Kundenportal, in dem sie den Status ihrer Aufträge und Rechnungen einsehen können.'
+    }
+  },
+  servicesAi: 'In der Entwicklung arbeite ich mit Claude von Anthropic.',
+  servicesCta: 'Projekt anfragen',
 
   // projects
   openPage: 'Öffnen',

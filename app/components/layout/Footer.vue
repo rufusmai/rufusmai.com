@@ -1,5 +1,12 @@
 <template>
   <footer class="text-center text-gray-400 xs:p-2 mt-10">
+    <div class="mb-1">
+      &copy; {{ new Date().getFullYear() }} Rufus Maiwald &middot; {{ $t('businessLine') }} &middot;
+      <a
+        class="text-gray-800 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 transition duration-200 ease-in-out"
+        href="mailto:mail@rufusmai.com"
+      >mail@rufusmai.com</a>
+    </div>
     <i18n-t keypath="developedWith" tag="div" class="inline-block">
       <template #nuxt>
         <a href="https://nuxt.com/" target="_blank" rel="noopener" aria-label="Nuxt">
