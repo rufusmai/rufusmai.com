@@ -58,7 +58,7 @@ export function MobileNav() {
                       href={item.href}
                       aria-current={active ? 'page' : undefined}
                       className={cn(
-                        'flex items-center justify-between rounded-xl p-3 font-heading text-2xl font-semibold transition-colors hover:bg-accent',
+                        'flex items-center justify-between rounded-xl p-3 font-heading text-2xl font-semibold transition-colors hover:bg-accent hover:text-accent-foreground',
                         active && 'text-primary'
                       )}
                     >

@@ -31,7 +31,7 @@ export function CtaBand({ title, body, button }: CtaBandProps) {
                 <Button
                   asChild
                   size="lg"
-                  className="group bg-white text-[#18181b] hover:bg-white/90"
+                  className="group bg-white text-button hover:bg-white"
                 >
                   <Link href="/contact">
                     {button}

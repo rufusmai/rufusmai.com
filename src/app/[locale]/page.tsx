@@ -262,7 +262,7 @@ function LabsProjects({ locale }: { locale: Locale }) {
                 </div>
                 {project.status && (
                   <p className="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs">
-                    <span className="size-2 animate-pulse-dot rounded-full bg-emerald-500" />
+                    <span className="size-2 animate-pulse-dot rounded-full bg-primary" />
                     <span className="sr-only">{tCommon('status')}: </span>
                     {project.status[locale]}
                   </p>

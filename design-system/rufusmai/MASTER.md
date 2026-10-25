@@ -28,21 +28,27 @@ rufusmai branding (`rufusmai-branding/logos/export/README.md`).
 Defined as CSS variables in `src/app/globals.css` and mapped onto the shadcn tokens. Never use raw hex in
 components; use the Tailwind token classes (`bg-background`, `text-primary`, …).
 
-| Role                         | Light     | Dark      | CSS variable          |
-| ---------------------------- | --------- | --------- | --------------------- |
-| Background                   | `#fafafa` | `#18181b` | `--background`        |
-| Foreground (ink)             | `#18181b` | `#fafafa` | `--foreground`        |
-| Card                         | `#ffffff` | `#1f1f23` | `--card`              |
-| Muted surface                | `#f4f4f5` | `#27272a` | `--muted`             |
-| Muted foreground             | `#52525b` | `#a1a1aa` | `--muted-foreground`  |
-| Border                       | `#e4e4e7` | `#2e2e33` | `--border`            |
-| Primary (text, links, icons) | `#b04a26` | `#d1633d` | `--primary`           |
-| Button fill                  | `#b04a26` | `#b04a26` | `--button`            |
-| Text on button               | `#ffffff` | `#ffffff` | `--button-foreground` |
-| Wing cover (logo, 3D only)   | `#c75a34` | `#d1633d` | `--brand-wing`        |
-| Ink (logo, 3D)               | `#18181b` | `#fafafa` | `--brand-ink`         |
-| Ring                         | `#b04a26` | `#d1633d` | `--ring`              |
-| Destructive                  | `#dc2626` | `#f87171` | `--destructive`       |
+| Role                             | Light     | Dark      | CSS variable          |
+| -------------------------------- | --------- | --------- | --------------------- |
+| Background                       | `#fafafa` | `#18181b` | `--background`        |
+| Foreground (ink)                 | `#18181b` | `#fafafa` | `--foreground`        |
+| Card                             | `#ffffff` | `#1f1f23` | `--card`              |
+| Muted surface                    | `#f4f4f5` | `#27272a` | `--muted`             |
+| Muted foreground                 | `#52525b` | `#a1a1aa` | `--muted-foreground`  |
+| Border                           | `#e4e4e7` | `#2e2e33` | `--border`            |
+| Primary (text, links, icons)     | `#b04a26` | `#d1633d` | `--primary`           |
+| Button fill                      | `#b04a26` | `#b04a26` | `--button`            |
+| Accent (hover fills, highlights) | `#b04a26` | `#b04a26` | `--accent`            |
+| Text on accent                   | `#ffffff` | `#ffffff` | `--accent-foreground` |
+| Text on button                   | `#ffffff` | `#ffffff` | `--button-foreground` |
+| Wing cover (logo, 3D only)       | `#c75a34` | `#d1633d` | `--brand-wing`        |
+| Ink (logo, 3D)                   | `#18181b` | `#fafafa` | `--brand-ink`         |
+| Ring                             | `#b04a26` | `#d1633d` | `--ring`              |
+| Destructive                      | `#dc2626` | `#f87171` | `--destructive`       |
+
+**Only the branding colours are used as accents** (`#c75a34` logo, `#b04a26` text and fills, `#d1633d`
+text and logo in dark mode, see `rufusmai-branding/logos/vergleich-terrakotta.png`). No extra hover shades
+or other hues; status indicators use primary as well.
 
 **Contrast notes (from the branding README):** `#b04a26` on light reaches 5.5:1, `#d1633d` on dark 4.7:1.
 `#c75a34` reaches only 4.25:1 on white, so it is **logo-only**, never text. Buttons keep the `#b04a26`
@@ -98,7 +104,8 @@ In dark mode, elevation comes from lighter surfaces and a 1px border, not from s
 ## Component Specs
 
 - **Primary button:** `bg-button text-button-foreground rounded-full px-6 h-11 font-medium`; hover lifts
-  `-translate-y-px` and darkens; press `scale-[0.98]`; 200ms.
+  `-translate-y-px` with `shadow-lift`, the fill stays `#b04a26`; press `scale-[0.98]`; 200ms.
+- **Ghost button / menu items:** hover fills with `--accent` (`#b04a26`) and white text.
 - **Secondary button:** `border border-border bg-card/60 backdrop-blur rounded-full`; hover `border-primary/50`.
 - **Link with arrow:** `text-primary` + lucide `ArrowRight` that slides `translate-x-0.5` on hover.
 - **Card:** `bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-md`; interactive cards lift
