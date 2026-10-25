@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "siteName": "rufusmai",
+    "title": "Rufus Maiwald – Software Engineer from Hamburg",
+    "description": "Rufus Maiwald, senior software engineer and freelance full-stack developer from Hamburg. Websites, web apps and backends with rufusmai consulting, own products with rufusmai labs."
+  },
+  "nav": {
+    "home": "Home",
+    "consulting": "Consulting",
+    "labs": "Labs",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
+    "primary": "Main navigation"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Deutsch",
+    "switchToLabel": "Diese Seite auf Deutsch anzeigen"
+  },
+  "theme": {
+    "label": "Colour scheme: {mode}",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "common": {
+    "liveDemo": "Live demo",
+    "caseStudy": "Case study",
+    "visitSite": "Visit site",
+    "client": "Client",
+    "years": "Years",
+    "role": "Role",
+    "stack": "Stack",
+    "status": "Status",
+    "email": "E-mail",
+    "location": "Location",
+    "opensInNewTab": "(opens in a new tab)",
+    "getInTouch": "Get in touch",
+    "requestProject": "Request a project"
+  },
+  "footer": {
+    "tagline": "Software engineering from Hamburg – client work as rufusmai consulting, own products as rufusmai labs.",
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "imprint": "Imprint",
+    "privacy": "Privacy policy",
+    "connect": "Connect",
+    "copyright": "© {year} Rufus Maiwald"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Senior Software Engineer · Hamburg",
+      "title": "builds software that takes off.",
+      "lead": "I design and build websites, web apps and products – for clients as rufusmai consulting and as my own experiments in rufusmai labs.",
+      "ctaConsulting": "rufusmai consulting",
+      "ctaLabs": "rufusmai labs",
+      "ctaContact": "Get in touch",
+      "scroll": "Scroll to explore",
+      "sceneLabel": "The rufusmai Maikäfer (May beetle) logo as a 3D model"
+    },
+    "about": {
+      "eyebrow": "About me",
+      "title": "Hi, I’m Rufus.",
+      "body": "I’m a software engineer from Hamburg. At numi I lead long-term software projects as Senior Software Engineer, and as a freelancer I have been building websites, web apps and backends for companies since {since}. Alongside, I’m studying IT Management and Consulting (M.Sc.) at Universität Hamburg.",
+      "photoAlt": "Portrait of Rufus Maiwald",
+      "facts": {
+        "role": "Senior Software Engineer at numi",
+        "freelance": "Freelancing since {since}",
+        "study": "M.Sc. student at Universität Hamburg"
+      }
+    },
+    "brands": {
+      "eyebrow": "Two ways to work with me",
+      "title": "Consulting for your project. Labs for my own ideas.",
+      "consulting": {
+        "title": "rufusmai consulting",
+        "body": "Websites, web apps and backends for companies and founders – planned, built and looked after by a senior engineer.",
+        "cta": "What I offer"
+      },
+      "labs": {
+        "title": "rufusmai labs",
+        "body": "My workshop for own products: small, sharp tools that solve real problems, shipped early and improved in the open.",
+        "cta": "Explore the labs"
+      }
+    },
+    "labs": {
+      "eyebrow": "rufusmai labs",
+      "title": "Built in the labs",
+      "lead": "Products I build on my own – from the idea to running infrastructure.",
+      "cta": "All labs projects"
+    },
+    "consulting": {
+      "eyebrow": "rufusmai consulting",
+      "title": "Selected client work",
+      "lead": "Long-term partnerships with real results. Click through the live demos or read how they were built.",
+      "cta": "More about consulting"
+    },
+    "journey": {
+      "eyebrow": "Experience",
+      "title": "Where I’ve been building",
+      "experience": "Work",
+      "education": "Education",
+      "current": "Current"
+    },
+    "cta": {
+      "title": "Have a project in mind?",
+      "body": "Tell me about it. I usually reply within one business day.",
+      "button": "Get in touch"
+    }
+  },
+  "consulting": {
+    "meta": {
+      "title": "rufusmai consulting – websites, web apps & backends",
+      "description": "Websites, web apps, backends and technical consulting by Rufus Maiwald, senior software engineer from Hamburg. Direct, transparent and built to last."
+    },
+    "hero": {
+      "eyebrow": "rufusmai consulting",
+      "title": "Your digital product, built by a senior engineer.",
+      "lead": "Websites, web apps and backends for companies and founders. You work directly with me – no agency layers, no hand-offs, just clear communication, modern technology and results that last.",
+      "cta": "Request a project",
+      "secondary": "See the work"
+    },
+    "services": {
+      "eyebrow": "What I offer",
+      "title": "From the first idea to day-to-day operation",
+      "items": {
+        "websites": {
+          "title": "Websites & landing pages",
+          "body": "Fast, search-optimised websites with their own design and a CMS your team actually enjoys. Multilingual, accessible and measurable."
+        },
+        "apps": {
+          "title": "Web apps & portals",
+          "body": "Customer portals, internal tools and SaaS products – from a clickable prototype to a product in production."
+        },
+        "backend": {
+          "title": "Backend & cloud",
+          "body": "APIs, databases, integrations and cloud infrastructure on AWS and Vercel that grow with your business."
+        },
+        "lead": {
+          "title": "Tech lead & consulting",
+          "body": "Architecture reviews, technology choices and hands-on guidance for your team – as an interim tech lead or a second opinion."
+        },
+        "ai": {
+          "title": "AI integration",
+          "body": "Put language models to work in your product: automations, assistants and smart ratings, built responsibly and measurably."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "How I work",
+      "title": "Clear steps, no surprises",
+      "steps": {
+        "call": {
+          "title": "Intro call",
+          "body": "A free 30-minute call about your goals, timeline and budget. You get an honest assessment – even if that means I’m not the right fit."
+        },
+        "offer": {
+          "title": "Concept & offer",
+          "body": "A clear scope, a sensible architecture and a fixed price or an hourly budget. You know what you get before anything starts."
+        },
+        "build": {
+          "title": "Build in iterations",
+          "body": "Every change lands on a preview deployment you can click through. Short feedback loops and regular updates instead of a big reveal at the end."
+        },
+        "care": {
+          "title": "Launch & care",
+          "body": "Go-live, hosting, monitoring and maintenance. In my customer portal you can see status, hours and invoices at any time."
+        }
+      }
+    },
+    "why": {
+      "eyebrow": "Why work with me",
+      "title": "Senior experience, direct line",
+      "items": {
+        "partnerships": {
+          "title": "Partnerships that last",
+          "body": "numi since 2021, ludwig space since 2022 – clients stay because things keep working."
+        },
+        "senior": {
+          "title": "Senior standards",
+          "body": "As Senior Software Engineer I lead a product team. The same standards go into your project."
+        },
+        "direct": {
+          "title": "One point of contact",
+          "body": "You talk to the person who writes the code. No account managers, no lost information."
+        },
+        "transparent": {
+          "title": "Fully transparent",
+          "body": "Hours, status and invoices are visible in the customer portal – logged as they happen."
+        },
+        "ai": {
+          "title": "Faster with AI",
+          "body": "I use AI tools like Claude in my daily work. That makes me faster – without cutting corners on quality."
+        }
+      }
+    },
+    "work": {
+      "eyebrow": "Case studies",
+      "title": "What these projects achieved",
+      "lead": "Two long-term partnerships, each with a live demo of the site as I built it."
+    },
+    "stack": {
+      "eyebrow": "Tech stack",
+      "title": "Tools I trust in production"
+    },
+    "cta": {
+      "title": "Let’s build something that lasts.",
+      "body": "Tell me about your project – I’ll get back to you within one business day with first thoughts and next steps.",
+      "button": "Request a project"
+    }
+  },
+  "labs": {
+    "meta": {
+      "title": "rufusmai labs – own products and experiments",
+      "description": "rufusmai labs is where Rufus Maiwald builds his own products. First up: Pounce, which finds the best deals on Kleinanzeigen and eBay with AI."
+    },
+    "hero": {
+      "eyebrow": "rufusmai labs",
+      "title": "Where my own products take shape.",
+      "lead": "rufusmai labs is my workshop for ideas I can’t stop thinking about: small, sharp products that solve real problems – built fast, shipped early and improved in the open."
+    },
+    "project": {
+      "problemTitle": "The problem",
+      "howTitle": "How it works",
+      "techTitle": "Under the hood",
+      "visit": "Open {title}",
+      "pounceProblem": "Good deals on Kleinanzeigen are gone within minutes. Refreshing searches all day is tedious, and scams and far-away pickups waste your time."
+    },
+    "more": {
+      "title": "More experiments on the workbench",
+      "body": "New ideas are already in progress. Want to hear when the next one launches, or have an idea we should build together?",
+      "cta": "Get in touch"
+    }
+  },
+  "project": {
+    "meta": {
+      "title": "{title} – case study",
+      "description": "{subtitle}. A case study by Rufus Maiwald."
+    },
+    "back": "All consulting work",
+    "idea": "The idea",
+    "role": "My role",
+    "architecture": "Tech & architecture",
+    "highlights": "Highlights",
+    "outcome": "Outcome",
+    "credits": "Team",
+    "snapshot": "About the demo",
+    "cta": {
+      "title": "Want results like these?",
+      "body": "Let’s talk about your project.",
+      "button": "Request a project"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Get in touch with Rufus Maiwald – for a project, a question or just to say hello."
+    },
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let’s talk.",
+      "lead": "About a project, a question or an idea – write me a message and I’ll get back to you, usually within one business day."
+    },
+    "card": {
+      "title": "Direct contact",
+      "reply": "Usually replies within one business day"
+    },
+    "form": {
+      "title": "Send a message",
+      "name": "Name",
+      "email": "E-mail",
+      "company": "Company",
+      "optional": "optional",
+      "message": "Message",
+      "messagePlaceholder": "What are you working on, and how can I help?",
+      "privacy": "Your details are only used to answer your message. More in the <link>privacy policy</link>.",
+      "submit": "Send message",
+      "sending": "Sending …",
+      "successTitle": "Thank you!",
+      "successBody": "Your message is on its way. I’ll get back to you soon.",
+      "again": "Send another message",
+      "error": "Your message could not be sent. Please try again or write to {email}.",
+      "botError": "Your request looked automated and was blocked. Please write to {email} instead.",
+      "honeypot": "Leave this field empty"
+    },
+    "validation": {
+      "nameRequired": "Please enter your name.",
+      "nameTooLong": "That name is a bit long.",
+      "emailInvalid": "Please enter a valid e-mail address.",
+      "companyTooLong": "That company name is a bit long.",
+      "messageTooShort": "Please write at least 10 characters.",
+      "messageTooLong": "Please keep it under 5,000 characters."
+    }
+  },
+  "legal": {
+    "imprint": {
+      "title": "Imprint",
+      "description": "Legal notice for rufusmai.com and all rufusmai services."
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "How rufusmai.com and the other rufusmai services process personal data."
+    },
+    "translationNotice": "This is a translation for convenience. Only the German version is legally binding.",
+    "placeholderNotice": "Draft: values in brackets still need to be filled in."
+  },
+  "notFound": {
+    "title": "This page flew away.",
+    "body": "The page you are looking for doesn’t exist or has moved.",
+    "home": "Back to the home page"
+  }
+}

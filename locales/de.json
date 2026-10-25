@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "siteName": "rufusmai",
+    "title": "Rufus Maiwald – Software Engineer aus Hamburg",
+    "description": "Rufus Maiwald, Senior Software Engineer und freiberuflicher Full-Stack-Entwickler aus Hamburg. Websites, Web-Apps und Backends mit rufusmai consulting, eigene Produkte mit rufusmai labs."
+  },
+  "nav": {
+    "home": "Startseite",
+    "consulting": "Consulting",
+    "labs": "Labs",
+    "contact": "Kontakt",
+    "menu": "Menü",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "skipToContent": "Zum Inhalt springen",
+    "primary": "Hauptnavigation"
+  },
+  "language": {
+    "label": "Sprache",
+    "switchTo": "English",
+    "switchToLabel": "View this page in English"
+  },
+  "theme": {
+    "label": "Farbschema: {mode}",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "common": {
+    "liveDemo": "Live-Demo",
+    "caseStudy": "Case Study",
+    "visitSite": "Website öffnen",
+    "client": "Kunde",
+    "years": "Zeitraum",
+    "role": "Rolle",
+    "stack": "Stack",
+    "status": "Status",
+    "email": "E-Mail",
+    "location": "Standort",
+    "opensInNewTab": "(öffnet in neuem Tab)",
+    "getInTouch": "Kontakt aufnehmen",
+    "requestProject": "Projekt anfragen"
+  },
+  "footer": {
+    "tagline": "Softwareentwicklung aus Hamburg – Kundenprojekte als rufusmai consulting, eigene Produkte als rufusmai labs.",
+    "navigation": "Navigation",
+    "legal": "Rechtliches",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "connect": "Profile",
+    "copyright": "© {year} Rufus Maiwald"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Senior Software Engineer · Hamburg",
+      "title": "baut Software, die abhebt.",
+      "lead": "Ich konzipiere und entwickle Websites, Web-Apps und Produkte – für Kunden als rufusmai consulting und als eigene Experimente in den rufusmai labs.",
+      "ctaConsulting": "rufusmai consulting",
+      "ctaLabs": "rufusmai labs",
+      "ctaContact": "Kontakt aufnehmen",
+      "scroll": "Weiter scrollen",
+      "sceneLabel": "Das rufusmai-Logo, ein Maikäfer, als 3D-Modell"
+    },
+    "about": {
+      "eyebrow": "Über mich",
+      "title": "Hallo, ich bin Rufus.",
+      "body": "Ich bin Software Engineer aus Hamburg. Bei numi leite ich als Senior Software Engineer langfristige Softwareprojekte, und als Freelancer entwickle ich seit {since} Websites, Web-Apps und Backends für Unternehmen. Nebenbei studiere ich IT-Management und Consulting (M.Sc.) an der Universität Hamburg.",
+      "photoAlt": "Porträt von Rufus Maiwald",
+      "facts": {
+        "role": "Senior Software Engineer bei numi",
+        "freelance": "Freelancer seit {since}",
+        "study": "Masterstudium an der Universität Hamburg"
+      }
+    },
+    "brands": {
+      "eyebrow": "Zwei Wege der Zusammenarbeit",
+      "title": "Consulting für Ihr Projekt. Labs für meine eigenen Ideen.",
+      "consulting": {
+        "title": "rufusmai consulting",
+        "body": "Websites, Web-Apps und Backends für Unternehmen und Gründer – geplant, gebaut und betreut von einem Senior Engineer.",
+        "cta": "Was ich anbiete"
+      },
+      "labs": {
+        "title": "rufusmai labs",
+        "body": "Meine Werkstatt für eigene Produkte: kleine, scharfe Tools, die echte Probleme lösen – früh veröffentlicht und offen weiterentwickelt.",
+        "cta": "Zu den Labs"
+      }
+    },
+    "labs": {
+      "eyebrow": "rufusmai labs",
+      "title": "Aus den Labs",
+      "lead": "Produkte, die ich selbst entwickle – von der Idee bis zur laufenden Infrastruktur.",
+      "cta": "Alle Labs-Projekte"
+    },
+    "consulting": {
+      "eyebrow": "rufusmai consulting",
+      "title": "Ausgewählte Kundenprojekte",
+      "lead": "Langfristige Partnerschaften mit echten Ergebnissen. Klicken Sie sich durch die Live-Demos oder lesen Sie, wie sie entstanden sind.",
+      "cta": "Mehr über Consulting"
+    },
+    "journey": {
+      "eyebrow": "Werdegang",
+      "title": "Wo ich bisher gebaut habe",
+      "experience": "Berufserfahrung",
+      "education": "Ausbildung",
+      "current": "Aktuell"
+    },
+    "cta": {
+      "title": "Sie haben ein Projekt im Kopf?",
+      "body": "Erzählen Sie mir davon. Ich antworte meist innerhalb eines Werktags.",
+      "button": "Kontakt aufnehmen"
+    }
+  },
+  "consulting": {
+    "meta": {
+      "title": "rufusmai consulting – Websites, Web-Apps & Backends",
+      "description": "Websites, Web-Apps, Backends und technische Beratung von Rufus Maiwald, Senior Software Engineer aus Hamburg. Direkt, transparent und auf Dauer gebaut."
+    },
+    "hero": {
+      "eyebrow": "rufusmai consulting",
+      "title": "Ihr digitales Produkt, gebaut von einem Senior Engineer.",
+      "lead": "Websites, Web-Apps und Backends für Unternehmen und Gründer. Sie arbeiten direkt mit mir – ohne Agentur-Ebenen und Übergaben, dafür mit klarer Kommunikation, moderner Technik und Ergebnissen, die bleiben.",
+      "cta": "Projekt anfragen",
+      "secondary": "Projekte ansehen"
+    },
+    "services": {
+      "eyebrow": "Was ich anbiete",
+      "title": "Von der ersten Idee bis zum laufenden Betrieb",
+      "items": {
+        "websites": {
+          "title": "Websites & Landingpages",
+          "body": "Schnelle, suchmaschinenoptimierte Websites mit eigenem Design und einem CMS, mit dem Ihr Team gerne arbeitet. Mehrsprachig, barrierearm und messbar."
+        },
+        "apps": {
+          "title": "Web-Apps & Portale",
+          "body": "Kundenportale, interne Tools und SaaS-Produkte – vom klickbaren Prototyp bis zum Produkt im Live-Betrieb."
+        },
+        "backend": {
+          "title": "Backend & Cloud",
+          "body": "APIs, Datenbanken, Schnittstellen und Cloud-Infrastruktur auf AWS und Vercel, die mit Ihrem Unternehmen wachsen."
+        },
+        "lead": {
+          "title": "Tech Lead & Beratung",
+          "body": "Architektur-Reviews, Technologieentscheidungen und praktische Begleitung Ihres Teams – als Interims-Tech-Lead oder zweite Meinung."
+        },
+        "ai": {
+          "title": "KI-Integration",
+          "body": "Sprachmodelle sinnvoll im Produkt einsetzen: Automatisierungen, Assistenten und smarte Bewertungen – verantwortungsvoll und messbar umgesetzt."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "So arbeite ich",
+      "title": "Klare Schritte, keine Überraschungen",
+      "steps": {
+        "call": {
+          "title": "Kennenlernen",
+          "body": "Ein kostenloses 30-Minuten-Gespräch über Ziele, Zeitplan und Budget. Sie bekommen eine ehrliche Einschätzung – auch wenn das heißt, dass ich nicht der Richtige bin."
+        },
+        "offer": {
+          "title": "Konzept & Angebot",
+          "body": "Ein klarer Umfang, eine sinnvolle Architektur und ein Festpreis oder Stundenbudget. Sie wissen, was Sie bekommen, bevor es losgeht."
+        },
+        "build": {
+          "title": "Entwicklung in Iterationen",
+          "body": "Jede Änderung landet auf einem Preview-Deployment, das Sie direkt ausprobieren können. Kurze Feedbackschleifen statt großer Enthüllung am Ende."
+        },
+        "care": {
+          "title": "Launch & Betreuung",
+          "body": "Go-live, Hosting, Monitoring und Wartung. In meinem Kundenportal sehen Sie jederzeit Status, Stunden und Rechnungen."
+        }
+      }
+    },
+    "why": {
+      "eyebrow": "Warum mit mir",
+      "title": "Senior-Erfahrung, direkter Draht",
+      "items": {
+        "partnerships": {
+          "title": "Partnerschaften, die halten",
+          "body": "numi seit 2021, ludwig space seit 2022 – Kunden bleiben, weil die Dinge funktionieren."
+        },
+        "senior": {
+          "title": "Senior-Standards",
+          "body": "Als Senior Software Engineer leite ich ein Produktteam. Dieselben Standards fließen in Ihr Projekt."
+        },
+        "direct": {
+          "title": "Ein Ansprechpartner",
+          "body": "Sie sprechen mit dem, der den Code schreibt. Keine Account Manager, keine verlorenen Informationen."
+        },
+        "transparent": {
+          "title": "Volle Transparenz",
+          "body": "Stunden, Status und Rechnungen sind im Kundenportal sichtbar – erfasst, während sie entstehen."
+        },
+        "ai": {
+          "title": "Schneller mit KI",
+          "body": "Ich nutze KI-Tools wie Claude in meiner täglichen Arbeit. Das macht mich schneller – ohne Abstriche bei der Qualität."
+        }
+      }
+    },
+    "work": {
+      "eyebrow": "Case Studies",
+      "title": "Was diese Projekte erreicht haben",
+      "lead": "Zwei langfristige Partnerschaften, jeweils mit einer Live-Demo der Seite, wie ich sie gebaut habe."
+    },
+    "stack": {
+      "eyebrow": "Tech-Stack",
+      "title": "Werkzeuge, denen ich im Live-Betrieb vertraue"
+    },
+    "cta": {
+      "title": "Lassen Sie uns etwas bauen, das bleibt.",
+      "body": "Erzählen Sie mir von Ihrem Projekt – ich melde mich innerhalb eines Werktags mit ersten Gedanken und nächsten Schritten.",
+      "button": "Projekt anfragen"
+    }
+  },
+  "labs": {
+    "meta": {
+      "title": "rufusmai labs – eigene Produkte und Experimente",
+      "description": "In den rufusmai labs entwickelt Rufus Maiwald eigene Produkte. Als Erstes: Pounce, das mit KI die besten Angebote auf Kleinanzeigen und eBay findet."
+    },
+    "hero": {
+      "eyebrow": "rufusmai labs",
+      "title": "Hier entstehen meine eigenen Produkte.",
+      "lead": "Die rufusmai labs sind meine Werkstatt für Ideen, die mich nicht loslassen: kleine, scharfe Produkte, die echte Probleme lösen – schnell gebaut, früh veröffentlicht und offen weiterentwickelt."
+    },
+    "project": {
+      "problemTitle": "Das Problem",
+      "howTitle": "So funktioniert’s",
+      "techTitle": "Unter der Haube",
+      "visit": "{title} öffnen",
+      "pounceProblem": "Gute Angebote auf Kleinanzeigen sind nach Minuten weg. Den ganzen Tag Suchen zu aktualisieren ist mühsam, und Betrugsversuche oder weite Abholwege kosten Zeit."
+    },
+    "more": {
+      "title": "Weitere Experimente in der Werkstatt",
+      "body": "Neue Ideen sind schon in Arbeit. Sie möchten erfahren, wann das nächste Projekt startet, oder haben eine Idee, die wir gemeinsam bauen sollten?",
+      "cta": "Kontakt aufnehmen"
+    }
+  },
+  "project": {
+    "meta": {
+      "title": "{title} – Case Study",
+      "description": "{subtitle}. Eine Case Study von Rufus Maiwald."
+    },
+    "back": "Alle Kundenprojekte",
+    "idea": "Die Idee",
+    "role": "Meine Rolle",
+    "architecture": "Technik & Architektur",
+    "highlights": "Highlights",
+    "outcome": "Ergebnis",
+    "credits": "Team",
+    "snapshot": "Zur Demo",
+    "cta": {
+      "title": "Solche Ergebnisse für Ihr Projekt?",
+      "body": "Lassen Sie uns über Ihr Vorhaben sprechen.",
+      "button": "Projekt anfragen"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Kontakt zu Rufus Maiwald – für ein Projekt, eine Frage oder einfach ein Hallo."
+    },
+    "hero": {
+      "eyebrow": "Kontakt",
+      "title": "Lassen Sie uns sprechen.",
+      "lead": "Über ein Projekt, eine Frage oder eine Idee – schreiben Sie mir eine Nachricht, ich melde mich meist innerhalb eines Werktags."
+    },
+    "card": {
+      "title": "Direkter Kontakt",
+      "reply": "Antwortet meist innerhalb eines Werktags"
+    },
+    "form": {
+      "title": "Nachricht senden",
+      "name": "Name",
+      "email": "E-Mail",
+      "company": "Unternehmen",
+      "optional": "optional",
+      "message": "Nachricht",
+      "messagePlaceholder": "Woran arbeiten Sie, und wie kann ich helfen?",
+      "privacy": "Ihre Angaben werden nur zur Beantwortung Ihrer Nachricht verwendet. Mehr in der <link>Datenschutzerklärung</link>.",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet …",
+      "successTitle": "Vielen Dank!",
+      "successBody": "Ihre Nachricht ist unterwegs. Ich melde mich bald bei Ihnen.",
+      "again": "Weitere Nachricht senden",
+      "error": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie an {email}.",
+      "botError": "Ihre Anfrage wirkte automatisiert und wurde blockiert. Bitte schreiben Sie direkt an {email}.",
+      "honeypot": "Dieses Feld bitte leer lassen"
+    },
+    "validation": {
+      "nameRequired": "Bitte geben Sie Ihren Namen an.",
+      "nameTooLong": "Der Name ist etwas zu lang.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+      "companyTooLong": "Der Unternehmensname ist etwas zu lang.",
+      "messageTooShort": "Bitte schreiben Sie mindestens 10 Zeichen.",
+      "messageTooLong": "Bitte bleiben Sie unter 5.000 Zeichen."
+    }
+  },
+  "legal": {
+    "imprint": {
+      "title": "Impressum",
+      "description": "Impressum für rufusmai.com und alle Dienste von rufusmai."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Wie rufusmai.com und die weiteren Dienste von rufusmai personenbezogene Daten verarbeiten."
+    },
+    "translationNotice": "This is a translation for convenience. Only the German version is legally binding.",
+    "placeholderNotice": "Entwurf: Werte in eckigen Klammern müssen noch ergänzt werden."
+  },
+  "notFound": {
+    "title": "Diese Seite ist davongeflogen.",
+    "body": "Die gesuchte Seite gibt es nicht oder sie ist umgezogen.",
+    "home": "Zur Startseite"
+  }
+}
