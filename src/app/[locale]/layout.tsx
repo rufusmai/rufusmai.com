@@ -1,7 +1,12 @@
 import '../globals.css';
 
 import type { Metadata, Viewport } from 'next';
-import { Archivo, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import {
+  Bricolage_Grotesque,
+  Instrument_Serif,
+  JetBrains_Mono,
+  Space_Grotesk,
+} from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { hasLocale } from 'next-intl';
@@ -17,9 +22,19 @@ import { routing } from '@/i18n/routing';
 import { HOST } from '@/lib/metadata';
 import { cn } from '@/lib/utils';
 
-const archivo = Archivo({
-  variable: '--font-archivo',
+// Headlines: Bricolage Grotesque with its optical size axis for display sizes
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: '--font-bricolage-grotesque',
   subsets: ['latin'],
+  axes: ['opsz'],
+});
+
+// The lower, secondary line of two-part headlines
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -80,7 +95,8 @@ export default async function LocaleLayout({
       lang={locale}
       suppressHydrationWarning
       className={cn(
-        archivo.variable,
+        bricolageGrotesque.variable,
+        instrumentSerif.variable,
         spaceGrotesk.variable,
         jetBrainsMono.variable
       )}

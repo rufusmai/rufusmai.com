@@ -31,7 +31,9 @@
   --color-brand-ink: var(--brand-ink);
 
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    var(--font-bricolage-grotesque), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono:
     var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 

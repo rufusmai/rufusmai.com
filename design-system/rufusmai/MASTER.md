@@ -56,10 +56,14 @@ fill in both schemes (3.3:1 against the dark background, above the 3:1 needed fo
 
 ### Typography
 
-- **Heading font:** Archivo (600–800, tight tracking `-0.02em` on display sizes)
+- **Heading font:** Bricolage Grotesque (700–800, optical size axis on, tight tracking `-0.035em` on display sizes)
+- **Secondary headline line:** Instrument Serif italic (400). In two-part headlines the big part is set in
+  Bricolage Grotesque and the lower part in Instrument Serif, e.g. the home hero "Rufus Maiwald / baut
+  Software, die abhebt." Utility: `font-serif`.
 - **Body font:** Space Grotesk (400/500)
 - **Mono / labels:** JetBrains Mono (stack chips, years, small eyebrow labels)
-- Loaded with `next/font/google` (no CSS `@import`), exposed as `--font-heading`, `--font-sans`, `--font-mono`.
+- Loaded with `next/font/google` (no CSS `@import`), exposed as `--font-heading`, `--font-serif`,
+  `--font-sans`, `--font-mono`. Generated OG images load the same fonts in `src/lib/ogFonts.ts`.
 - Fluid display sizes with `clamp()`; body at least 16px, line-height 1.5–1.7; line length 60–75ch.
 
 | Token        | Size                                        |

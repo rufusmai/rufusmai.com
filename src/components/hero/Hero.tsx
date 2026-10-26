@@ -150,9 +150,15 @@ export function Hero({ copy }: { copy: HeroCopy }) {
                 </Word>
               ))}
             </span>
-            <span className="block text-primary">
+            {/* The lower line is set in Instrument Serif italic */}
+            <span className="block font-serif font-normal tracking-[-0.01em] text-primary italic">
               {words.map((word, index) => (
-                <Word key={`title-${index}`} index={index + 2}>
+                <Word
+                  key={`title-${index}`}
+                  index={index + 2}
+                  // Room for the italic overhang inside the clipping mask
+                  className="pr-[0.08em]"
+                >
                   {word}
                 </Word>
               ))}
@@ -204,9 +210,22 @@ export function Hero({ copy }: { copy: HeroCopy }) {
   );
 }
 
-function Word({ children, index }: { children: string; index: number }) {
+function Word({
+  children,
+  index,
+  className,
+}: {
+  children: string;
+  index: number;
+  className?: string;
+}) {
   return (
-    <span className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+    <span
+      className={cn(
+        'inline-block overflow-hidden pb-[0.08em] align-bottom',
+        className
+      )}
+    >
       <motion.span
         className="inline-block"
         initial={{ y: '105%' }}
