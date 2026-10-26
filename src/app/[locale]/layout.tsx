@@ -11,7 +11,6 @@ import { IntlClientProvider } from '@/components/i18n/IntlClientProvider';
 import { MotionProvider } from '@/components/motion/MotionProvider';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { SiteHeader } from '@/components/site/SiteHeader';
-import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import type { LocaleParams } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { HOST } from '@/lib/metadata';
@@ -66,10 +65,9 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-    { media: '(prefers-color-scheme: dark)', color: '#18181b' },
-  ],
+  themeColor: '#fafafa',
+  // The site has a light design only; keeps form controls and scrollbars light
+  colorScheme: 'light',
 };
 
 export default async function LocaleLayout({
@@ -85,7 +83,6 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      suppressHydrationWarning
       className={cn(
         bricolageGrotesque.variable,
         instrumentSerif.variable,
@@ -104,17 +101,15 @@ export default async function LocaleLayout({
         data-domains="rufusmai.com"
       />
       <body className="flex min-h-svh flex-col">
-        <ThemeProvider>
-          <IntlClientProvider partial={['nav', 'language', 'theme', 'common']}>
-            <MotionProvider>
-              <SiteHeader />
-              <main id="content" className="flex grow flex-col">
-                {children}
-              </main>
-              <SiteFooter />
-            </MotionProvider>
-          </IntlClientProvider>
-        </ThemeProvider>
+        <IntlClientProvider partial={['nav', 'language', 'common']}>
+          <MotionProvider>
+            <SiteHeader />
+            <main id="content" className="flex grow flex-col">
+              {children}
+            </main>
+            <SiteFooter />
+          </MotionProvider>
+        </IntlClientProvider>
       </body>
     </html>
   );

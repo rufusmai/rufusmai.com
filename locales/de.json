@@ -20,12 +20,6 @@
     "switchTo": "English",
     "switchToLabel": "View this page in English"
   },
-  "theme": {
-    "label": "Farbschema: {mode}",
-    "system": "System",
-    "light": "Hell",
-    "dark": "Dunkel"
-  },
   "common": {
     "liveDemo": "Live-Demo",
     "caseStudy": "Case Study",

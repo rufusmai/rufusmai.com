@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
@@ -79,7 +78,6 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1">
           <LocaleSwitcher />
-          <ThemeToggle />
           <Button asChild size="sm" className="ml-2 hidden md:inline-flex">
             <Link href="/contact">{tCommon('getInTouch')}</Link>
           </Button>

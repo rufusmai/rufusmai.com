@@ -30,7 +30,7 @@ export function LegalPage({
           {t('placeholderNotice')}
         </p>
       </div>
-      <div className="prose mt-10 max-w-none prose-zinc dark:prose-invert prose-headings:scroll-mt-28 prose-headings:font-heading prose-a:text-primary prose-a:underline-offset-4 prose-code:before:content-none prose-code:after:content-none">
+      <div className="prose mt-10 max-w-none prose-zinc prose-headings:scroll-mt-28 prose-headings:font-heading prose-a:text-primary prose-a:underline-offset-4 prose-code:before:content-none prose-code:after:content-none">
         {children}
       </div>
     </article>

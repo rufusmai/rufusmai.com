@@ -15,7 +15,7 @@ interface LogoProps extends Omit<SVGProps<SVGSVGElement>, 'viewBox'> {
 
 /**
  * The rufusmai logo as inline SVG: ink parts follow `currentColor`, the wing
- * covers use `--brand-wing`, so one component works in both colour schemes.
+ * covers use `--brand-wing`.
  */
 export function Logo({
   variant = 'full',

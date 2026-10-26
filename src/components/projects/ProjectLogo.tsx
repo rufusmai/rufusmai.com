@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { ProjectLogo as ProjectLogoData } from '@/content/types';
 import { cn } from '@/lib/utils';
 
-/** Logos sit on a light tile so dark artwork stays visible in dark mode. */
+/** Logos sit on a white tile, so every client logo sits on the same ground. */
 export function ProjectLogo({
   logo,
   className,

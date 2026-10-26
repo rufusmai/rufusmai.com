@@ -20,12 +20,6 @@
     "switchTo": "Deutsch",
     "switchToLabel": "Diese Seite auf Deutsch anzeigen"
   },
-  "theme": {
-    "label": "Colour scheme: {mode}",
-    "system": "System",
-    "light": "Light",
-    "dark": "Dark"
-  },
   "common": {
     "liveDemo": "Live demo",
     "caseStudy": "Case study",

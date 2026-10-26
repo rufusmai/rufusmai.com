@@ -3,8 +3,6 @@
 
 @plugin '@tailwindcss/typography';
 
-@custom-variant dark (&:is(.dark *));
-
 /* Design tokens, see design-system/rufusmai/MASTER.md */
 @theme inline {
   --color-background: var(--background);
@@ -95,6 +93,8 @@
 }
 
 :root {
+  /* Light design only, also for form controls and scrollbars */
+  color-scheme: light;
   --radius: 0.875rem;
   --background: #fafafa;
   --foreground: #18181b;
@@ -119,32 +119,6 @@
   --button-foreground: #ffffff;
   --brand-wing: #c75a34;
   --brand-ink: #18181b;
-}
-
-.dark {
-  --background: #18181b;
-  --foreground: #fafafa;
-  --card: #1f1f23;
-  --card-foreground: #fafafa;
-  --popover: #1f1f23;
-  --popover-foreground: #fafafa;
-  --primary: #d1633d;
-  --primary-foreground: #ffffff;
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  /* Fills keep #b04a26 in dark mode too (white text 5.5:1, 3.3:1 vs. background) */
-  --accent: #b04a26;
-  --accent-foreground: #ffffff;
-  --destructive: #f87171;
-  --border: #2e2e33;
-  --input: #3f3f46;
-  --ring: #d1633d;
-  --button: #b04a26;
-  --button-foreground: #ffffff;
-  --brand-wing: #d1633d;
-  --brand-ink: #fafafa;
 }
 
 @layer base {

@@ -8,7 +8,7 @@ export type Brand = 'consulting' | 'labs';
 
 export interface ProjectLogo {
   src: StaticImageData;
-  /** Rendered on a light tile, so dark logos stay visible in dark mode. */
+  /** Rendered on a white tile, so every client logo sits on the same ground. */
   alt: string;
 }
 

@@ -28,31 +28,32 @@ rufusmai branding (`rufusmai-branding/logos/export/README.md`).
 Defined as CSS variables in `src/app/globals.css` and mapped onto the shadcn tokens. Never use raw hex in
 components; use the Tailwind token classes (`bg-background`, `text-primary`, …).
 
-| Role                             | Light     | Dark      | CSS variable          |
-| -------------------------------- | --------- | --------- | --------------------- |
-| Background                       | `#fafafa` | `#18181b` | `--background`        |
-| Foreground (ink)                 | `#18181b` | `#fafafa` | `--foreground`        |
-| Card                             | `#ffffff` | `#1f1f23` | `--card`              |
-| Muted surface                    | `#f4f4f5` | `#27272a` | `--muted`             |
-| Muted foreground                 | `#52525b` | `#a1a1aa` | `--muted-foreground`  |
-| Border                           | `#e4e4e7` | `#2e2e33` | `--border`            |
-| Primary (text, links, icons)     | `#b04a26` | `#d1633d` | `--primary`           |
-| Button fill                      | `#b04a26` | `#b04a26` | `--button`            |
-| Accent (hover fills, highlights) | `#b04a26` | `#b04a26` | `--accent`            |
-| Text on accent                   | `#ffffff` | `#ffffff` | `--accent-foreground` |
-| Text on button                   | `#ffffff` | `#ffffff` | `--button-foreground` |
-| Wing cover (logo, 3D only)       | `#c75a34` | `#d1633d` | `--brand-wing`        |
-| Ink (logo, 3D)                   | `#18181b` | `#fafafa` | `--brand-ink`         |
-| Ring                             | `#b04a26` | `#d1633d` | `--ring`              |
-| Destructive                      | `#dc2626` | `#f87171` | `--destructive`       |
+The site has a **light design only** (no dark mode, `color-scheme: light`).
 
-**Only the branding colours are used as accents** (`#c75a34` logo, `#b04a26` text and fills, `#d1633d`
-text and logo in dark mode, see `rufusmai-branding/logos/vergleich-terrakotta.png`). No extra hover shades
-or other hues; status indicators use primary as well.
+| Role                             | Colour    | CSS variable          |
+| -------------------------------- | --------- | --------------------- |
+| Background                       | `#fafafa` | `--background`        |
+| Foreground (ink)                 | `#18181b` | `--foreground`        |
+| Card                             | `#ffffff` | `--card`              |
+| Muted surface                    | `#f4f4f5` | `--muted`             |
+| Muted foreground                 | `#52525b` | `--muted-foreground`  |
+| Border                           | `#e4e4e7` | `--border`            |
+| Primary (text, links, icons)     | `#b04a26` | `--primary`           |
+| Button fill                      | `#b04a26` | `--button`            |
+| Accent (hover fills, highlights) | `#b04a26` | `--accent`            |
+| Text on accent                   | `#ffffff` | `--accent-foreground` |
+| Text on button                   | `#ffffff` | `--button-foreground` |
+| Wing cover (logo, 3D only)       | `#c75a34` | `--brand-wing`        |
+| Ink (logo, 3D)                   | `#18181b` | `--brand-ink`         |
+| Ring                             | `#b04a26` | `--ring`              |
+| Destructive                      | `#dc2626` | `--destructive`       |
 
-**Contrast notes (from the branding README):** `#b04a26` on light reaches 5.5:1, `#d1633d` on dark 4.7:1.
-`#c75a34` reaches only 4.25:1 on white, so it is **logo-only**, never text. Buttons keep the `#b04a26`
-fill in both schemes (3.3:1 against the dark background, above the 3:1 needed for controls).
+**Only the branding colours are used as accents** (`#c75a34` logo, `#b04a26` text and fills, see
+`rufusmai-branding/logos/vergleich-terrakotta.png`). No extra hover shades or other hues; status
+indicators use primary as well.
+
+**Contrast notes (from the branding README):** `#b04a26` on the light background reaches 5.5:1, and white
+text on it 5.5:1. `#c75a34` reaches only 4.25:1 on white, so it is **logo-only**, never text.
 
 ### Typography
 
@@ -102,8 +103,6 @@ Container: `max-w-6xl`, 16px gutter on mobile, 24px from `sm`, 32px from `lg`.
 | `--shadow-sm` | `0 1px 2px rgb(24 24 27 / 0.06)`          | Subtle lift            |
 | `--shadow-md` | `0 8px 24px -12px rgb(24 24 27 / 0.18)`   | Cards                  |
 | `--shadow-lg` | `0 24px 48px -24px rgb(176 74 38 / 0.28)` | Hovered/featured cards |
-
-In dark mode, elevation comes from lighter surfaces and a 1px border, not from shadows.
 
 ---
 
@@ -177,7 +176,7 @@ Library: [`motion`](https://motion.dev) (`motion/react`) for UI, React Three Fib
 - [ ] All icons from lucide or `brandIcons.tsx`
 - [ ] `cursor-pointer` on all clickable elements
 - [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light and dark mode: text contrast 4.5:1 minimum
+- [ ] Text contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
 - [ ] `prefers-reduced-motion` respected (incl. 3D fallback)
 - [ ] Responsive: 375px, 768px, 1024px, 1440px

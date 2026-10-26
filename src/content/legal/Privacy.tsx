@@ -74,11 +74,10 @@ export function PrivacyDe() {
       </p>
 
       <h2 id="rufusmai-com">5. rufusmai.com</h2>
-      <h3>Cookies und lokale Speicherung</h3>
+      <h3>Cookies</h3>
       <p>
         rufusmai.com setzt keine Tracking-Cookies. Wenn Sie die Sprache
-        wechseln, wird sie im Cookie <code>NEXT_LOCALE</code> gespeichert; das
-        gewählte Farbschema liegt nur im lokalen Speicher Ihres Browsers. Beides
+        wechseln, wird sie im Cookie <code>NEXT_LOCALE</code> gespeichert. Das
         ist für die von Ihnen gewünschte Funktion erforderlich (§ 25 Abs. 2 Nr.
         2 TDDDG).
       </p>
@@ -275,11 +274,10 @@ export function PrivacyEn() {
       </p>
 
       <h2 id="rufusmai-com">5. rufusmai.com</h2>
-      <h3>Cookies and local storage</h3>
+      <h3>Cookies</h3>
       <p>
         rufusmai.com does not set tracking cookies. If you switch the language,
-        it is stored in the <code>NEXT_LOCALE</code> cookie; the chosen colour
-        scheme is only kept in your browser’s local storage. Both are required
+        it is stored in the <code>NEXT_LOCALE</code> cookie. This is required
         for the function you asked for (§ 25 (2) no. 2 TDDDG).
       </p>
       <h3>Analytics with Umami</h3>

@@ -3,7 +3,6 @@
 import { ArrowDownIcon, ArrowRightIcon } from 'lucide-react';
 import { motion, useReducedMotion, useScroll } from 'motion/react';
 import dynamic from 'next/dynamic';
-import { useTheme } from 'next-themes';
 import { useEffect, useRef, useState } from 'react';
 
 import { Logo } from '@/components/site/Logo';
@@ -20,10 +19,8 @@ const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
 
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
 
-const COLORS: Record<'light' | 'dark', SceneColors> = {
-  light: { ink: '#18181b', wing: '#c75a34' },
-  dark: { ink: '#fafafa', wing: '#d1633d' },
-};
+// Logo colours from the branding: ink and wing covers
+const COLORS: SceneColors = { ink: '#18181b', wing: '#c75a34' };
 
 export interface HeroCopy {
   eyebrow: string;
@@ -40,8 +37,6 @@ export interface HeroCopy {
 export function Hero({ copy }: { copy: HeroCopy }) {
   const section = useRef<HTMLElement>(null);
   const pointer = useRef({ x: 0, y: 0 });
-  const { resolvedTheme } = useTheme();
-  const mounted = useMounted();
   const reduceMotion = useReducedMotion();
   const sceneEnabled = useSceneSupport(reduceMotion ?? false);
   const [visible, setVisible] = useState(true);
@@ -79,8 +74,6 @@ export function Hero({ copy }: { copy: HeroCopy }) {
     return () => observer.disconnect();
   }, []);
 
-  const colors =
-    mounted && resolvedTheme === 'dark' ? COLORS.dark : COLORS.light;
   const words = copy.title.split(' ');
 
   return (
@@ -121,7 +114,7 @@ export function Hero({ copy }: { copy: HeroCopy }) {
                 )}
               >
                 <HeroScene
-                  colors={colors}
+                  colors={COLORS}
                   pointer={pointer}
                   progress={scrollYProgress}
                   active={visible}
