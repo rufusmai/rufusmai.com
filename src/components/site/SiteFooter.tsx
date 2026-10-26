@@ -19,7 +19,7 @@ export function SiteFooter() {
       <div className="container grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div className="flex max-w-sm flex-col gap-4">
           <Link href="/" aria-label={tNav('home')} className="w-fit">
-            <Logo className="h-11 w-auto" />
+            <Logo className="h-10 w-auto" />
           </Link>
           <p className="text-sm text-muted-foreground">{t('tagline')}</p>
         </div>

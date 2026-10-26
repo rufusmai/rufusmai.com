@@ -9,16 +9,21 @@ import { iconPaths, iconViewBox, type LogoPath, logoPaths } from './logoPaths';
 const MARK_PATHS = logoPaths.slice(0, 4);
 const WORDMARK_PATHS = logoPaths.slice(4);
 
-// The wordmark is set larger than in logo.svg, scaled around its left edge
-// and vertical centre so it keeps its gap to the mark and stays centred.
-const WORDMARK_SCALE = 1.4;
+// Bounding boxes in logo.svg: the mark spans x 141.2–396.9 and y 122.2–389.9,
+// the wordmark starts at x 440.9 (a 44 unit gap) and is centred at y 250.75.
+const MARK_RIGHT = 396.9;
 const WORDMARK = { x: 440.9, centerY: 250.75, width: 442 };
-const WORDMARK_TRANSFORM = `translate(${WORDMARK.x} ${WORDMARK.centerY}) scale(${WORDMARK_SCALE}) translate(${-WORDMARK.x} ${-WORDMARK.centerY})`;
 
-// Bounding box of the mark (x 141.2–396.9, y 122.2–389.9) and the scaled
-// wordmark, with 5 units of padding
+// On the website the wordmark is larger relative to the mark and sits further
+// away from it. It is scaled around its left edge and vertical centre.
+const WORDMARK_SCALE = 1.75;
+const GAP = 68;
+const WORDMARK_LEFT = MARK_RIGHT + GAP;
+const WORDMARK_TRANSFORM = `translate(${WORDMARK_LEFT} ${WORDMARK.centerY}) scale(${WORDMARK_SCALE}) translate(${-WORDMARK.x} ${-WORDMARK.centerY})`;
+
+// The mark and the scaled wordmark, with 5 units of padding
 const VIEW_BOX_LEFT = 136;
-const VIEW_BOX_RIGHT = WORDMARK.x + WORDMARK.width * WORDMARK_SCALE + 5;
+const VIEW_BOX_RIGHT = WORDMARK_LEFT + WORDMARK.width * WORDMARK_SCALE + 5;
 const LOGO_VIEW_BOX = `${VIEW_BOX_LEFT} 117 ${Math.ceil(VIEW_BOX_RIGHT - VIEW_BOX_LEFT)} 278`;
 
 interface LogoProps extends Omit<SVGProps<SVGSVGElement>, 'viewBox'> {
