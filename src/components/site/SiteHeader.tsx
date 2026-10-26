@@ -49,7 +49,7 @@ export function SiteHeader() {
           className="-ml-1 rounded-md p-1 transition-opacity hover:opacity-80"
           aria-label={`rufusmai – ${t('home')}`}
         >
-          <Logo className="text-xl sm:text-[1.375rem]" />
+          <Logo className="h-9 w-auto sm:h-10" title="rufusmai" />
         </Link>
 
         <nav aria-label={t('primary')} className="hidden md:block">
