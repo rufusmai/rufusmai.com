@@ -54,6 +54,7 @@ export default function LabsPage({ params }: LocaleParams) {
               as="h1"
               eyebrow={t('hero.eyebrow')}
               title={t('hero.title')}
+              titleLower={t('hero.titleLower')}
               lead={t('hero.lead')}
               className="max-w-4xl"
             />

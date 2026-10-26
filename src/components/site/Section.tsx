@@ -27,6 +27,8 @@ export function Eyebrow({ className, ...props }: React.ComponentProps<'p'>) {
 interface SectionHeaderProps {
   eyebrow?: string;
   title: string;
+  /** Lower part of a two-part headline, set in Instrument Serif italic. */
+  titleLower?: string;
   lead?: string;
   align?: 'left' | 'center';
   as?: 'h1' | 'h2';
@@ -37,6 +39,7 @@ interface SectionHeaderProps {
 export function SectionHeader({
   eyebrow,
   title,
+  titleLower,
   lead,
   align = 'left',
   as: Heading = 'h2',
@@ -58,7 +61,16 @@ export function SectionHeader({
           Heading === 'h1' ? 'text-display' : 'text-h2'
         )}
       >
-        {title}
+        {titleLower ? (
+          <>
+            <span className="block">{title}</span>{' '}
+            <span className="block font-serif font-normal tracking-[-0.01em] text-primary italic">
+              {titleLower}
+            </span>
+          </>
+        ) : (
+          title
+        )}
       </Heading>
       {lead && (
         <p className="max-w-2xl text-lead text-muted-foreground">{lead}</p>

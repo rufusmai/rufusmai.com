@@ -45,6 +45,7 @@ export default function ContactPage({ params }: LocaleParams) {
             as="h1"
             eyebrow={t('eyebrow')}
             title={t('title')}
+            titleLower={t('titleLower')}
             lead={t('lead')}
           />
         </Reveal>

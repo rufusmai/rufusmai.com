@@ -118,7 +118,8 @@
     },
     "hero": {
       "eyebrow": "rufusmai consulting",
-      "title": "Ihr digitales Produkt, gebaut von einem Senior Engineer.",
+      "title": "Ihr digitales Produkt,",
+      "titleLower": "gebaut von einem Senior Engineer.",
       "lead": "Websites, Web-Apps und Backends für Unternehmen und Gründer. Sie arbeiten direkt mit mir – ohne Agentur-Ebenen und Übergaben, dafür mit klarer Kommunikation, moderner Technik und Ergebnissen, die bleiben.",
       "cta": "Projekt anfragen",
       "secondary": "Projekte ansehen"
@@ -219,7 +220,8 @@
     },
     "hero": {
       "eyebrow": "rufusmai labs",
-      "title": "Hier entstehen meine eigenen Produkte.",
+      "title": "Hier entstehen",
+      "titleLower": "meine eigenen Produkte.",
       "lead": "Die rufusmai labs sind meine Werkstatt für Ideen, die mich nicht loslassen: kleine, scharfe Produkte, die echte Probleme lösen – schnell gebaut, früh veröffentlicht und offen weiterentwickelt."
     },
     "project": {
@@ -261,7 +263,8 @@
     },
     "hero": {
       "eyebrow": "Kontakt",
-      "title": "Lassen Sie uns sprechen.",
+      "title": "Lassen Sie uns sprechen",
+      "titleLower": "über Ihre nächste Idee.",
       "lead": "Über ein Projekt, eine Frage oder eine Idee – schreiben Sie mir eine Nachricht, ich melde mich meist innerhalb eines Werktags."
     },
     "card": {

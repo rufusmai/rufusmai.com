@@ -118,7 +118,8 @@
     },
     "hero": {
       "eyebrow": "rufusmai consulting",
-      "title": "Your digital product, built by a senior engineer.",
+      "title": "Your digital product,",
+      "titleLower": "built by a senior engineer.",
       "lead": "Websites, web apps and backends for companies and founders. You work directly with me – no agency layers, no hand-offs, just clear communication, modern technology and results that last.",
       "cta": "Request a project",
       "secondary": "See the work"
@@ -219,7 +220,8 @@
     },
     "hero": {
       "eyebrow": "rufusmai labs",
-      "title": "Where my own products take shape.",
+      "title": "Where my own products",
+      "titleLower": "take shape.",
       "lead": "rufusmai labs is my workshop for ideas I can’t stop thinking about: small, sharp products that solve real problems – built fast, shipped early and improved in the open."
     },
     "project": {
@@ -261,7 +263,8 @@
     },
     "hero": {
       "eyebrow": "Contact",
-      "title": "Let’s talk.",
+      "title": "Let’s talk",
+      "titleLower": "about your next idea.",
       "lead": "About a project, a question or an idea – write me a message and I’ll get back to you, usually within one business day."
     },
     "card": {
