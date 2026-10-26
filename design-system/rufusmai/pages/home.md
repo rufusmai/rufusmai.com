@@ -3,12 +3,13 @@
 Overrides `MASTER.md` for the landing page (`/de`, `/en`).
 
 - **Hero:** full viewport height (`min-h-[100svh]`), text on the left. A dotted terracotta flight path
-  (`src/components/motion/FlightPath.tsx`) takes off just right of the hero text, climbs in one smooth
-  curve to the top right and turns down into the right margin in a quarter circle. From there it runs
-  straight down the right margin; above the closing CTA band it turns in with a rounded corner and the
-  Maikäfer lands on the band. The beetle stays on the right the whole time. Waypoints are
-  `data-flight="x,y;x,y"` attributes (`x` as a fraction, `L`/`R` for the margin middle, `T` for right
-  of the `[data-flight-avoid]` text block). Wide screens (≥1280px) only.
+  (`src/components/motion/FlightPath.tsx`) enters from the left edge on a runway below the hero text,
+  climbs in a straight line past the right side of the text (as flat as the text allows, keeping 40px
+  clearance from each line), levels off at the top right and turns down into the right margin. From
+  there it runs straight down the right margin; above the closing CTA band it turns in with a rounded
+  corner and the Maikäfer lands on the band. Waypoints are `data-flight="x,y;x,y"` attributes (`x` as a
+  fraction, `L`/`R` for the margin middle); the text lines the take-off avoids are the children of
+  `[data-flight-avoid]`. Wide screens (≥1280px) only.
 - **Hero motion:** word-by-word headline reveal, CTAs fade in after the headline, scroll hint pulses.
   The hero part of the flight path draws in on load with an ease-in-out curve; after that the path tip
   follows a line at 60% of the viewport as you scroll, eased by a critically damped follower (no jumps,

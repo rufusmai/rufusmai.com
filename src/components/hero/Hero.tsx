@@ -26,8 +26,9 @@ export function Hero({ copy }: { copy: HeroCopy }) {
 
   return (
     <section
-      // Flight path: takes off right of the text, climbs to the top right
-      data-flight="T,0.94;R,0.2"
+      // Flight path: a runway from the left edge below the text, then the climb
+      // to the top right
+      data-flight="0,0.88;R,0.2"
       className="relative isolate flex min-h-svh items-center overflow-hidden pt-24 pb-16"
     >
       <div
@@ -40,7 +41,11 @@ export function Hero({ copy }: { copy: HeroCopy }) {
       />
 
       <div className="container">
-        <div data-flight-avoid className="flex max-w-4xl flex-col gap-6">
+        {/* items-start: every line hugs its text, so the flight path can pass close by */}
+        <div
+          data-flight-avoid
+          className="flex max-w-4xl flex-col items-start gap-6"
+        >
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

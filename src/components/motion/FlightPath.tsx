@@ -35,8 +35,8 @@ const ICON_HEADING = -45;
 /** Over this distance before the end the beetle turns upright to land. */
 const LANDING_DISTANCE = 160;
 const BEETLE_SIZE = 36;
-/** Space between the hero text and the take-off point. */
-const TEXT_GAP = 40;
+/** Space the take-off keeps from the hero text. */
+const TEXT_CLEARANCE = 40;
 /** The path needs side margins next to the content, so wide screens only. */
 const MEDIA_QUERY = '(min-width: 1280px)';
 
@@ -47,12 +47,12 @@ const MEDIA_QUERY = '(min-width: 1280px)';
  * Children mark waypoints with `data-flight="x,y;x,y"`: points as fractions of
  * the element's box, connected in document order. Instead of a fraction, `x`
  * can be `L` or `R` for the middle of the left or right margin beside the page
- * content (the first `.container`), or `T` for just right of the element's
- * `[data-flight-avoid]` block (its text). The first element is the hero
- * with two points, the take-off and the apex (only its `y` counts): the path
- * climbs from the take-off in one smooth curve and turns down into the first
- * run in a quarter circle; that part draws in on load. The rest of the path
- * runs straight from waypoint to waypoint with rounded corners.
+ * content (the first `.container`). The first element is the hero with two
+ * points, the take-off and the apex: from the take-off a runway leads below
+ * the hero text, then the path climbs past the text's right side and levels
+ * off at the apex; that part draws in on load. The text lines are the
+ * children of `[data-flight-avoid]`. The whole path runs straight from
+ * waypoint to waypoint with rounded corners.
  */
 export function FlightPath({ children }: { children: React.ReactNode }) {
   const maskId = useId();
@@ -158,9 +158,7 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
             x:
               x === 'L' || x === 'R'
                 ? margin[x]
-                : x === 'T'
-                  ? textRight(element) - box.left + TEXT_GAP
-                  : rect.left - box.left + Number(x) * rect.width,
+                : rect.left - box.left + Number(x) * rect.width,
             y: rect.top - box.top + Number(y) * rect.height,
           };
         })
@@ -170,9 +168,11 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
     const runs = rest.flat();
     if (!start || !apex || runs.length === 0) return;
 
-    const hero = toHeroCurve(start, apex, runs[0].x);
-    const heroEnd = hero.end;
-    const path = hero.path + toRoundedRuns([heroEnd, ...runs], CORNER_RADIUS);
+    const points = [...toTakeOff(start, apex, textCorners(root, box)), ...runs];
+    // The hero part ends once the path has turned down at the apex
+    const heroEnd = { x: apex.x, y: apex.y + CORNER_RADIUS };
+    const path =
+      `M ${points[0].x} ${points[0].y}` + toRoundedRuns(points, CORNER_RADIUS);
     svg.current.setAttribute('width', String(box.width));
     svg.current.setAttribute('height', String(box.height));
     svg.current.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
@@ -335,28 +335,45 @@ function createFollower(onUpdate: (value: number) => void): Follower {
   };
 }
 
-/** Right edge of an element's `[data-flight-avoid]` block (its text). */
-function textRight(element: HTMLElement) {
-  const block = element.querySelector('[data-flight-avoid]') ?? element;
-  return block.getBoundingClientRect().right;
+/**
+ * Bottom right corners of the hero text lines (the children of the first
+ * `[data-flight-avoid]`), relative to the box.
+ */
+function textCorners(root: HTMLElement, box: DOMRect): Point[] {
+  const text = root.querySelector('[data-flight-avoid]');
+  return Array.from(text?.children ?? [], (line) => {
+    const rect = line.getBoundingClientRect();
+    return { x: rect.right - box.left, y: rect.bottom - box.top };
+  });
 }
 
 /**
- * The hero part: from the take-off point, leaving horizontally, one smooth
- * curve climbs to the apex height and turns down into the vertical run at
- * `runX` in a quarter circle. The radius scales with the room available.
+ * The hero part as waypoints: a runway from the take-off point below the
+ * text, a straight climb past the right side of the text and a level stretch
+ * that ends at the apex, where the path turns down. The climb starts as early,
+ * and so as flat, as the text allows.
  */
-function toHeroCurve(start: Point, apex: Point, runX: number) {
-  const radius = Math.min(220, Math.max(90, (runX - start.x) * 0.45));
-  const top = { x: runX - radius, y: apex.y };
-  const from = { x: Math.min(start.x, top.x - 40), y: start.y };
-  const end = { x: runX, y: top.y + radius };
-  const width = top.x - from.x;
-  const path =
-    `M ${from.x} ${from.y}` +
-    ` C ${from.x + width * 0.5} ${from.y}, ${top.x - width * 0.45} ${top.y}, ${top.x} ${top.y}` +
-    ` C ${top.x + radius * ARC_HANDLE} ${top.y}, ${end.x} ${end.y - radius * ARC_HANDLE}, ${end.x} ${end.y}`;
-  return { path, end };
+function toTakeOff(start: Point, apex: Point, text: Point[]) {
+  const runwayY = Math.max(
+    start.y,
+    ...text.map((corner) => corner.y + TEXT_CLEARANCE)
+  );
+  // The level stretch has room for two full corners
+  const peak = { x: apex.x - 2 * CORNER_RADIUS, y: apex.y };
+  let climbX = start.x + CORNER_RADIUS;
+  for (const corner of text) {
+    // How far up the climb the path passes this line, from 0 to 1
+    const progress = (runwayY - corner.y - TEXT_CLEARANCE) / (runwayY - peak.y);
+    if (progress >= 1) continue;
+    const passX = corner.x + TEXT_CLEARANCE;
+    climbX = Math.max(climbX, (passX - peak.x * progress) / (1 - progress));
+  }
+  return [
+    { x: start.x, y: runwayY },
+    { x: Math.min(climbX, peak.x - CORNER_RADIUS / 2), y: runwayY },
+    peak,
+    apex,
+  ];
 }
 
 /**
