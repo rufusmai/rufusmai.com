@@ -60,7 +60,7 @@ fill in both schemes (3.3:1 against the dark background, above the 3:1 needed fo
 - **Secondary headline line:** Instrument Serif italic (400). In two-part headlines the big part is set in
   Bricolage Grotesque and the lower part in Instrument Serif, e.g. the home hero "Rufus Maiwald / baut
   Software, die abhebt." Utility: `font-serif`.
-- **Body font:** Instrument Sans (400/500), the sans sibling of Instrument Serif
+- **Body font:** Geist (400/500)
 - **Captions / labels:** Bricolage Grotesque condensed (`wdth` 80) at 13px — stack chips, years, eyebrow
   labels, footer titles. Utility `font-caption` + `text-caption`; no monospace font is loaded.
 - Loaded with `next/font/google` (no CSS `@import`), exposed as `--font-heading`, `--font-serif`,

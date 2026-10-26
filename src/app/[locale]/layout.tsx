@@ -1,11 +1,7 @@
 import '../globals.css';
 
 import type { Metadata, Viewport } from 'next';
-import {
-  Bricolage_Grotesque,
-  Instrument_Sans,
-  Instrument_Serif,
-} from 'next/font/google';
+import { Bricolage_Grotesque, Geist, Instrument_Serif } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { hasLocale } from 'next-intl';
@@ -37,9 +33,9 @@ const instrumentSerif = Instrument_Serif({
   style: ['normal', 'italic'],
 });
 
-// Body text: Instrument Sans, the sans sibling of Instrument Serif
-const instrumentSans = Instrument_Sans({
-  variable: '--font-instrument-sans',
+// Body text
+const geist = Geist({
+  variable: '--font-geist',
   subsets: ['latin'],
 });
 
@@ -93,7 +89,7 @@ export default async function LocaleLayout({
       className={cn(
         bricolageGrotesque.variable,
         instrumentSerif.variable,
-        instrumentSans.variable
+        geist.variable
       )}
     >
       <head>

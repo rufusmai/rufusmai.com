@@ -28,16 +28,16 @@ export async function loadOgFonts(text: {
   serif: string;
 }): Promise<OgFont[]> {
   try {
-    const [instrumentSans, bricolage, instrumentSerif] = await Promise.all([
-      loadGoogleFont('Instrument+Sans:wght@400', text.body),
+    const [geist, bricolage, instrumentSerif] = await Promise.all([
+      loadGoogleFont('Geist:wght@400', text.body),
       loadGoogleFont('Bricolage+Grotesque:opsz,wght@96,800', text.heading),
       loadGoogleFont('Instrument+Serif:ital@1', text.serif),
     ]);
     return [
       // The first font is the default for text without a font family
       {
-        name: 'Instrument Sans',
-        data: instrumentSans,
+        name: 'Geist',
+        data: geist,
         weight: 400,
         style: 'normal',
       },
