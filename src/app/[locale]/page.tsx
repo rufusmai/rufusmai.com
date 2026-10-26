@@ -117,7 +117,6 @@ export default function HomePage({ params }: LocaleParams) {
           ctaLabs: t('hero.ctaLabs'),
           ctaContact: t('hero.ctaContact'),
           scroll: t('hero.scroll'),
-          sceneLabel: t('hero.sceneLabel'),
         }}
       />
 

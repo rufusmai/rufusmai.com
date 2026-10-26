@@ -45,8 +45,8 @@ The site has a **light design only** (no dark mode, `color-scheme: light`).
 | Accent (hover fills, highlights) | `#b04a26` | `--accent`            |
 | Text on accent                   | `#ffffff` | `--accent-foreground` |
 | Text on button                   | `#ffffff` | `--button-foreground` |
-| Wing cover (logo, 3D only)       | `#c75a34` | `--brand-wing`        |
-| Ink (logo, 3D)                   | `#18181b` | `--brand-ink`         |
+| Wing cover (logo only)           | `#c75a34` | `--brand-wing`        |
+| Ink (logo)                       | `#18181b` | `--brand-ink`         |
 | Ring                             | `#b04a26` | `--ring`              |
 | Destructive                      | `#dc2626` | `--destructive`       |
 
@@ -126,9 +126,9 @@ Container: `max-w-6xl`, 16px gutter on mobile, 24px from `sm`, 32px from `lg`.
 
 ## Style Guidelines
 
-**Style:** Motion-Driven — warm, editorial minimalism with one bold 3D moment.
+**Style:** Motion-Driven — warm, editorial minimalism.
 
-**Keywords:** smooth transitions, scroll reveals, staggered entrances, tactile micro-interactions, 3D hero.
+**Keywords:** smooth transitions, scroll reveals, staggered entrances, tactile micro-interactions.
 
 ### Page Pattern
 
@@ -136,13 +136,13 @@ Container: `max-w-6xl`, 16px gutter on mobile, 24px from `sm`, 32px from `lg`.
 
 - Keep the narrative readable without any scroll-driven effect; DOM order is the reading order.
 - **CTA Placement:** a mini CTA at the end of each chapter + a final contact CTA.
-- **Home order:** 3D hero → contact card → labs → consulting → experience → contact CTA.
+- **Home order:** hero → contact card → labs → consulting → experience → contact CTA.
 
 ---
 
 ## Motion
 
-Library: [`motion`](https://motion.dev) (`motion/react`) for UI, React Three Fiber for the hero scene.
+Library: [`motion`](https://motion.dev) (`motion/react`). No WebGL / three.js.
 
 | Kind             | Duration  | Easing / physics                         |
 | ---------------- | --------- | ---------------------------------------- |
@@ -153,8 +153,6 @@ Library: [`motion`](https://motion.dev) (`motion/react`) for UI, React Three Fib
 
 - Animate only `transform` and `opacity`.
 - `MotionConfig reducedMotion="user"` at the root; reveals render in their final state under reduced motion.
-- The 3D hero pauses when off-screen, lowers DPR when frames drop and falls back to the static SVG logo
-  under reduced motion or without WebGL.
 - No scroll hijacking; scroll-linked effects read native scroll position.
 
 ---
@@ -180,7 +178,7 @@ Library: [`motion`](https://motion.dev) (`motion/react`) for UI, React Three Fib
 - [ ] Hover states with smooth transitions (150-300ms)
 - [ ] Text contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected (incl. 3D fallback)
+- [ ] `prefers-reduced-motion` respected
 - [ ] Responsive: 375px, 768px, 1024px, 1440px
 - [ ] No content hidden behind the fixed header
 - [ ] No horizontal scroll on mobile

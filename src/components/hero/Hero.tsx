@@ -1,26 +1,14 @@
 'use client';
 
 import { ArrowDownIcon, ArrowRightIcon } from 'lucide-react';
-import { motion, useReducedMotion, useScroll } from 'motion/react';
-import dynamic from 'next/dynamic';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 
-import { Logo } from '@/components/site/Logo';
 import { Eyebrow } from '@/components/site/Section';
 import { Button } from '@/components/ui/button';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { useMounted } from '@/hooks/useMounted';
 import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
-import type { SceneColors } from './BeetleModel';
-
-const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
-
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
-
-// Logo colours from the branding: ink and wing covers
-const COLORS: SceneColors = { ink: '#18181b', wing: '#c75a34' };
 
 export interface HeroCopy {
   eyebrow: string;
@@ -31,56 +19,13 @@ export interface HeroCopy {
   ctaLabs: string;
   ctaContact: string;
   scroll: string;
-  sceneLabel: string;
 }
 
 export function Hero({ copy }: { copy: HeroCopy }) {
-  const section = useRef<HTMLElement>(null);
-  const pointer = useRef({ x: 0, y: 0 });
-  const reduceMotion = useReducedMotion();
-  const sceneEnabled = useSceneSupport(reduceMotion ?? false);
-  const [visible, setVisible] = useState(true);
-  const [ready, setReady] = useState(false);
-  const compact = useMediaQuery('(max-width: 767px)');
-
-  const { scrollYProgress } = useScroll({
-    target: section,
-    offset: ['start start', 'end start'],
-  });
-
-  // Pointer position across the whole hero, normalised to -1…1
-  useEffect(() => {
-    const element = section.current;
-    if (!element || !sceneEnabled) return;
-    const handleMove = (event: PointerEvent) => {
-      const rect = element.getBoundingClientRect();
-      pointer.current = {
-        x: ((event.clientX - rect.left) / rect.width) * 2 - 1,
-        y: ((event.clientY - rect.top) / rect.height) * 2 - 1,
-      };
-    };
-    window.addEventListener('pointermove', handleMove, { passive: true });
-    return () => window.removeEventListener('pointermove', handleMove);
-  }, [sceneEnabled]);
-
-  // Stop rendering while the hero is off screen
-  useEffect(() => {
-    const element = section.current;
-    if (!element) return;
-    const observer = new IntersectionObserver(([entry]) =>
-      setVisible(entry.isIntersecting)
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
   const words = copy.title.split(' ');
 
   return (
-    <section
-      ref={section}
-      className="relative isolate flex min-h-svh items-center overflow-hidden pt-24 pb-16"
-    >
+    <section className="relative isolate flex min-h-svh items-center overflow-hidden pt-24 pb-16">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_75%_35%,color-mix(in_oklab,var(--brand-wing)_18%,transparent),transparent_70%)]"
@@ -90,43 +35,8 @@ export function Hero({ copy }: { copy: HeroCopy }) {
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(var(--border)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] [background-size:28px_28px]"
       />
 
-      <div className="container grid items-center gap-8 lg:grid-cols-12 lg:gap-6">
-        <div className="relative order-first mx-auto aspect-square w-full max-w-[15rem] sm:max-w-sm lg:order-last lg:col-span-5 lg:max-w-none">
-          <div
-            role="img"
-            aria-label={copy.sceneLabel}
-            className="absolute inset-0"
-          >
-            <Logo
-              variant="icon"
-              aria-hidden="true"
-              className={cn(
-                'absolute inset-[18%] size-auto transition-opacity duration-700',
-                !reduceMotion && 'animate-float',
-                ready ? 'opacity-0' : 'opacity-100'
-              )}
-            />
-            {sceneEnabled && (
-              <div
-                className={cn(
-                  'absolute inset-[-15%] transition-opacity duration-1000',
-                  ready ? 'opacity-100' : 'opacity-0'
-                )}
-              >
-                <HeroScene
-                  colors={COLORS}
-                  pointer={pointer}
-                  progress={scrollYProgress}
-                  active={visible}
-                  compact={compact}
-                  onReady={() => setReady(true)}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6 lg:col-span-7">
+      <div className="container">
+        <div className="flex max-w-4xl flex-col gap-6">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -234,19 +144,4 @@ function Word({
       {' '}
     </span>
   );
-}
-
-/** WebGL scene only for visitors without reduced motion and with WebGL. */
-function useSceneSupport(reduceMotion: boolean) {
-  const mounted = useMounted();
-  const [supported] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    try {
-      const canvas = document.createElement('canvas');
-      return Boolean(canvas.getContext('webgl2') ?? canvas.getContext('webgl'));
-    } catch {
-      return false;
-    }
-  });
-  return mounted && supported && !reduceMotion;
 }
