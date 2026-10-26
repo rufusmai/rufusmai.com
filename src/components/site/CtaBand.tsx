@@ -10,13 +10,15 @@ interface CtaBandProps {
   title: string;
   body: string;
   button: string;
+  /** Waypoints for a surrounding `FlightPath`, relative to the band. */
+  flight?: string;
 }
 
 /** Closing call to action of a page. */
-export function CtaBand({ title, body, button }: CtaBandProps) {
+export function CtaBand({ title, body, button, flight }: CtaBandProps) {
   return (
     <section className="py-16 sm:py-24">
-      <div className="container">
+      <div className="container" data-flight={flight}>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-button px-6 py-14 text-button-foreground sm:px-12 sm:py-16">
             <Logo

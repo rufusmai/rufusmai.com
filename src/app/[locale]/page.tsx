@@ -13,6 +13,7 @@ import { use } from 'react';
 
 import { ContactCard } from '@/components/contact/ContactCard';
 import { Hero } from '@/components/hero/Hero';
+import { FlightPath } from '@/components/motion/FlightPath';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectLinks } from '@/components/projects/ProjectLinks';
@@ -107,30 +108,34 @@ export default function HomePage({ params }: LocaleParams) {
         }}
       />
 
-      <Hero
-        copy={{
-          eyebrow: t('hero.eyebrow'),
-          name: profile.name,
-          title: t('hero.title'),
-          lead: t('hero.lead'),
-          ctaConsulting: t('hero.ctaConsulting'),
-          ctaLabs: t('hero.ctaLabs'),
-          ctaContact: t('hero.ctaContact'),
-          scroll: t('hero.scroll'),
-        }}
-      />
+      <FlightPath>
+        <Hero
+          copy={{
+            eyebrow: t('hero.eyebrow'),
+            name: profile.name,
+            title: t('hero.title'),
+            lead: t('hero.lead'),
+            ctaConsulting: t('hero.ctaConsulting'),
+            ctaLabs: t('hero.ctaLabs'),
+            ctaContact: t('hero.ctaContact'),
+            scroll: t('hero.scroll'),
+          }}
+        />
 
-      <About locale={locale} />
-      <Brands />
-      <LabsProjects locale={locale} />
-      <ConsultingProjects />
-      <Journey locale={locale} />
+        <About locale={locale} />
+        <Brands />
+        <LabsProjects locale={locale} />
+        <ConsultingProjects />
+        <Journey locale={locale} />
 
-      <CtaBand
-        title={t('cta.title')}
-        body={t('cta.body')}
-        button={t('cta.button')}
-      />
+        <CtaBand
+          title={t('cta.title')}
+          body={t('cta.body')}
+          button={t('cta.button')}
+          // The beetle lands on top of the band
+          flight="0.9,-0.07"
+        />
+      </FlightPath>
     </>
   );
 }
@@ -145,7 +150,11 @@ function About({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <Section id="about" className="scroll-mt-16">
+    <Section
+      id="about"
+      className="scroll-mt-16"
+      data-flight="0.97,0.45;0.97,0.93"
+    >
       <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
         <Reveal className="lg:col-span-7">
           <div className="flex flex-col gap-6">
@@ -192,7 +201,7 @@ function Brands() {
   ] as const;
 
   return (
-    <Section className="pt-0 sm:pt-0">
+    <Section className="pt-0 sm:pt-0" data-flight="0.03,0.04;0.03,0.9">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <Stagger className="mt-10 grid gap-4 md:grid-cols-2">
         {brands.map(({ key, href, icon: Icon }) => (
@@ -225,7 +234,7 @@ function LabsProjects({ locale }: { locale: Locale }) {
   const tCommon = useTranslations('common');
 
   return (
-    <Section className="bg-muted/40">
+    <Section className="bg-muted/40" data-flight="0.97,0.07;0.97,0.93">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -290,7 +299,7 @@ function ConsultingProjects() {
   const t = useTranslations('home.consulting');
 
   return (
-    <Section>
+    <Section data-flight="0.03,0.06;0.03,0.94">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -319,7 +328,7 @@ function Journey({ locale }: { locale: Locale }) {
   const t = useTranslations('home.journey');
 
   return (
-    <Section className="bg-muted/40">
+    <Section className="bg-muted/40" data-flight="0.97,0.07;0.97,0.9">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <div className="mt-12 grid gap-12 lg:grid-cols-2">
         <Timeline

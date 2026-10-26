@@ -153,7 +153,7 @@ Library: [`motion`](https://motion.dev) (`motion/react`). No WebGL / three.js.
 
 - Animate only `transform` and `opacity`.
 - `MotionConfig reducedMotion="user"` at the root; reveals render in their final state under reduced motion.
-- No scroll hijacking; scroll-linked effects read native scroll position.
+- No scroll hijacking; scroll-linked effects (e.g. the home page flight path) read native scroll position.
 
 ---
 
