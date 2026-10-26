@@ -26,8 +26,8 @@ export function Hero({ copy }: { copy: HeroCopy }) {
 
   return (
     <section
-      // Flight path: from the lower left through the empty right side
-      data-flight="0,0.88;0.48,0.86;0.72,0.64;0.8,0.36;0.86,0.25;R,0.36"
+      // Flight path: takes off right of the text, climbs to the top right
+      data-flight="T,0.94;R,0.2"
       className="relative isolate flex min-h-svh items-center overflow-hidden pt-24 pb-16"
     >
       <div
@@ -40,7 +40,7 @@ export function Hero({ copy }: { copy: HeroCopy }) {
       />
 
       <div className="container">
-        <div className="flex max-w-4xl flex-col gap-6">
+        <div data-flight-avoid className="flex max-w-4xl flex-col gap-6">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

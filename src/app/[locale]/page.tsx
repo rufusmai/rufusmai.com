@@ -132,8 +132,8 @@ export default function HomePage({ params }: LocaleParams) {
           title={t('cta.title')}
           body={t('cta.body')}
           button={t('cta.button')}
-          // The beetle lands on top of the band
-          flight="0.9,-0.07"
+          // Straight down the right margin, then the beetle lands on the band
+          flight="R,-0.25;0.9,-0.07"
         />
       </FlightPath>
     </>
@@ -150,7 +150,7 @@ function About({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <Section id="about" className="scroll-mt-16" data-flight="R,0.45;R,0.92">
+    <Section id="about" className="scroll-mt-16">
       <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
         <Reveal className="lg:col-span-7">
           <div className="flex flex-col gap-6">
@@ -199,7 +199,6 @@ function Brands() {
   return (
     <Section
       className="pt-0 sm:pt-0" // This section has no top padding: cross over above its top edge
-      data-flight="L,-0.05;L,0.9"
     >
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <Stagger className="mt-10 grid gap-4 md:grid-cols-2">
@@ -233,7 +232,7 @@ function LabsProjects({ locale }: { locale: Locale }) {
   const tCommon = useTranslations('common');
 
   return (
-    <Section className="bg-muted/40" data-flight="R,0.07;R,0.93">
+    <Section className="bg-muted/40">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -298,7 +297,7 @@ function ConsultingProjects() {
   const t = useTranslations('home.consulting');
 
   return (
-    <Section data-flight="L,0.06;L,0.94">
+    <Section>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -327,7 +326,7 @@ function Journey({ locale }: { locale: Locale }) {
   const t = useTranslations('home.journey');
 
   return (
-    <Section className="bg-muted/40" data-flight="R,0.07;R,0.9">
+    <Section className="bg-muted/40">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <div className="mt-12 grid gap-12 lg:grid-cols-2">
         <Timeline

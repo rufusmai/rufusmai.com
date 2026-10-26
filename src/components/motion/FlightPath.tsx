@@ -35,8 +35,8 @@ const ICON_HEADING = -45;
 /** Over this distance before the end the beetle turns upright to land. */
 const LANDING_DISTANCE = 160;
 const BEETLE_SIZE = 36;
-/** Keeps the hero curve (and the beetle) this far from the page edges. */
-const EDGE_PADDING = BEETLE_SIZE;
+/** Space between the hero text and the take-off point. */
+const TEXT_GAP = 40;
 /** The path needs side margins next to the content, so wide screens only. */
 const MEDIA_QUERY = '(min-width: 1280px)';
 
@@ -47,9 +47,12 @@ const MEDIA_QUERY = '(min-width: 1280px)';
  * Children mark waypoints with `data-flight="x,y;x,y"`: points as fractions of
  * the element's box, connected in document order. Instead of a fraction, `x`
  * can be `L` or `R` for the middle of the left or right margin beside the page
- * content (the first `.container`). The first element is the hero: its part
- * is a free curve that draws in on load; the rest of the path runs straight
- * along the margins with rounded corners.
+ * content (the first `.container`), or `T` for just right of the element's
+ * `[data-flight-avoid]` block (its text). The first element is the hero
+ * with two points, the take-off and the apex (only its `y` counts): the path
+ * climbs from the take-off in one smooth curve and turns down into the first
+ * run in a quarter circle; that part draws in on load. The rest of the path
+ * runs straight from waypoint to waypoint with rounded corners.
  */
 export function FlightPath({ children }: { children: React.ReactNode }) {
   const maskId = useId();
@@ -155,20 +158,21 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
             x:
               x === 'L' || x === 'R'
                 ? margin[x]
-                : rect.left - box.left + Number(x) * rect.width,
+                : x === 'T'
+                  ? textRight(element) - box.left + TEXT_GAP
+                  : rect.left - box.left + Number(x) * rect.width,
             y: rect.top - box.top + Number(y) * rect.height,
           };
         })
       );
     });
-    const [hero = [], ...rest] = groups;
+    const [[start, apex] = [], ...rest] = groups;
     const runs = rest.flat();
-    const heroEnd = hero.at(-1);
-    if (!heroEnd || runs.length === 0) return;
+    if (!start || !apex || runs.length === 0) return;
 
-    const path =
-      toSpline(hero, runs[0], EDGE_PADDING, box.width - EDGE_PADDING) +
-      toRoundedRuns([heroEnd, ...runs], CORNER_RADIUS);
+    const hero = toHeroCurve(start, apex, runs[0].x);
+    const heroEnd = hero.end;
+    const path = hero.path + toRoundedRuns([heroEnd, ...runs], CORNER_RADIUS);
     svg.current.setAttribute('width', String(box.width));
     svg.current.setAttribute('height', String(box.height));
     svg.current.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
@@ -331,34 +335,28 @@ function createFollower(onUpdate: (value: number) => void): Follower {
   };
 }
 
+/** Right edge of an element's `[data-flight-avoid]` block (its text). */
+function textRight(element: HTMLElement) {
+  const block = element.querySelector('[data-flight-avoid]') ?? element;
+  return block.getBoundingClientRect().right;
+}
+
 /**
- * Catmull-Rom spline through the hero waypoints, kept within the page edges.
- * If the next waypoint is straight below the last one, the curve arrives
- * vertically so it flows into the margin run without a kink.
+ * The hero part: from the take-off point, leaving horizontally, one smooth
+ * curve climbs to the apex height and turns down into the vertical run at
+ * `runX` in a quarter circle. The radius scales with the room available.
  */
-function toSpline(points: Point[], next: Point, minX: number, maxX: number) {
-  const clampX = (x: number) => Math.min(maxX, Math.max(minX, x));
-  const all = [...points, next];
-  let path = `M ${points[0].x} ${points[0].y}`;
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = all[i - 1] ?? all[i];
-    const p1 = all[i];
-    const p2 = all[i + 1];
-    const p3 = all[i + 2];
-    const c1 = {
-      x: clampX(p1.x + (p2.x - p0.x) / 6),
-      y: p1.y + (p2.y - p0.y) / 6,
-    };
-    const c2 =
-      i === points.length - 2 && Math.abs(p3.x - p2.x) < 0.5
-        ? { x: p2.x, y: p2.y - (p2.y - p1.y) / 2 }
-        : {
-            x: clampX(p2.x - (p3.x - p1.x) / 6),
-            y: p2.y - (p3.y - p1.y) / 6,
-          };
-    path += ` C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${p2.x} ${p2.y}`;
-  }
-  return path;
+function toHeroCurve(start: Point, apex: Point, runX: number) {
+  const radius = Math.min(220, Math.max(90, (runX - start.x) * 0.45));
+  const top = { x: runX - radius, y: apex.y };
+  const from = { x: Math.min(start.x, top.x - 40), y: start.y };
+  const end = { x: runX, y: top.y + radius };
+  const width = top.x - from.x;
+  const path =
+    `M ${from.x} ${from.y}` +
+    ` C ${from.x + width * 0.5} ${from.y}, ${top.x - width * 0.45} ${top.y}, ${top.x} ${top.y}` +
+    ` C ${top.x + radius * ARC_HANDLE} ${top.y}, ${end.x} ${end.y - radius * ARC_HANDLE}, ${end.x} ${end.y}`;
+  return { path, end };
 }
 
 /**
