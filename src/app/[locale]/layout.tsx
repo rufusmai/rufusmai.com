@@ -3,9 +3,9 @@ import '../globals.css';
 import type { Metadata, Viewport } from 'next';
 import {
   Bricolage_Grotesque,
+  Instrument_Sans,
   Instrument_Serif,
   JetBrains_Mono,
-  Space_Grotesk,
 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
@@ -37,8 +37,9 @@ const instrumentSerif = Instrument_Serif({
   style: ['normal', 'italic'],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+// Body text: Instrument Sans, the sans sibling of Instrument Serif
+const instrumentSans = Instrument_Sans({
+  variable: '--font-instrument-sans',
   subsets: ['latin'],
 });
 
@@ -97,7 +98,7 @@ export default async function LocaleLayout({
       className={cn(
         bricolageGrotesque.variable,
         instrumentSerif.variable,
-        spaceGrotesk.variable,
+        instrumentSans.variable,
         jetBrainsMono.variable
       )}
     >

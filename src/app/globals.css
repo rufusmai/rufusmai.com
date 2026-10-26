@@ -30,7 +30,8 @@
   --color-brand-wing: var(--brand-wing);
   --color-brand-ink: var(--brand-ink);
 
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading:
     var(--font-bricolage-grotesque), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;

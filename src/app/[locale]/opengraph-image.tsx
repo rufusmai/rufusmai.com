@@ -40,7 +40,7 @@ export default async function OpenGraphImage({
         background:
           'radial-gradient(circle at 80% 30%, rgba(209, 99, 61, 0.28), transparent 55%), #18181b',
         color: '#fafafa',
-        fontFamily: 'Space Grotesk',
+        fontFamily: 'Instrument Sans',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 680 }}>

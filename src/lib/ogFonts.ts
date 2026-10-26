@@ -28,16 +28,16 @@ export async function loadOgFonts(text: {
   serif: string;
 }): Promise<OgFont[]> {
   try {
-    const [spaceGrotesk, bricolage, instrument] = await Promise.all([
-      loadGoogleFont('Space+Grotesk:wght@400', text.body),
+    const [instrumentSans, bricolage, instrumentSerif] = await Promise.all([
+      loadGoogleFont('Instrument+Sans:wght@400', text.body),
       loadGoogleFont('Bricolage+Grotesque:opsz,wght@96,800', text.heading),
       loadGoogleFont('Instrument+Serif:ital@1', text.serif),
     ]);
     return [
       // The first font is the default for text without a font family
       {
-        name: 'Space Grotesk',
-        data: spaceGrotesk,
+        name: 'Instrument Sans',
+        data: instrumentSans,
         weight: 400,
         style: 'normal',
       },
@@ -49,7 +49,7 @@ export async function loadOgFonts(text: {
       },
       {
         name: 'Instrument Serif',
-        data: instrument,
+        data: instrumentSerif,
         weight: 400,
         style: 'italic',
       },
