@@ -19,16 +19,23 @@ interface Geometry {
   heroEndIndex: number;
 }
 
-const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
+const EASE_IN_OUT = [0.65, 0, 0.35, 1] as const;
+const INTRO_DURATION = 2.4;
+/** Time the drawn length takes to catch up with the scroll position. */
+const SMOOTH_TIME = 0.45;
 /** The tip of the path follows this line, as a fraction of the viewport. */
 const READING_LINE = 0.6;
 const SAMPLE_STEP = 6;
+/** Radius of the rounded corners between margin runs and crossings. */
+const CORNER_RADIUS = 140;
+/** Bézier handle length for a circle-like quarter arc. */
+const ARC_HANDLE = 0.5523;
 /** The Maikäfer in the icon flies towards its top right. */
 const ICON_HEADING = -45;
 /** Over this distance before the end the beetle turns upright to land. */
 const LANDING_DISTANCE = 160;
 const BEETLE_SIZE = 36;
-/** Keeps the curve (and the beetle) this far from the page edges. */
+/** Keeps the hero curve (and the beetle) this far from the page edges. */
 const EDGE_PADDING = BEETLE_SIZE;
 /** The path needs side margins next to the content, so wide screens only. */
 const MEDIA_QUERY = '(min-width: 1280px)';
@@ -40,8 +47,9 @@ const MEDIA_QUERY = '(min-width: 1280px)';
  * Children mark waypoints with `data-flight="x,y;x,y"`: points as fractions of
  * the element's box, connected in document order. Instead of a fraction, `x`
  * can be `L` or `R` for the middle of the left or right margin beside the page
- * content (the first `.container`). The first element is the hero, whose part
- * of the path draws in on load.
+ * content (the first `.container`). The first element is the hero: its part
+ * is a free curve that draws in on load; the rest of the path runs straight
+ * along the margins with rounded corners.
  */
 export function FlightPath({ children }: { children: React.ReactNode }) {
   const maskId = useId();
@@ -51,48 +59,77 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
   const reveal = useRef<SVGPathElement>(null);
   const beetle = useRef<HTMLDivElement>(null);
   const geometry = useRef<Geometry | null>(null);
-  const intro = useRef(0);
+  const introState = useRef<'waiting' | 'running' | 'done'>('waiting');
   const reduceMotion = useReducedMotion() ?? false;
   const { scrollY } = useScroll();
 
-  const render = useCallback(() => {
+  // The scroll position sets the goal; the drawn length eases towards it, so
+  // the line and the beetle never jump.
+  const follower = useRef<Follower | null>(null);
+
+  /** Draws the path up to `length` and puts the beetle at its tip. */
+  const paint = useCallback((length: number) => {
     const g = geometry.current;
-    const root = container.current;
-    if (!g || !root || !trail.current || !reveal.current || !beetle.current) {
-      return;
-    }
+    if (!g || !trail.current || !reveal.current || !beetle.current) return;
+    const at = Math.min(g.total, Math.max(0, length));
 
-    let drawn = g.total;
-    if (!reduceMotion) {
-      // Path length up to the reading line; the hero part is always included
-      const line =
-        window.innerHeight * READING_LINE - root.getBoundingClientRect().top;
-      let target = g.samples[g.heroEndIndex].length;
-      for (let i = g.heroEndIndex; i < g.samples.length; i++) {
-        if (g.samples[i].y > line) break;
-        target = g.samples[i].length;
-      }
-      drawn = target * intro.current;
-    }
+    reveal.current.style.strokeDashoffset = String(g.total - at);
 
-    reveal.current.style.strokeDashoffset = String(g.total - drawn);
-
-    const tip = trail.current.getPointAtLength(drawn);
-    const behind = trail.current.getPointAtLength(Math.max(0, drawn - 8));
+    const tip = trail.current.getPointAtLength(at);
+    const behind = trail.current.getPointAtLength(Math.max(0, at - 8));
     let rotation =
       (Math.atan2(tip.y - behind.y, tip.x - behind.x) * 180) / Math.PI -
       ICON_HEADING;
     rotation = ((rotation + 540) % 360) - 180;
-    const toLanding = g.total - drawn;
+    const toLanding = g.total - at;
     if (toLanding < LANDING_DISTANCE) {
       rotation *= toLanding / LANDING_DISTANCE;
     }
 
-    beetle.current.style.opacity = drawn > 1 ? '1' : '0';
+    beetle.current.style.opacity = at > 1 ? '1' : '0';
     beetle.current.style.transform = `translate(${tip.x - BEETLE_SIZE / 2}px, ${
       tip.y - BEETLE_SIZE / 2
     }px) rotate(${rotation}deg)`;
+  }, []);
+
+  /** Path length up to the reading line; the hero part is always included. */
+  const lengthAtReadingLine = useCallback(() => {
+    const g = geometry.current;
+    const root = container.current;
+    if (!g || !root) return 0;
+    if (reduceMotion) return g.total;
+    const line =
+      window.innerHeight * READING_LINE - root.getBoundingClientRect().top;
+    let length = g.samples[g.heroEndIndex].length;
+    for (let i = g.heroEndIndex; i < g.samples.length; i++) {
+      if (g.samples[i].y > line) return length;
+      length = g.samples[i].length;
+    }
+    // The reading line is past the end: the beetle has landed
+    return g.total;
   }, [reduceMotion]);
+
+  const startIntro = useCallback(() => {
+    introState.current = 'running';
+    const end = lengthAtReadingLine();
+    if (reduceMotion) {
+      follower.current?.jump(end);
+      introState.current = 'done';
+      return;
+    }
+    // The first flight eases in and out; afterwards the spring takes over
+    animate(0, end, {
+      duration: INTRO_DURATION,
+      delay: 0.3,
+      ease: EASE_IN_OUT,
+      onUpdate: paint,
+      onComplete: () => {
+        follower.current?.jump(end);
+        introState.current = 'done';
+        follower.current?.follow(lengthAtReadingLine());
+      },
+    });
+  }, [lengthAtReadingLine, paint, reduceMotion]);
 
   const build = useCallback(() => {
     const root = container.current;
@@ -108,26 +145,30 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
       L: content ? (content.left - box.left) / 2 : 0,
       R: content ? (content.right + box.right) / 2 - box.left : box.width,
     };
-    const points: Point[] = [];
-    let heroEnd: Point | undefined;
+    const groups: Point[][] = [];
     root.querySelectorAll<HTMLElement>('[data-flight]').forEach((element) => {
       const rect = element.getBoundingClientRect();
-      const own = (element.dataset.flight ?? '').split(';').map((pair) => {
-        const [x, y] = pair.split(',');
-        return {
-          x:
-            x === 'L' || x === 'R'
-              ? margin[x]
-              : rect.left - box.left + Number(x) * rect.width,
-          y: rect.top - box.top + Number(y) * rect.height,
-        };
-      });
-      heroEnd ??= own.at(-1);
-      points.push(...own);
+      groups.push(
+        (element.dataset.flight ?? '').split(';').map((pair) => {
+          const [x, y] = pair.split(',');
+          return {
+            x:
+              x === 'L' || x === 'R'
+                ? margin[x]
+                : rect.left - box.left + Number(x) * rect.width,
+            y: rect.top - box.top + Number(y) * rect.height,
+          };
+        })
+      );
     });
-    if (points.length < 2 || !heroEnd) return;
+    const [hero = [], ...rest] = groups;
+    const runs = rest.flat();
+    const heroEnd = hero.at(-1);
+    if (!heroEnd || runs.length === 0) return;
 
-    const path = toSmoothPath(points, EDGE_PADDING, box.width - EDGE_PADDING);
+    const path =
+      toSpline(hero, runs[0], EDGE_PADDING, box.width - EDGE_PADDING) +
+      toRoundedRuns([heroEnd, ...runs], CORNER_RADIUS);
     svg.current.setAttribute('width', String(box.width));
     svg.current.setAttribute('height', String(box.height));
     svg.current.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
@@ -150,8 +191,20 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
 
     reveal.current.style.strokeDasharray = `${total} ${total}`;
     geometry.current = { total, samples, heroEndIndex };
-    render();
-  }, [render]);
+
+    if (introState.current === 'waiting') {
+      startIntro();
+    } else if (introState.current === 'done') {
+      paint(follower.current?.value() ?? 0);
+      follower.current?.follow(lengthAtReadingLine());
+    }
+  }, [lengthAtReadingLine, paint, startIntro]);
+
+  useEffect(() => {
+    const instance = createFollower(paint);
+    follower.current = instance;
+    return () => instance.stop();
+  }, [paint]);
 
   // Rebuild whenever the page layout changes, e.g. after fonts and images load
   useEffect(() => {
@@ -173,26 +226,11 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
     };
   }, [build]);
 
-  // The hero part draws in once on load
-  useEffect(() => {
-    if (reduceMotion) {
-      intro.current = 1;
-      render();
-      return;
+  useMotionValueEvent(scrollY, 'change', () => {
+    if (introState.current === 'done') {
+      follower.current?.follow(lengthAtReadingLine());
     }
-    const controls = animate(0, 1, {
-      duration: 2.2,
-      delay: 0.4,
-      ease: EASE_OUT_EXPO,
-      onUpdate: (value) => {
-        intro.current = value;
-        render();
-      },
-    });
-    return () => controls.stop();
-  }, [reduceMotion, render]);
-
-  useMotionValueEvent(scrollY, 'change', render);
+  });
 
   return (
     <div ref={container} className="relative isolate overflow-x-clip">
@@ -230,46 +268,133 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
   );
 }
 
-/**
- * Smooth path through all points, as cubic Bézier segments. Two waypoints in
- * the same margin are joined by a straight run, and where a run meets a
- * crossing the curve leaves and arrives vertically, so they join without a
- * kink. Everything else is a Catmull-Rom spline, kept within the page edges.
- */
-function toSmoothPath(points: Point[], minX: number, maxX: number) {
-  const clampX = (x: number) => Math.min(maxX, Math.max(minX, x));
-  const sameX = (a: Point, b: Point) => Math.abs(a.x - b.x) < 0.5;
+interface Follower {
+  follow: (goal: number) => void;
+  jump: (value: number) => void;
+  value: () => number;
+  stop: () => void;
+}
 
+/**
+ * Moves a value towards a goal like a critically damped spring (the approach
+ * of Unity's SmoothDamp): it starts from rest, eases in and out and never
+ * overshoots, so the beetle can't fly past the landing point.
+ */
+function createFollower(onUpdate: (value: number) => void): Follower {
+  let value = 0;
+  let velocity = 0;
+  let goal = 0;
+  let frame = 0;
+  let last = 0;
+
+  const tick = (time: number) => {
+    const dt = Math.min(0.064, Math.max(0.001, (time - last) / 1000));
+    last = time;
+    const omega = 2 / SMOOTH_TIME;
+    const x = omega * dt;
+    const decay = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
+    const change = value - goal;
+    const step = (velocity + omega * change) * dt;
+    velocity = (velocity - omega * step) * decay;
+    value = goal + (change + step) * decay;
+
+    if (Math.abs(goal - value) < 0.25 && Math.abs(velocity) < 0.5) {
+      value = goal;
+      velocity = 0;
+      frame = 0;
+    } else {
+      frame = requestAnimationFrame(tick);
+    }
+    onUpdate(value);
+  };
+
+  return {
+    follow: (next) => {
+      goal = next;
+      if (!frame) {
+        last = performance.now();
+        frame = requestAnimationFrame(tick);
+      }
+    },
+    jump: (next) => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      value = goal = next;
+      velocity = 0;
+      onUpdate(value);
+    },
+    value: () => value,
+    stop: () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    },
+  };
+}
+
+/**
+ * Catmull-Rom spline through the hero waypoints, kept within the page edges.
+ * If the next waypoint is straight below the last one, the curve arrives
+ * vertically so it flows into the margin run without a kink.
+ */
+function toSpline(points: Point[], next: Point, minX: number, maxX: number) {
+  const clampX = (x: number) => Math.min(maxX, Math.max(minX, x));
+  const all = [...points, next];
   let path = `M ${points[0].x} ${points[0].y}`;
   for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] ?? points[i];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] ?? p2;
-    const midY = (p1.y + p2.y) / 2;
-
-    let c1: Point;
-    let c2: Point;
-    if (sameX(p1, p2)) {
-      c1 = { x: p1.x, y: p1.y + (p2.y - p1.y) / 3 };
-      c2 = { x: p2.x, y: p2.y - (p2.y - p1.y) / 3 };
-    } else {
-      c1 =
-        p0 !== p1 && sameX(p0, p1)
-          ? { x: p1.x, y: midY }
-          : {
-              x: clampX(p1.x + (p2.x - p0.x) / 6),
-              y: p1.y + (p2.y - p0.y) / 6,
-            };
-      c2 =
-        p3 !== p2 && sameX(p2, p3)
-          ? { x: p2.x, y: midY }
-          : {
-              x: clampX(p2.x - (p3.x - p1.x) / 6),
-              y: p2.y - (p3.y - p1.y) / 6,
-            };
-    }
+    const p0 = all[i - 1] ?? all[i];
+    const p1 = all[i];
+    const p2 = all[i + 1];
+    const p3 = all[i + 2];
+    const c1 = {
+      x: clampX(p1.x + (p2.x - p0.x) / 6),
+      y: p1.y + (p2.y - p0.y) / 6,
+    };
+    const c2 =
+      i === points.length - 2 && Math.abs(p3.x - p2.x) < 0.5
+        ? { x: p2.x, y: p2.y - (p2.y - p1.y) / 2 }
+        : {
+            x: clampX(p2.x - (p3.x - p1.x) / 6),
+            y: p2.y - (p3.y - p1.y) / 6,
+          };
     path += ` C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${p2.x} ${p2.y}`;
+  }
+  return path;
+}
+
+/**
+ * Straight segments through the points (starting where the path currently
+ * is), with every corner rounded by up to `radius` as a circle-like arc.
+ */
+function toRoundedRuns(points: Point[], radius: number) {
+  let path = '';
+  for (let i = 1; i < points.length; i++) {
+    const corner = points[i];
+    const next = points[i + 1];
+    if (!next) {
+      path += ` L ${corner.x} ${corner.y}`;
+      break;
+    }
+    const before = points[i - 1];
+    const inLength = Math.hypot(corner.x - before.x, corner.y - before.y);
+    const outLength = Math.hypot(next.x - corner.x, next.y - corner.y);
+    const r = Math.min(radius, inLength / 2, outLength / 2);
+    const start = {
+      x: corner.x + ((before.x - corner.x) / inLength) * r,
+      y: corner.y + ((before.y - corner.y) / inLength) * r,
+    };
+    const end = {
+      x: corner.x + ((next.x - corner.x) / outLength) * r,
+      y: corner.y + ((next.y - corner.y) / outLength) * r,
+    };
+    const c1 = {
+      x: start.x + (corner.x - start.x) * ARC_HANDLE,
+      y: start.y + (corner.y - start.y) * ARC_HANDLE,
+    };
+    const c2 = {
+      x: end.x + (corner.x - end.x) * ARC_HANDLE,
+      y: end.y + (corner.y - end.y) * ARC_HANDLE,
+    };
+    path += ` L ${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`;
   }
   return path;
 }
