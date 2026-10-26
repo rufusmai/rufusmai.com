@@ -105,7 +105,7 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
             </div>
           </div>
           {project.status && (
-            <p className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-mono text-xs">
+            <p className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-caption text-caption">
               <span className="size-2 animate-pulse-dot rounded-full bg-primary" />
               <span className="sr-only">{tCommon('status')}: </span>
               {project.status[locale]}
@@ -115,7 +115,7 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
             {project.summary[locale]}
           </p>
           <div>
-            <h3 className="mb-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+            <h3 className="mb-2 font-caption text-caption tracking-[0.2em] text-primary uppercase">
               {t('problemTitle')}
             </h3>
             <p>{t('pounceProblem')}</p>
@@ -145,7 +145,7 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
           </Reveal>
           {project.steps && (
             <div>
-              <h3 className="mb-5 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+              <h3 className="mb-5 font-caption text-caption tracking-[0.2em] text-primary uppercase">
                 {t('howTitle')}
               </h3>
               <Stagger as="ol" className="flex flex-col gap-4">
@@ -155,7 +155,7 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
                     key={step}
                     className="flex gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5"
                   >
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-mono text-sm font-semibold text-primary">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-caption text-sm font-semibold text-primary">
                       {index + 1}
                     </span>
                     <span className="pt-1">{step}</span>
@@ -165,7 +165,7 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
             </div>
           )}
           <div>
-            <h3 className="mb-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+            <h3 className="mb-4 font-caption text-caption tracking-[0.2em] text-primary uppercase">
               {t('techTitle')}
             </h3>
             <ul className="flex flex-wrap gap-2">

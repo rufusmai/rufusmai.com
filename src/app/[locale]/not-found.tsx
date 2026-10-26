@@ -15,7 +15,7 @@ export default function NotFound() {
         aria-hidden="true"
         className="size-28 animate-float"
       />
-      <p className="font-mono text-sm tracking-[0.2em] text-primary uppercase">
+      <p className="font-caption text-sm tracking-[0.2em] text-primary uppercase">
         404
       </p>
       <h1 className="text-h2 font-bold">{t('title')}</h1>

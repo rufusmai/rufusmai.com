@@ -23,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <ProjectLogo logo={project.logo} />
           <div className="flex flex-col gap-1">
             <h3 className="text-h3 font-bold">{project.title}</h3>
-            <p className="font-mono text-xs text-muted-foreground">
+            <p className="font-caption text-caption text-muted-foreground">
               {[project.client, project.years].filter(Boolean).join(' · ')}
             </p>
           </div>

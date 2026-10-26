@@ -39,7 +39,7 @@ export function ProcessSteps({ steps }: { steps: Step[] }) {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
         >
-          <span className="absolute top-0 -left-16 flex size-11 items-center justify-center rounded-full border border-border bg-background font-mono text-sm font-semibold text-primary sm:-left-20 sm:size-13">
+          <span className="absolute top-0 -left-16 flex size-11 items-center justify-center rounded-full border border-border bg-background font-caption text-sm font-semibold text-primary sm:-left-20 sm:size-13">
             {String(index + 1).padStart(2, '0')}
           </span>
           <h3 className="text-h3 font-bold">{step.title}</h3>

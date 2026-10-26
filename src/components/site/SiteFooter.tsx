@@ -94,7 +94,7 @@ export function SiteFooter() {
           </li>
         </FooterColumn>
       </div>
-      <div className="container border-t border-border py-6 font-mono text-xs text-muted-foreground">
+      <div className="container border-t border-border py-6 font-caption text-caption text-muted-foreground">
         {t('copyright', { year: new Date().getFullYear() })}
       </div>
     </footer>
@@ -110,7 +110,7 @@ function FooterColumn({
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <p className="font-mono text-xs tracking-[0.2em] text-foreground uppercase">
+      <p className="font-caption text-caption tracking-[0.2em] text-foreground uppercase">
         {title}
       </p>
       <ul className="flex flex-col gap-3">{children}</ul>

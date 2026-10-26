@@ -201,7 +201,7 @@ export function Hero({ copy }: { copy: HeroCopy }) {
 
       <a
         href="#about"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase transition-colors hover:text-primary sm:flex"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-caption text-xs tracking-[0.2em] text-muted-foreground uppercase transition-colors hover:text-primary sm:flex"
       >
         {copy.scroll}
         <ArrowDownIcon className="size-4 motion-safe:animate-bounce" />

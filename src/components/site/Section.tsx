@@ -16,7 +16,7 @@ export function Eyebrow({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <p
       className={cn(
-        'font-mono text-xs font-medium tracking-[0.2em] text-primary uppercase',
+        'font-caption text-caption font-medium tracking-[0.2em] text-primary uppercase',
         className
       )}
       {...props}
@@ -84,7 +84,7 @@ export function Chip({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted-foreground',
+        'inline-flex items-center rounded-full border border-border px-2.5 py-1 font-caption text-caption text-muted-foreground',
         className
       )}
       {...props}

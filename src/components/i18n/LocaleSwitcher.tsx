@@ -26,7 +26,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       title={t('switchToLabel')}
       className={cn(
         buttonVariants({ variant: 'ghost', size: 'icon' }),
-        'font-mono text-xs font-semibold tracking-wider uppercase',
+        'font-caption text-caption font-semibold tracking-wider uppercase',
         className
       )}
     >

@@ -223,7 +223,7 @@ export default function ConsultingPage({ params }: LocaleParams) {
                     <ProjectLogo logo={project.logo} />
                     <div>
                       <h3 className="text-h3 font-bold">{project.title}</h3>
-                      <p className="font-mono text-xs text-muted-foreground">
+                      <p className="font-caption text-caption text-muted-foreground">
                         {[project.client, project.years]
                           .filter(Boolean)
                           .join(' · ')}

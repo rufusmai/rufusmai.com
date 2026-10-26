@@ -5,7 +5,6 @@ import {
   Bricolage_Grotesque,
   Instrument_Sans,
   Instrument_Serif,
-  JetBrains_Mono,
 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
@@ -22,11 +21,12 @@ import { routing } from '@/i18n/routing';
 import { HOST } from '@/lib/metadata';
 import { cn } from '@/lib/utils';
 
-// Headlines: Bricolage Grotesque with its optical size axis for display sizes
+// Headlines and captions: Bricolage Grotesque with its optical size axis for
+// display sizes and its width axis for the condensed captions
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: '--font-bricolage-grotesque',
   subsets: ['latin'],
-  axes: ['opsz'],
+  axes: ['opsz', 'wdth'],
 });
 
 // The lower, secondary line of two-part headlines
@@ -40,11 +40,6 @@ const instrumentSerif = Instrument_Serif({
 // Body text: Instrument Sans, the sans sibling of Instrument Serif
 const instrumentSans = Instrument_Sans({
   variable: '--font-instrument-sans',
-  subsets: ['latin'],
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
   subsets: ['latin'],
 });
 
@@ -98,8 +93,7 @@ export default async function LocaleLayout({
       className={cn(
         bricolageGrotesque.variable,
         instrumentSerif.variable,
-        instrumentSans.variable,
-        jetBrainsMono.variable
+        instrumentSans.variable
       )}
     >
       <head>

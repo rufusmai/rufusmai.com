@@ -84,7 +84,7 @@ export default function ProjectPage({ params }: ProjectParams) {
             <dl className="grid gap-6 border-y border-border py-6 sm:grid-cols-3">
               {meta.map(({ label, value }) => (
                 <div key={label} className="flex flex-col gap-1">
-                  <dt className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                  <dt className="font-caption text-caption tracking-[0.2em] text-muted-foreground uppercase">
                     {label}
                   </dt>
                   <dd className="font-medium">{value}</dd>
@@ -108,7 +108,7 @@ export default function ProjectPage({ params }: ProjectParams) {
         <div className="container grid gap-12 lg:grid-cols-12">
           <aside className="flex flex-col gap-6 lg:col-span-4">
             <div className="flex flex-col gap-3 lg:sticky lg:top-28">
-              <h2 className="font-mono text-xs tracking-[0.2em] text-primary uppercase">
+              <h2 className="font-caption text-caption tracking-[0.2em] text-primary uppercase">
                 {tCommon('stack')}
               </h2>
               <ul className="flex flex-wrap gap-2">

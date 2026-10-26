@@ -30,7 +30,7 @@ export function ProjectPreview({
         <span className="size-2.5 rounded-full bg-border" />
         <span className="size-2.5 rounded-full bg-border" />
         {url && (
-          <span className="ml-3 truncate rounded-full bg-muted px-3 py-0.5 font-mono text-[0.7rem] text-muted-foreground">
+          <span className="ml-3 truncate rounded-full bg-muted px-3 py-0.5 font-caption text-xs text-muted-foreground">
             {url.replace(/^https?:\/\//, '')}
           </span>
         )}

@@ -61,18 +61,20 @@ fill in both schemes (3.3:1 against the dark background, above the 3:1 needed fo
   Bricolage Grotesque and the lower part in Instrument Serif, e.g. the home hero "Rufus Maiwald / baut
   Software, die abhebt." Utility: `font-serif`.
 - **Body font:** Instrument Sans (400/500), the sans sibling of Instrument Serif
-- **Mono / labels:** JetBrains Mono (stack chips, years, small eyebrow labels)
+- **Captions / labels:** Bricolage Grotesque condensed (`wdth` 80) at 13px — stack chips, years, eyebrow
+  labels, footer titles. Utility `font-caption` + `text-caption`; no monospace font is loaded.
 - Loaded with `next/font/google` (no CSS `@import`), exposed as `--font-heading`, `--font-serif`,
-  `--font-sans`, `--font-mono`. Generated OG images load the same fonts in `src/lib/ogFonts.ts`.
+  `--font-sans`, `--font-caption`. Generated OG images load the same fonts in `src/lib/ogFonts.ts`.
 - Fluid display sizes with `clamp()`; body at least 16px, line-height 1.5–1.7; line length 60–75ch.
 
-| Token        | Size                                        |
-| ------------ | ------------------------------------------- |
-| Display (h1) | `clamp(2.75rem, 1.6rem + 5.2vw, 6rem)`      |
-| H2           | `clamp(2rem, 1.4rem + 2.6vw, 3.5rem)`       |
-| H3           | `clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem)`  |
-| Lead         | `clamp(1.125rem, 1rem + 0.5vw, 1.375rem)`   |
-| Eyebrow      | `0.75rem` mono, uppercase, `0.2em` tracking |
+| Token        | Size                                              |
+| ------------ | ------------------------------------------------- |
+| Display (h1) | `clamp(2.75rem, 1.6rem + 5.2vw, 6rem)`            |
+| H2           | `clamp(2rem, 1.4rem + 2.6vw, 3.5rem)`             |
+| H3           | `clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem)`        |
+| Lead         | `clamp(1.125rem, 1rem + 0.5vw, 1.375rem)`         |
+| Caption      | `0.8125rem` (`text-caption`), condensed Bricolage |
+| Eyebrow      | caption font, uppercase, `0.2em` tracking         |
 
 ### Spacing Variables
 
@@ -114,10 +116,10 @@ In dark mode, elevation comes from lighter surfaces and a 1px border, not from s
 - **Link with arrow:** `text-primary` + lucide `ArrowRight` that slides `translate-x-0.5` on hover.
 - **Card:** `bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-md`; interactive cards lift
   `-translate-y-1` and gain `shadow-lg` on hover (300ms). No scale on hover (avoids layout shift).
-- **Chip (stack, tags):** `font-mono text-xs rounded-full border px-2.5 py-1 text-muted-foreground`.
+- **Chip (stack, tags):** `font-caption text-caption rounded-full border px-2.5 py-1 text-muted-foreground`.
 - **Inputs:** visible `<label>`, `h-11 rounded-xl border bg-card px-4`, focus ring `ring-2 ring-ring/40`,
   error text directly below the field in `text-destructive`.
-- **Section:** eyebrow (mono, primary) → H2 → lead paragraph → content → mini CTA.
+- **Section:** eyebrow (caption font, primary) → H2 → lead paragraph → content → mini CTA.
 
 ---
 

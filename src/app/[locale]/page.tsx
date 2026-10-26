@@ -261,7 +261,7 @@ function LabsProjects({ locale }: { locale: Locale }) {
                   </div>
                 </div>
                 {project.status && (
-                  <p className="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs">
+                  <p className="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 font-caption text-caption">
                     <span className="size-2 animate-pulse-dot rounded-full bg-primary" />
                     <span className="sr-only">{tCommon('status')}: </span>
                     {project.status[locale]}
@@ -378,7 +378,7 @@ function Timeline({
                 entry.current ? 'bg-primary' : 'bg-border'
               }`}
             />
-            <p className="flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">
+            <p className="flex flex-wrap items-center gap-2 font-caption text-caption text-muted-foreground">
               {entry.period[locale]}
               {entry.current && (
                 <span className="rounded-full bg-primary/10 px-2 py-0.5 text-primary">
