@@ -150,11 +150,7 @@ function About({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <Section
-      id="about"
-      className="scroll-mt-16"
-      data-flight="0.97,0.45;0.97,0.93"
-    >
+    <Section id="about" className="scroll-mt-16" data-flight="R,0.45;R,0.93">
       <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
         <Reveal className="lg:col-span-7">
           <div className="flex flex-col gap-6">
@@ -201,7 +197,7 @@ function Brands() {
   ] as const;
 
   return (
-    <Section className="pt-0 sm:pt-0" data-flight="0.03,0.04;0.03,0.9">
+    <Section className="pt-0 sm:pt-0" data-flight="L,0.04;L,0.9">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <Stagger className="mt-10 grid gap-4 md:grid-cols-2">
         {brands.map(({ key, href, icon: Icon }) => (
@@ -234,7 +230,7 @@ function LabsProjects({ locale }: { locale: Locale }) {
   const tCommon = useTranslations('common');
 
   return (
-    <Section className="bg-muted/40" data-flight="0.97,0.07;0.97,0.93">
+    <Section className="bg-muted/40" data-flight="R,0.07;R,0.93">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -299,7 +295,7 @@ function ConsultingProjects() {
   const t = useTranslations('home.consulting');
 
   return (
-    <Section data-flight="0.03,0.06;0.03,0.94">
+    <Section data-flight="L,0.06;L,0.94">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeader
           eyebrow={t('eyebrow')}
@@ -328,7 +324,7 @@ function Journey({ locale }: { locale: Locale }) {
   const t = useTranslations('home.journey');
 
   return (
-    <Section className="bg-muted/40" data-flight="0.97,0.07;0.97,0.9">
+    <Section className="bg-muted/40" data-flight="R,0.07;R,0.9">
       <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
       <div className="mt-12 grid gap-12 lg:grid-cols-2">
         <Timeline

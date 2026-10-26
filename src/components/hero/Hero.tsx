@@ -27,7 +27,7 @@ export function Hero({ copy }: { copy: HeroCopy }) {
   return (
     <section
       // Flight path: from the lower left through the empty right side
-      data-flight="0,0.88;0.48,0.86;0.76,0.64;0.86,0.36;0.93,0.25;0.97,0.36"
+      data-flight="0,0.88;0.48,0.86;0.72,0.64;0.8,0.36;0.86,0.25;R,0.36"
       className="relative isolate flex min-h-svh items-center overflow-hidden pt-24 pb-16"
     >
       <div

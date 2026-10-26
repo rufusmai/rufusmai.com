@@ -38,8 +38,10 @@ const MEDIA_QUERY = '(min-width: 1280px)';
  * the Maikäfer flying at its tip until it lands at the end.
  *
  * Children mark waypoints with `data-flight="x,y;x,y"`: points as fractions of
- * the element's box, connected in document order. The first element is the
- * hero, whose part of the path draws in on load.
+ * the element's box, connected in document order. Instead of a fraction, `x`
+ * can be `L` or `R` for the middle of the left or right margin beside the page
+ * content (the first `.container`). The first element is the hero, whose part
+ * of the path draws in on load.
  */
 export function FlightPath({ children }: { children: React.ReactNode }) {
   const maskId = useId();
@@ -101,15 +103,23 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
     }
 
     const box = root.getBoundingClientRect();
+    const content = root.querySelector('.container')?.getBoundingClientRect();
+    const margin = {
+      L: content ? (content.left - box.left) / 2 : 0,
+      R: content ? (content.right + box.right) / 2 - box.left : box.width,
+    };
     const points: Point[] = [];
     let heroEnd: Point | undefined;
     root.querySelectorAll<HTMLElement>('[data-flight]').forEach((element) => {
       const rect = element.getBoundingClientRect();
       const own = (element.dataset.flight ?? '').split(';').map((pair) => {
-        const [x, y] = pair.split(',').map(Number);
+        const [x, y] = pair.split(',');
         return {
-          x: rect.left - box.left + x * rect.width,
-          y: rect.top - box.top + y * rect.height,
+          x:
+            x === 'L' || x === 'R'
+              ? margin[x]
+              : rect.left - box.left + Number(x) * rect.width,
+          y: rect.top - box.top + Number(y) * rect.height,
         };
       });
       heroEnd ??= own.at(-1);
@@ -221,26 +231,44 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * Catmull-Rom spline through all points, as cubic Bézier segments. Control
- * points stay within `minX`–`maxX`, so the curve never overshoots the page
- * edges between two waypoints on the same side.
+ * Smooth path through all points, as cubic Bézier segments. Two waypoints in
+ * the same margin are joined by a straight run, and where a run meets a
+ * crossing the curve leaves and arrives vertically, so they join without a
+ * kink. Everything else is a Catmull-Rom spline, kept within the page edges.
  */
 function toSmoothPath(points: Point[], minX: number, maxX: number) {
   const clampX = (x: number) => Math.min(maxX, Math.max(minX, x));
+  const sameX = (a: Point, b: Point) => Math.abs(a.x - b.x) < 0.5;
+
   let path = `M ${points[0].x} ${points[0].y}`;
   for (let i = 0; i < points.length - 1; i++) {
     const p0 = points[i - 1] ?? points[i];
     const p1 = points[i];
     const p2 = points[i + 1];
     const p3 = points[i + 2] ?? p2;
-    const c1 = {
-      x: clampX(p1.x + (p2.x - p0.x) / 6),
-      y: p1.y + (p2.y - p0.y) / 6,
-    };
-    const c2 = {
-      x: clampX(p2.x - (p3.x - p1.x) / 6),
-      y: p2.y - (p3.y - p1.y) / 6,
-    };
+    const midY = (p1.y + p2.y) / 2;
+
+    let c1: Point;
+    let c2: Point;
+    if (sameX(p1, p2)) {
+      c1 = { x: p1.x, y: p1.y + (p2.y - p1.y) / 3 };
+      c2 = { x: p2.x, y: p2.y - (p2.y - p1.y) / 3 };
+    } else {
+      c1 =
+        p0 !== p1 && sameX(p0, p1)
+          ? { x: p1.x, y: midY }
+          : {
+              x: clampX(p1.x + (p2.x - p0.x) / 6),
+              y: p1.y + (p2.y - p0.y) / 6,
+            };
+      c2 =
+        p3 !== p2 && sameX(p2, p3)
+          ? { x: p2.x, y: midY }
+          : {
+              x: clampX(p2.x - (p3.x - p1.x) / 6),
+              y: p2.y - (p3.y - p1.y) / 6,
+            };
+    }
     path += ` C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${p2.x} ${p2.y}`;
   }
   return path;
