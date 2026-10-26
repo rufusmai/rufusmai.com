@@ -18,7 +18,7 @@ rufusmai branding (`rufusmai-branding/logos/export/README.md`).
 
 - **Logo:** the Maikäfer (May beetle) flying through an oval. Ink parts plus terracotta wing covers.
   Use `src/components/site/Logo.tsx` (inline SVG, ink = `currentColor`, wing covers = `var(--brand-wing)`).
-  On the website the wordmark is set 1.75× larger relative to the mark than in `logo.svg`, with a
+  On the website the wordmark is set 1.6× larger relative to the mark than in `logo.svg`, with a
   wider gap (`WORDMARK_SCALE` and `GAP` in `Logo.tsx`).
 - **Sub-brands:** _rufusmai consulting_ (client work) and _rufusmai labs_ (own products). Same palette;
   the sub-brand name is set in the heading font with "rufusmai" in the ink colour and the suffix in primary.

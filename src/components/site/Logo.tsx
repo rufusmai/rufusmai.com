@@ -16,7 +16,7 @@ const WORDMARK = { x: 440.9, centerY: 250.75, width: 442 };
 
 // On the website the wordmark is larger relative to the mark and sits further
 // away from it. It is scaled around its left edge and vertical centre.
-const WORDMARK_SCALE = 1.75;
+const WORDMARK_SCALE = 1.6;
 const GAP = 68;
 const WORDMARK_LEFT = MARK_RIGHT + GAP;
 const WORDMARK_TRANSFORM = `translate(${WORDMARK_LEFT} ${WORDMARK.centerY}) scale(${WORDMARK_SCALE}) translate(${-WORDMARK.x} ${-WORDMARK.centerY})`;
