@@ -16,8 +16,11 @@ rufusmai branding (`rufusmai-branding/logos/export/README.md`).
 
 ## Brand
 
-- **Logo:** the Maikäfer (May beetle) flying through an oval. Ink parts plus terracotta wing covers.
-  Use `src/components/site/Logo.tsx` (inline SVG, ink = `currentColor`, wing covers = `var(--brand-wing)`).
+- **Logo:** always the image mark (the Maikäfer flying through an oval) plus the name "rufusmai" as live
+  text in Bricolage Grotesque Bold, `-0.03em` tracking. The outlined Helvetica wordmark from
+  `logo.svg` is not used. Use `src/components/site/Logo.tsx` and size it with a font size class
+  (the mark is `1.5em` high); `variant="icon"` renders the mark alone. Mark: ink = `currentColor`,
+  wing covers = `var(--brand-wing)`.
 - **Sub-brands:** _rufusmai consulting_ (client work) and _rufusmai labs_ (own products). Same palette;
   the sub-brand name is set in the heading font with "rufusmai" in the ink colour and the suffix in primary.
 
