@@ -33,6 +33,8 @@ export interface Project {
   role: Localized;
   stack: string[];
   image: StaticImageData;
+  /** A tall screenshot that scrolls inside the preview frame on cards */
+  scrollImage?: StaticImageData;
   logo: ProjectLogo;
   /** Live demo snapshot on demo.rufusmai.com */
   demoUrl?: string;

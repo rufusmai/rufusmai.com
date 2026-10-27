@@ -14,6 +14,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <article className="group flex h-full flex-col gap-6 rounded-3xl border border-border bg-card p-4 shadow-card transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-6">
       <ProjectPreview
         image={project.image}
+        scrollImage={project.scrollImage}
         url={project.liveUrl ?? project.demoUrl}
         alt={project.title}
         className="shadow-none"

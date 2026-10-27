@@ -2,8 +2,14 @@ import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/lib/utils';
 
+import { LiveScreenshot } from './LiveScreenshot';
+
+const SIZES = '(min-width: 1024px) 50vw, 100vw';
+
 interface ProjectPreviewProps {
   image: StaticImageData;
+  /** A tall screenshot that scrolls inside the frame instead of `image`. */
+  scrollImage?: StaticImageData;
   url?: string;
   alt: string;
   className?: string;
@@ -13,6 +19,7 @@ interface ProjectPreviewProps {
 /** A screenshot framed in a minimal browser window. */
 export function ProjectPreview({
   image,
+  scrollImage,
   url,
   alt,
   className,
@@ -35,14 +42,18 @@ export function ProjectPreview({
           </span>
         )}
       </div>
-      <Image
-        src={image}
-        alt={alt}
-        placeholder="blur"
-        priority={priority}
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="aspect-[16/10] w-full object-cover object-top"
-      />
+      {scrollImage ? (
+        <LiveScreenshot image={scrollImage} alt={alt} sizes={SIZES} />
+      ) : (
+        <Image
+          src={image}
+          alt={alt}
+          placeholder="blur"
+          priority={priority}
+          sizes={SIZES}
+          className="aspect-[16/10] w-full object-cover object-top"
+        />
+      )}
     </div>
   );
 }

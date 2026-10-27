@@ -19,5 +19,10 @@ Overrides `MASTER.md` for the landing page (`/de`, `/en`).
 - **Sections:** contact card strip → brand cards (consulting / labs) → labs projects → consulting
   projects → experience timeline → contact CTA. Each chapter ends with a mini CTA.
 - **Project cards:** large framed preview (16:10) in a faux browser chrome, title, client, years,
-  stack chips, "Live demo" + "Case study".
+  stack chips, "Live demo" + "Case study". Consulting cards are live browser frames: a tall full-page
+  screenshot (`scrollImage`, 1600px wide) scrolls from the top of the site down while the card moves
+  through the viewport (`LiveScreenshot`, scroll-linked; static under reduced motion).
+- **Landing pad:** when the beetle lands above the closing CTA band, two terracotta rings pulse out
+  from the landing point, once per landing. While the CTA button is hovered or focused, a few white
+  pollen dots drift into it (`animate-pollen`, motion-safe only).
 - Background: subtle terracotta radial glow at the top of the hero only; the rest stays on `--background`.

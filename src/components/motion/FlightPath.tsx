@@ -41,6 +41,8 @@ const ICON_HEADING = -45;
 /** Over this distance before the end the beetle turns upright to land. */
 const LANDING_DISTANCE = 160;
 const BEETLE_SIZE = 36;
+/** Rings pulse out from the landing point once the beetle has landed. */
+const PAD_SIZE = 56;
 /** Space the take-off keeps from the hero text. */
 const TEXT_CLEARANCE = 40;
 /** The path needs side margins next to the content, so wide screens only. */
@@ -68,6 +70,8 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
   const trail = useRef<SVGPathElement>(null);
   const reveal = useRef<SVGPathElement>(null);
   const beetle = useRef<HTMLDivElement>(null);
+  const pad = useRef<HTMLDivElement>(null);
+  const landed = useRef(false);
   const geometry = useRef<Geometry | null>(null);
   const introState = useRef<'waiting' | 'running' | 'done'>('waiting');
   const reduceMotion = useReducedMotion() ?? false;
@@ -95,6 +99,11 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
     if (toLanding < LANDING_DISTANCE) {
       rotation *= toLanding / LANDING_DISTANCE;
     }
+
+    // Every landing sends out the rings once
+    const hasLanded = toLanding < 1;
+    if (hasLanded && !landed.current) pulse(pad.current);
+    landed.current = hasLanded;
 
     beetle.current.style.opacity = at > 1 ? '1' : '0';
     beetle.current.style.transform = `translate(${tip.x - BEETLE_SIZE / 2}px, ${
@@ -185,6 +194,12 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
     svg.current.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
     trail.current.setAttribute('d', path);
     reveal.current.setAttribute('d', path);
+    const landing = runs[runs.length - 1];
+    if (pad.current) {
+      pad.current.style.transform = `translate(${landing.x - PAD_SIZE / 2}px, ${
+        landing.y - PAD_SIZE / 2
+      }px)`;
+    }
 
     const total = trail.current.getTotalLength();
     const samples: Geometry['samples'] = [];
@@ -267,6 +282,15 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
         />
       </svg>
       <div
+        ref={pad}
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-0 z-10 hidden xl:block"
+        style={{ width: PAD_SIZE, height: PAD_SIZE }}
+      >
+        <span className="absolute inset-0 rounded-full border-2 border-primary opacity-0" />
+        <span className="absolute inset-0 rounded-full border-2 border-primary opacity-0" />
+      </div>
+      <div
         ref={beetle}
         aria-hidden="true"
         className="pointer-events-none absolute top-0 left-0 z-20 hidden opacity-0 will-change-transform xl:block"
@@ -277,6 +301,20 @@ export function FlightPath({ children }: { children: React.ReactNode }) {
       {children}
     </div>
   );
+}
+
+/** Two rings pulse out from the landing pad, one after the other. */
+function pulse(pad: HTMLElement | null) {
+  if (!pad || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+  pad.querySelectorAll('span').forEach((ring, index) => {
+    animate(
+      ring,
+      { scale: [0.5, 2.6], opacity: [0.7, 0] },
+      { duration: 1.4, delay: index * 0.35, ease: 'easeOut' }
+    );
+  });
 }
 
 interface Follower {

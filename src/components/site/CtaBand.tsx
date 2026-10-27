@@ -1,10 +1,21 @@
 import { ArrowRightIcon } from 'lucide-react';
+import type { CSSProperties } from 'react';
 
 import { Reveal } from '@/components/motion/Reveal';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 
 import { Logo } from './Logo';
+
+/** Where the pollen drifts in from, relative to the button's centre. */
+const POLLEN = [
+  [-120, -50],
+  [110, -60],
+  [-150, 20],
+  [140, 30],
+  [-50, -70],
+  [60, 65],
+];
 
 interface CtaBandProps {
   title: string;
@@ -29,11 +40,26 @@ export function CtaBand({ title, body, button, flight }: CtaBandProps) {
             <div className="flex max-w-2xl flex-col gap-4">
               <h2 className="text-h2 font-bold">{title}</h2>
               <p className="text-lead text-white/85">{body}</p>
-              <div className="pt-2">
+              <div className="group/cta relative w-fit pt-2">
+                {/* Pollen drifts towards the button while it's hovered */}
+                {POLLEN.map(([x, y], index) => (
+                  <span
+                    key={index}
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-[calc(50%+0.25rem)] left-1/2 -m-0.75 size-1.5 rounded-full bg-white opacity-0 motion-safe:group-focus-within/cta:animate-pollen motion-safe:group-hover/cta:animate-pollen"
+                    style={
+                      {
+                        '--pollen-x': `${x}px`,
+                        '--pollen-y': `${y}px`,
+                        animationDelay: `${index * 0.22}s`,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
                 <Button
                   asChild
                   size="lg"
-                  className="group bg-white text-button hover:bg-white"
+                  className="group relative bg-white text-button hover:bg-white"
                 >
                   <Link href="/contact">
                     {button}

@@ -1,8 +1,10 @@
 import type { StaticImageData } from 'next/image';
 
 import ludwigSpaceImage from '@/assets/projects/ludwig-space.jpg';
+import ludwigSpaceFullImage from '@/assets/projects/ludwig-space-full.jpg';
 import ludwigSpaceLogo from '@/assets/projects/ludwig-space-logo.png';
 import numiImage from '@/assets/projects/numi.jpg';
+import numiFullImage from '@/assets/projects/numi-full.jpg';
 import numiLogoSvg from '@/assets/projects/numi-logo.svg';
 import pounceImage from '@/assets/projects/pounce.jpg';
 import pounceLogoSvg from '@/assets/projects/pounce-logo.svg';
@@ -106,6 +108,7 @@ const ludwigSpace: Project = {
     'Vercel',
   ],
   image: ludwigSpaceImage,
+  scrollImage: ludwigSpaceFullImage,
   logo: { src: ludwigSpaceLogo, alt: 'ludwig space' },
   demoUrl: 'https://ludwig-space.demo.rufusmai.com',
   snapshotNote: {
@@ -200,6 +203,7 @@ const numi: Project = {
     'AWS',
   ],
   image: numiImage,
+  scrollImage: numiFullImage,
   logo: { src: numiLogo, alt: 'numi' },
   demoUrl: 'https://numi.demo.rufusmai.com',
   liveUrl: 'https://numi.digital',

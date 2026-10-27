@@ -68,6 +68,7 @@
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-pollen: pollen 1.4s ease-in infinite both;
 
   @keyframes float {
     0%,
@@ -76,6 +77,20 @@
     }
     50% {
       transform: translateY(-12px) rotate(-2deg);
+    }
+  }
+
+  @keyframes pollen {
+    0% {
+      opacity: 0;
+      transform: translate(var(--pollen-x), var(--pollen-y));
+    }
+    35% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.4);
     }
   }
 
