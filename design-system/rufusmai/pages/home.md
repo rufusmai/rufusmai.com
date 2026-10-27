@@ -6,7 +6,7 @@ Overrides `MASTER.md` for the landing page (`/de`, `/en`).
   (`src/components/motion/FlightPath.tsx`) enters from the left edge on a runway below the hero text,
   lifts off gently in one curved sweep (a cubic Bézier, no straight climb) that gets steeper past the
   right side of the text (40px clearance from each line) and turns over the top right in a tight
-  circular arc (100px radius) down into the right margin. The sweep leaves the runway and meets the arc
+  circular arc (60px radius) down into the right margin. The sweep leaves the runway and meets the arc
   at a tangent, so there are no kinks. It meets the arc at 60°, or steeper beside long text. From
   there it runs straight down the right margin; above the closing CTA band it turns in with a rounded
   corner and the Maikäfer lands on the band. Waypoints are `data-flight="x,y;x,y"` attributes (`x` as a

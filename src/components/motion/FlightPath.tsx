@@ -22,14 +22,14 @@ interface Geometry {
 const EASE_IN_OUT = [0.65, 0, 0.35, 1] as const;
 const INTRO_DURATION = 2.4;
 /** Time the drawn length takes to catch up with the scroll position. */
-const SMOOTH_TIME = 0.45;
+const SMOOTH_TIME = 0.25;
 /** The tip of the path follows this line, as a fraction of the viewport. */
 const READING_LINE = 0.6;
 const SAMPLE_STEP = 6;
 /** Radius of the rounded corners between margin runs and crossings. */
 const CORNER_RADIUS = 140;
 /** Radius of the arc turning over the apex into the run down. */
-const TURN_RADIUS = 100;
+const TURN_RADIUS = 60;
 /** The flattest angle the climb reaches the turn at, in degrees. */
 const MIN_CLIMB = 60;
 /** The climb leaves the runway this far (a fraction of its length) early. */
