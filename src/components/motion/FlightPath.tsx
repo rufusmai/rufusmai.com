@@ -28,12 +28,14 @@ const READING_LINE = 0.6;
 const SAMPLE_STEP = 6;
 /** Radius of the rounded corners between margin runs and crossings. */
 const CORNER_RADIUS = 140;
-/** Radius of the arcs lifting off the runway and turning over the apex. */
-const TAKE_OFF_RADIUS = 180;
-/** Beside long text the arcs get tighter, down to this radius. */
-const MIN_TAKE_OFF_RADIUS = 100;
-/** The steepest climb before the arcs get tighter, in degrees. */
-const MAX_CLIMB = 70;
+/** Radius of the arc turning over the apex into the run down. */
+const TURN_RADIUS = 100;
+/** The flattest angle the climb reaches the turn at, in degrees. */
+const MIN_CLIMB = 60;
+/** The climb leaves the runway this far (a fraction of its length) early. */
+const LIFT_OFF = 0.6;
+/** How quickly the climb straightens out towards the turn. */
+const CLIMB_HANDLE = 0.4;
 /** The Maikäfer in the icon flies towards its top right. */
 const ICON_HEADING = -45;
 /** Over this distance before the end the beetle turns upright to land. */
@@ -53,9 +55,9 @@ const MEDIA_QUERY = '(min-width: 1280px)';
  * can be `L` or `R` for the middle of the left or right margin beside the page
  * content (the first `.container`). The first element is the hero with two
  * points, the take-off and the apex: from the take-off a runway leads below
- * the hero text, then the path climbs past the text's right side and turns
- * over in one arc, as high as the apex, into the run down at the apex `x`;
- * that part draws in on load. The text lines are the children of
+ * the hero text, then the path sweeps up past the text's right side, steeper
+ * and steeper, and turns over in one arc, as high as the apex, into the run
+ * down at the apex `x`; that part draws in on load. The text lines are the children of
  * `[data-flight-avoid]`. The rest of the path runs straight from waypoint to
  * waypoint with rounded corners.
  */
@@ -368,94 +370,72 @@ function textBoxes(root: HTMLElement, box: DOMRect): Box[] {
 }
 
 /**
- * The hero part: a runway from the take-off point below the text, an arc
- * lifting off into a straight climb past the right side of the text, and one
- * arc turning over the top into the run down at the apex `x`. Arcs and lines
- * meet at a tangent, so there are no kinks. The arcs are as wide as the room
- * beside the text allows while the climb stays flatter than `MAX_CLIMB`.
+ * The hero part: a runway from the take-off point below the text, a climb
+ * that sweeps up past the right side of the text, steeper and steeper, and an
+ * arc turning over the top into the run down at the apex `x`. The climb meets
+ * the arc as flat as the room beside the text allows.
  */
 function toTakeOff(start: Point, apex: Point, text: Box[]) {
   const runwayY = Math.max(
     start.y,
     ...text.map((line) => line.bottom + TEXT_CLEARANCE)
   );
-  // Tighter arcs leave room for the climb to start earlier and so flatter
-  let climb: Climb | undefined;
-  for (
-    let radius = TAKE_OFF_RADIUS;
-    radius >= MIN_TAKE_OFF_RADIUS;
-    radius -= 10
-  ) {
-    climb = toFlattestClimb(start.x, runwayY, apex, radius, text) ?? climb;
-    if (climb && climb.angle <= MAX_CLIMB) break;
+  // A steeper climb passes further right of the text; without room beside it,
+  // the path climbs straight up
+  let climb = toClimb(start.x, runwayY, apex, 90);
+  for (let angle = MIN_CLIMB; angle < 90; angle += 2) {
+    const candidate = toClimb(start.x, runwayY, apex, angle);
+    if (clearsText(candidate, text)) {
+      climb = candidate;
+      break;
+    }
   }
-  // Without room beside the text, the path climbs straight up
-  climb ??= toClimb(
-    apex.x - 2 * TAKE_OFF_RADIUS,
-    runwayY,
-    apex,
-    TAKE_OFF_RADIUS
-  );
+  const [from, ...controls] = climb.sweep;
   return {
     path:
-      `M ${start.x} ${runwayY}` + toSvgArc(climb.lift) + toSvgArc(climb.turn),
+      `M ${start.x} ${runwayY} L ${from.x} ${from.y}` +
+      ` C ${controls.map((point) => `${point.x} ${point.y}`).join(' ')}` +
+      toSvgArc(climb.turn),
     end: arcPoint(climb.turn, climb.turn.to),
   };
 }
 
 type Climb = ReturnType<typeof toClimb>;
 
-/** The climb that leaves the runway earliest and still clears the text. */
-function toFlattestClimb(
-  startX: number,
-  runwayY: number,
-  apex: Point,
-  radius: number,
-  text: Box[]
-) {
-  for (let x = startX + radius; x <= apex.x - 2 * radius; x += 4) {
-    const climb = toClimb(x, runwayY, apex, radius);
-    if (clearsText(climb, text)) return climb;
-  }
-}
-
 /**
- * Lift-off and turn-over arcs for a climb that leaves the runway at `x`. The
- * path turns over a circle whose top is at the apex height and whose right
- * side is on the run down at the apex `x`.
+ * A climb that reaches the turn-over arc at `angle` degrees. The arc turns
+ * over a circle whose top is at the apex height and whose right side is on
+ * the run down at the apex `x`. The climb is a cubic Bézier curve rounding
+ * the corner between the runway and a straight line into the arc: it lifts
+ * off the runway gently and straightens out as it meets the arc, so both
+ * joins are smooth.
  */
-function toClimb(x: number, runwayY: number, apex: Point, radius: number) {
-  const center = { x: apex.x - radius, y: apex.y + radius };
-  const dx = center.x - x;
-  const dy = center.y - runwayY;
-  // The climb heads up and to the right and touches the circle on its left
-  const heading =
-    Math.atan2(dy, dx) - Math.asin(Math.min(1, radius / Math.hypot(dx, dy)));
-  const liftLength = radius * Math.tan(-heading / 2);
-  const lift: Arc = {
-    center: { x: x - liftLength, y: runwayY - radius },
-    radius,
-    from: Math.PI / 2,
-    to: Math.PI / 2 + heading,
+function toClimb(startX: number, runwayY: number, apex: Point, angle: number) {
+  const heading = (-angle * Math.PI) / 180;
+  const turn: Arc = {
+    center: { x: apex.x - TURN_RADIUS, y: apex.y + TURN_RADIUS },
+    radius: TURN_RADIUS,
+    from: heading - Math.PI / 2,
+    to: 0,
   };
-  const turn: Arc = { center, radius, from: heading - Math.PI / 2, to: 0 };
-  return { lift, turn, angle: (-heading * 180) / Math.PI };
+  const join = arcPoint(turn, turn.from);
+  const length = (runwayY - join.y) / Math.sin(-heading);
+  const corner = { x: join.x - length * Math.cos(heading), y: runwayY };
+  const sweep = [
+    { x: Math.max(startX, corner.x - LIFT_OFF * length), y: runwayY },
+    corner,
+    {
+      x: corner.x + CLIMB_HANDLE * (join.x - corner.x),
+      y: corner.y + CLIMB_HANDLE * (join.y - corner.y),
+    },
+    join,
+  ];
+  return { sweep, turn };
 }
 
 /** Whether the climb keeps its clearance from every text line. */
 function clearsText(climb: Climb, text: Box[]) {
-  const climbFrom = arcPoint(climb.lift, climb.lift.to);
-  const climbTo = arcPoint(climb.turn, climb.turn.from);
-  const length = Math.hypot(climbTo.x - climbFrom.x, climbTo.y - climbFrom.y);
-  const steps = Math.ceil(length / SAMPLE_STEP);
-  const points = [
-    ...arcPoints(climb.lift),
-    ...Array.from({ length: steps + 1 }, (_, i) => ({
-      x: climbFrom.x + ((climbTo.x - climbFrom.x) * i) / steps,
-      y: climbFrom.y + ((climbTo.y - climbFrom.y) * i) / steps,
-    })),
-    ...arcPoints(climb.turn),
-  ];
+  const points = [...bezierPoints(climb.sweep), ...arcPoints(climb.turn)];
   return points.every((point) =>
     text.every(
       (line) =>
@@ -465,6 +445,33 @@ function clearsText(climb: Climb, text: Box[]) {
         ) >= TEXT_CLEARANCE
     )
   );
+}
+
+/** Points along a cubic Bézier curve, at most `SAMPLE_STEP` apart. */
+function bezierPoints([p0, p1, p2, p3]: Point[]) {
+  // The curve is never longer than its control polygon
+  const polygon =
+    Math.hypot(p1.x - p0.x, p1.y - p0.y) +
+    Math.hypot(p2.x - p1.x, p2.y - p1.y) +
+    Math.hypot(p3.x - p2.x, p3.y - p2.y);
+  const steps = Math.ceil(polygon / SAMPLE_STEP);
+  return Array.from({ length: steps + 1 }, (_, i) => {
+    const t = i / steps;
+    const u = 1 - t;
+    const weights = [u * u * u, 3 * u * u * t, 3 * u * t * t, t * t * t];
+    return {
+      x:
+        weights[0] * p0.x +
+        weights[1] * p1.x +
+        weights[2] * p2.x +
+        weights[3] * p3.x,
+      y:
+        weights[0] * p0.y +
+        weights[1] * p1.y +
+        weights[2] * p2.y +
+        weights[3] * p3.y,
+    };
+  });
 }
 
 function arcPoint(arc: Arc, angle: number): Point {

@@ -4,10 +4,10 @@ Overrides `MASTER.md` for the landing page (`/de`, `/en`).
 
 - **Hero:** full viewport height (`min-h-[100svh]`), text on the left. A dotted terracotta flight path
   (`src/components/motion/FlightPath.tsx`) enters from the left edge on a runway below the hero text,
-  lifts off in a circular arc, climbs in a straight line past the right side of the text (40px
-  clearance from each line) and turns over the top right in one circular arc down into the right
-  margin. Arcs and lines meet at a tangent, so there are no kinks. The arcs have a radius of up to
-  180px and get tighter (down to 100px) beside long text, so the climb stays at 70° or flatter. From
+  lifts off gently in one curved sweep (a cubic Bézier, no straight climb) that gets steeper past the
+  right side of the text (40px clearance from each line) and turns over the top right in a tight
+  circular arc (100px radius) down into the right margin. The sweep leaves the runway and meets the arc
+  at a tangent, so there are no kinks. It meets the arc at 60°, or steeper beside long text. From
   there it runs straight down the right margin; above the closing CTA band it turns in with a rounded
   corner and the Maikäfer lands on the band. Waypoints are `data-flight="x,y;x,y"` attributes (`x` as a
   fraction, `L`/`R` for the margin middle); the text lines the take-off avoids are the children of
