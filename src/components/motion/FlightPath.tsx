@@ -308,11 +308,17 @@ function pulse(pad: HTMLElement | null) {
   if (!pad || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return;
   }
+  // Each ring starts invisible, so the later one doesn't show while it waits
   pad.querySelectorAll('span').forEach((ring, index) => {
     animate(
       ring,
-      { scale: [0.5, 2.6], opacity: [0.7, 0] },
-      { duration: 1.4, delay: index * 0.35, ease: 'easeOut' }
+      { scale: [0.5, 2.6], opacity: [0, 0.7, 0] },
+      {
+        duration: 1.4,
+        delay: index * 0.35,
+        ease: 'easeOut',
+        opacity: { duration: 1.4, delay: index * 0.35, times: [0, 0.1, 1] },
+      }
     );
   });
 }

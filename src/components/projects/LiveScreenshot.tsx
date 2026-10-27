@@ -32,7 +32,8 @@ export function LiveScreenshot({ image, alt, sizes }: LiveScreenshotProps) {
   });
   // The part of the screenshot below the frame, as a share of its height
   const travel = 100 * (1 - image.width / FRAME_ASPECT / image.height);
-  const y = useTransform(scrollYProgress, [0.15, 0.85], ['0%', `-${travel}%`]);
+  // Spread over the whole way through the viewport, so it scrolls calmly
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', `-${travel}%`]);
 
   return (
     <div ref={frame} className="aspect-[16/10] overflow-hidden">
