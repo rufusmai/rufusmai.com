@@ -120,19 +120,35 @@ function LabProject({ project, locale }: { project: Project; locale: Locale }) {
             </h3>
             <p>{t('pounceProblem')}</p>
           </div>
-          {project.liveUrl && (
-            <Button asChild size="lg" className="group w-fit">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('visit', { title: project.title })}
-                <ArrowUpRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                <span className="sr-only">{tCommon('opensInNewTab')}</span>
-              </a>
-            </Button>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {project.liveUrl && (
+              <Button asChild size="lg" className="group">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('visit', { title: project.title })}
+                  <ArrowUpRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="sr-only">{tCommon('opensInNewTab')}</span>
+                </a>
+              </Button>
+            )}
+            {/* The demo shell frames the live app, with insights on its tech */}
+            {project.demoUrl && (
+              <Button asChild size="lg" variant="outline" className="group">
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {tCommon('liveDemo')}
+                  <ArrowUpRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="sr-only">{tCommon('opensInNewTab')}</span>
+                </a>
+              </Button>
+            )}
+          </div>
         </Reveal>
 
         <div className="flex flex-col gap-10 lg:col-span-7">

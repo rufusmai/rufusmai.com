@@ -45,6 +45,7 @@ const pounce: Project = {
   ],
   image: pounceImage,
   logo: { src: pounceLogo, alt: 'Pounce' },
+  demoUrl: 'https://pounce.demo.rufusmai.com',
   liveUrl: 'https://pounce.rufusmai.com',
   status: { de: 'Invite-only Beta', en: 'Invite-only beta' },
   highlights: {
