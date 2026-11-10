@@ -32,30 +32,31 @@ components; use the Tailwind token classes (`bg-background`, `text-primary`, …
 
 The site has a **light design only** (no dark mode, `color-scheme: light`).
 
-| Role                             | Colour    | CSS variable          |
-| -------------------------------- | --------- | --------------------- |
-| Background                       | `#fafafa` | `--background`        |
-| Foreground (ink)                 | `#18181b` | `--foreground`        |
-| Card                             | `#ffffff` | `--card`              |
-| Muted surface                    | `#f4f4f5` | `--muted`             |
-| Muted foreground                 | `#52525b` | `--muted-foreground`  |
-| Border                           | `#e4e4e7` | `--border`            |
-| Primary (text, links, icons)     | `#b04a26` | `--primary`           |
-| Button fill                      | `#b04a26` | `--button`            |
-| Accent (hover fills, highlights) | `#b04a26` | `--accent`            |
-| Text on accent                   | `#ffffff` | `--accent-foreground` |
-| Text on button                   | `#ffffff` | `--button-foreground` |
-| Wing cover (logo only)           | `#c75a34` | `--brand-wing`        |
-| Ink (logo)                       | `#18181b` | `--brand-ink`         |
-| Ring                             | `#b04a26` | `--ring`              |
-| Destructive                      | `#dc2626` | `--destructive`       |
+| Role                         | Colour    | CSS variable          |
+| ---------------------------- | --------- | --------------------- |
+| Background                   | `#fafafa` | `--background`        |
+| Foreground (ink)             | `#18181b` | `--foreground`        |
+| Card                         | `#ffffff` | `--card`              |
+| Muted surface                | `#f4f4f5` | `--muted`             |
+| Muted foreground             | `#52525b` | `--muted-foreground`  |
+| Border                       | `#e4e4e7` | `--border`            |
+| Primary (text, links, icons) | `#b04a26` | `--primary`           |
+| Button fill                  | `#b04a26` | `--button`            |
+| Accent (quiet hover surface) | `#f6efed` | `--accent`            |
+| Text on accent               | `#b04a26` | `--accent-foreground` |
+| Text on button               | `#ffffff` | `--button-foreground` |
+| Wing cover (logo only)       | `#c75a34` | `--brand-wing`        |
+| Ink (logo)                   | `#18181b` | `--brand-ink`         |
+| Ring                         | `#b04a26` | `--ring`              |
+| Destructive                  | `#dc2626` | `--destructive`       |
 
 **Only the branding colours are used as accents** (`#c75a34` logo, `#b04a26` text and fills, see
-`rufusmai-branding/logos/vergleich-terrakotta.png`). No extra hover shades or other hues; status
-indicators use primary as well.
+`rufusmai-branding/logos/vergleich-terrakotta.png`). No other hues; status indicators use primary as
+well. The one hover surface, `--accent`, is not a new colour but `#b04a26` at 6% over the background.
 
 **Contrast notes (from the branding README):** `#b04a26` on the light background reaches 5.5:1, and white
-text on it 5.5:1. `#c75a34` reaches only 4.25:1 on white, so it is **logo-only**, never text.
+text on it 5.5:1. `#c75a34` reaches only 4.25:1 on white, so it is **logo-only**, never text. `#b04a26`
+on the `--accent` hover surface reaches 4.8:1.
 
 ### Typography
 
@@ -112,7 +113,9 @@ Container: `max-w-6xl`, 16px gutter on mobile, 24px from `sm`, 32px from `lg`.
 
 - **Primary button:** `bg-button text-button-foreground rounded-full px-6 h-11 font-medium`; hover lifts
   `-translate-y-px` with `shadow-lift`, the fill stays `#b04a26`; press `scale-[0.98]`; 200ms.
-- **Ghost button / menu items:** hover fills with `--accent` (`#b04a26`) and white text.
+- **Ghost button / menu items:** quiet. No fill at rest; on hover a pale `--accent` surface (`#f6efed`)
+  and the text turns `--accent-foreground` (`#b04a26`), like links and nav. Never a solid terracotta
+  fill: that belongs to the primary button alone.
 - **Secondary button:** `border border-border bg-card/60 backdrop-blur rounded-full`; hover `border-primary/50`.
 - **Link with arrow:** `text-primary` + lucide `ArrowRight` that slides `translate-x-0.5` on hover.
 - **Card:** `bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-md`; interactive cards lift

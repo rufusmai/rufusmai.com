@@ -123,9 +123,10 @@
   --secondary-foreground: #18181b;
   --muted: #f4f4f5;
   --muted-foreground: #52525b;
-  /* Brand accent: "Text, Buttons" colour from the branding, white text on it */
-  --accent: #b04a26;
-  --accent-foreground: #ffffff;
+  /* Quiet hover surface for ghost buttons and menu rows: primary at 6% over
+     the background, with primary text on it (4.8:1) */
+  --accent: #f6efed;
+  --accent-foreground: #b04a26;
   --destructive: #dc2626;
   --border: #e4e4e7;
   --input: #d4d4d8;
