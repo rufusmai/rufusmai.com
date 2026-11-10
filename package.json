@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1156.0",
+    "@rufusmai/design-system": "^0.1.0",
     "@tailwindcss/typography": "^0.5.20",
     "botid": "^1.5.11",
     "class-variance-authority": "^0.7.1",

@@ -2574,6 +2574,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rufusmai/design-system@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@rufusmai/design-system@npm:0.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40rufusmai%2Fdesign-system%2F0.1.0%2F44bbc6e63190400c151a98a537a63355c0ee33dc"
+  checksum: 10c0/3679c548f0803d65815187492580c65c39ae634be4c533dac8c3e841e9e1d31dedbbc374c91a5c10380b410591a6edd7d8a2d0374cbfe93fa71a9b34070a72f3
+  languageName: node
+  linkType: hard
+
 "@schummar/icu-type-parser@npm:1.21.5":
   version: 1.21.5
   resolution: "@schummar/icu-type-parser@npm:1.21.5"
@@ -6391,6 +6398,7 @@ __metadata:
   resolution: "rufusmai.com@workspace:."
   dependencies:
     "@aws-sdk/client-sesv2": "npm:^3.1156.0"
+    "@rufusmai/design-system": "npm:^0.1.0"
     "@tailwindcss/postcss": "npm:^4.3.3"
     "@tailwindcss/typography": "npm:^0.5.20"
     "@types/eslint-plugin-tailwindcss": "npm:^3.17.0"
